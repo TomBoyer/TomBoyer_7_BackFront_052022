@@ -116,3 +116,24 @@ exports.updateOneUser = (req, res) => {
     })
     .catch((error) => res.status(500).json({ error }));
 };
+
+exports.deleteUser = (req, res) => {
+    console.log(req.params);
+    User.findOne({ where: { id: req.params.id } })
+        .then(user => {
+            // const filename = user.imageUrl.split('/images/')[1];
+
+            // if(filename != "image_profil_default.jpg") {
+            //     fs.unlink(`images/${filename}`, (err) => {
+            //         if(err) {
+            //             console.log("Erreur: " + err);
+            //         };
+            //     });
+            // };
+
+            User.destroy({ where: { id: req.params.id } })
+                .then(() => res.status(200).json({ message: "Utilisateur supprimé !" }))
+                .catch(error => res.status(500).json({ error }));
+        })
+        .catch(error => res.status(500).json({ error }))
+};

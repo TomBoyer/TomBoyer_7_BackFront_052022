@@ -14,6 +14,6 @@ router.get("/:id", auth, userControl.getOneUser);
 
 router.put("/", auth, userControl.updateOneUser);
 
-
+router.delete('/:id', auth, userControl.deleteUser);
 
 module.exports = router;
