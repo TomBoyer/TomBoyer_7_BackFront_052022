@@ -3,9 +3,13 @@ const express = require("express");
 const router = express.Router();
 
 const userControl = require("../controllers/userControl");
+const auth = require("../midddleware/authMiddleware");
+const password = require("../midddleware/passwordMiddleware");
 
 //routes
-router.post("/signup", userControl.signup);
+router.post("/signup", password, userControl.signup);
 router.post("/login", userControl.login);
+
+router.get("/:id", auth, userControl.getOneUser);
 
 module.exports = router;

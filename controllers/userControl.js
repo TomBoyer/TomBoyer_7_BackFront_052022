@@ -2,9 +2,10 @@ const { User } = require("../models");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const fs = require("fs");
+const { restart } = require("nodemon");
 
 exports.signup = (req, res) => {
-//   console.log(req.body);
+  //   console.log(req.body);
   bcrypt
     .hash(req.body.password, 17)
     .then((hash) => {
@@ -32,14 +33,13 @@ exports.login = (req, res) => {
     where: { email: req.body.email },
   })
     .then((user) => {
-    //   console.log(req);
+      //   console.log(req);
       if (!user) {
         return res
           .status(401)
           .json({ message: `${req.body.email} n'existe pas !` });
       }
-      bcrypt.compare(req.body.password, user.password)
-      .then((valid) => {
+      bcrypt.compare(req.body.password, user.password).then((valid) => {
         if (!valid) {
           return res
             .status(401)
@@ -47,16 +47,23 @@ exports.login = (req, res) => {
         }
         // console.log(user.dataValues);
         res.status(200).json({
-            userId : user.id,
-            token: jwt.sign(
-                {
-                    userId:user.id
-                },process.env.SECRET_TOKEN,
-                {expiresIn : "24h"}
-            )
-        })
+          userId: user.id,
+          token: jwt.sign(
+            {
+              userId: user.id,
+            },
+            process.env.SECRET_TOKEN,
+            { expiresIn: "24h" }
+          ),
+        });
       });
     })
     .catch((error) => res.status(500).json({ error }));
 };
 
+exports.getOneUser = (req, res) => {
+  console.log(req.params);
+  User.findOne({ where: { id: req.params.id } })
+    .then((user) => res.status(200).json(user))
+    .catch((err) => res.status(500).json({ err }));
+};
