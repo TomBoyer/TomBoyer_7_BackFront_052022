@@ -12,7 +12,7 @@ router.post("/login", userControl.login);
 
 router.get("/:id", auth, userControl.getOneUser);
 
-router.put("/:id", auth, userControl.updateOneUser);
+router.put("/", auth, userControl.updateOneUser);
 
 
 
