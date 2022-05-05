@@ -62,8 +62,54 @@ exports.login = (req, res) => {
 };
 
 exports.getOneUser = (req, res) => {
-  console.log(req.params);
+//   console.log(req.params);
   User.findOne({ where: { id: req.params.id } })
     .then((user) => res.status(200).json(user))
     .catch((err) => res.status(500).json({ err }));
+};
+
+// exports.getAllUsers = (req, res) => {
+//     User.scope('noPassword').findAll({
+//         order: [
+//             ['username', 'ASC']
+//         ]
+//     })
+//         .then(user => res.status(200).json(user))
+//         .catch(error => res.status(500).json({ error }))
+// };
+
+exports.updateOneUser = (req, res) => {
+    User.findOne({ where: { id: req.params.id } })
+
+        .then(user => {  
+            // if(req.body.oldPassword && req.body.newPassword) {
+            //     bcrypt.compare(req.body.oldPassword, user.password)
+            //         .then(valid => {
+            //             if(!valid) {
+            //                 return res.status(401).json({ error: 'c\'est pas le bon mdp chef'})
+            //             } else {
+            //                 bcrypt.hash(req.body.newPassword, 10)
+            //                     .then(newHash => {
+            //                         User.update(
+            //                             { password: newHash },
+            //                             { where: { id: req.body.userId } }
+            //                         );
+            //                         res.status(201).json({ message: 'Nouveau mdp enregistré'})
+            //                     })
+            //                     .catch(error => res.status(500).json({ error }))
+            //             }
+            //         })
+            //         .catch(error => res.status(500).json({ error }))
+            // }
+
+            if(req.body.username && req.body.username != user.username) {
+                User.update(
+                    { username: req.body.username},
+                    { where: { id: req.params.id } }
+                );
+                res.status(201).json({ message: 'Nouveau username enregistré'})
+            };
+
+        })
+        .catch(error => res.status(500).json({ error }));
 };
