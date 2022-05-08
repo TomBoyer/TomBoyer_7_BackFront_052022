@@ -33,9 +33,11 @@ app.use((req, res, next) => {
 //déclarer les routes
 const userRoute = require("./routes/userRoute");
 const postRoute = require("./routes/postRoute");
+const commentRoute = require("./routes/commentRoute");
 
 //utiliser routes
 app.use("/api/user", userRoute);
 app.use("/api/post", postRoute);
+app.use("/api/comment", commentRoute);
 
 module.exports = app;
