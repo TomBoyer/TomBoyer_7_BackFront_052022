@@ -35,20 +35,8 @@ module.exports = {
         type: Sequelize.DATE,
       },
     });
-    // queryInterface.addConstraint("Posts", {
-    //   type: "foreign key",
-    //   name: "fk_posts_users",
-    //   fields: ["userId"],
-    //   references: {
-    //     table: "Users",
-    //     field: "id",
-    //   },
-    //   onDelete: "cascade",
-    //   onUpdate: "cascade",
-    // });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable("Posts");
-    // queryInterface.removeConstraint('Posts', 'fk_posts_users');
   },
 };

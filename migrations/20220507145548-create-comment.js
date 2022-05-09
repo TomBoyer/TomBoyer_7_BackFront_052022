@@ -42,34 +42,9 @@ module.exports = {
         type: Sequelize.DATE,
       },
     });
-
-    // queryInterface.addConstraint("Comments", {
-    //   type: "foreign key",
-    //   name: "fk_comments_users",
-    //   fields: ["userId"],
-    //   references: {
-    //     table: "Users",
-    //     field: "id",
-    //   },
-    //   onDelete: "cascade",
-    //   onUpdate: "cascade",
-    // });
-
-    // queryInterface.addConstraint("Comments", {
-    //   type: "foreign key",
-    //   name: "fk_posts_users",
-    //   fields: ["postId"],
-    //   references: {
-    //     table: "Posts",
-    //     field: "id",
-    //   },
-    //   onDelete: "cascade",
-    //   onUpdate: "cascade",
-    // });
   },
   async down(queryInterface, Sequelize) {
     await queryInterface.dropTable("Comments");
-    // queryInterface.removeConstraint("Comments", "fk_comments_users");
-    // queryInterface.removeConstraint("Comments", "fk_posts_users");
+
   },
 };

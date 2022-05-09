@@ -2,7 +2,8 @@ const { User } = require("../models");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const fs = require("fs");
-const { restart } = require("nodemon");
+// const { restart } = require("nodemon");
+// require("dotenv").config();
 
 exports.signup = (req, res) => {
   //   console.log(req.body);
@@ -68,15 +69,15 @@ exports.getOneUser = (req, res) => {
     .catch((err) => res.status(500).json({ err }));
 };
 
-// exports.getAllUsers = (req, res) => {
-//     User.scope('noPassword').findAll({
-//         order: [
-//             ['username', 'ASC']
-//         ]
-//     })
-//         .then(user => res.status(200).json(user))
-//         .catch(error => res.status(500).json({ error }))
-// };
+exports.getAllUsers = (req, res) => {
+    findAll({
+        order: [
+            ['username', 'ASC']
+        ]
+    })
+        .then(user => res.status(200).json(user))
+        .catch(error => res.status(500).json({ error }))
+};
 
 exports.updateOneUser = (req, res) => {
   User.findOne({ where: { id: req.body.id } })
@@ -137,3 +138,10 @@ exports.deleteUser = (req, res) => {
         })
         .catch(error => res.status(500).json({ error }))
 };
+
+// exports.logout = (req,res) => {
+//   req.logout()
+//   req.session.destroy()
+//   res.redirect()
+
+// }

@@ -7,18 +7,25 @@ module.exports = {
      *
      * Example:
      */
+
+    const date = new Date();
+
     await queryInterface.bulkInsert("Posts", [
       {
-        userId: "1",
-        content: "Premier Post de l'admin Groupomania",
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        id: 1,
+        userId: 1,
+        content: "Premier Post de Admin",
+        /* imageURL: null, */
+        createdAt: date,
+        updatedAt: date,
       },
       {
-        userId: "2",
-        content: "Premier Post de l'utilisateur Test de Groupomania",
-        createdAt: new Date(),
-        updatedAt: new Date(),
+        id: 2,
+        userId: 2,
+        content: "Premier Post de test1",
+        /* imageURL: null, */
+        createdAt: date,
+        updatedAt: date,
       },
     ]);
   },
