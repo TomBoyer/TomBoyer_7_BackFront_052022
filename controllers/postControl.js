@@ -30,7 +30,10 @@ exports.getAllPosts = (req, res) => {
       },
       {
         model: Comment,
-        include: [{ model: User, attributes: ["username"] }],
+        include: [
+          { model: User, 
+            attributes: ["username"] 
+          }],
       },
     ],
 
@@ -38,6 +41,21 @@ exports.getAllPosts = (req, res) => {
       ["createdAt", "DESC"],
       [Comment, "createdAt", "DESC"],
     ],
+  })
+    .then((posts) => {
+      res.status(200).json(posts);
+    })
+    .catch((error) => {
+      res.status(400).json({ message: error.message });
+    });
+};
+
+exports.getOnePost = (req, res) => {
+  Post.findOne({
+    where: { id: req.params.id },
+    include: [{
+      model: Comment
+  }]
   })
     .then((posts) => {
       res.status(200).json(posts);

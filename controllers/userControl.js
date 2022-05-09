@@ -89,7 +89,7 @@ exports.updateOneUser = (req, res) => {
             if (!valid) {
               return res
                 .status(401)
-                .json({ error: "c'est pas le bon mdp chef" });
+                .json({ error: "Vérifiez votre mot de passe !" });
             } else {
               bcrypt
                 .hash(req.body.newPassword, 10)
