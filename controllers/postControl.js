@@ -23,49 +23,22 @@ exports.createPost = (req, res) => {
 
 exports.getAllPosts = (req, res) => {
   Post.findAll({
-    order: [["updatedAt", "DESC"]],
-    include: {
-      model: User,
-      attributes: ["username"],
-    },
+    include: [
+      {
+        model: User,
+        attributes: ["username"],
+      },
+      {
+        model: Comment,
+        include: [{ model: User, attributes: ["username"] }],
+      },
+    ],
+
+    order: [
+      ["createdAt", "DESC"],
+      [Comment, "createdAt", "DESC"],
+    ],
   })
-
-  // Post.findAll({
-  //   order: [["createdAt", "DESC"]],
-  //   include: [
-  //     {
-  //       model: User,
-  //       attributes: ["username"],
-  //     },
-  //     {
-  //       model: Comment,
-  //       include: [
-  //         {
-  //           order: [["createdAt", "ASC"]],
-  //           model: User,
-  //           attributes: ["username"],
-  //         },
-  //       ],
-  //     },
-  //   ],
-  // })
-
-//   Post.findAll({
-//     // On y inclue les utilisateurs, likes et commentaires
-//     include: [
-//         { model: User, as: 'User', attributes: ['username'] },
-//         { model: Comment, include: [
-//             { model: User, attributes: ['username'] }
-//         ]},
-        
-//     ],
-    
-//     // Les résulats sont classés par ordre décroissant des dates
-//     order: [
-//         ['publicationDate', 'DESC'],
-//         [Comment, 'createdAt', 'DESC']
-//     ]
-// })
     .then((posts) => {
       res.status(200).json(posts);
     })

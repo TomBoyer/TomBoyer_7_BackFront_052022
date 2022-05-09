@@ -10,6 +10,7 @@ const multer = require('../middleware/multer-config');
 //routes
 router.post("/signup", password, userControl.signup);
 router.post("/login", userControl.login);
+// router.post("/logout", userControl.logout);
 
 router.get("/:id", auth, userControl.getOneUser);
 
