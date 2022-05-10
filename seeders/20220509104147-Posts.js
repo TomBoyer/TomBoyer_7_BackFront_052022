@@ -2,12 +2,6 @@
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     */
-
     const date = new Date();
 
     await queryInterface.bulkInsert("Posts", [
@@ -21,8 +15,24 @@ module.exports = {
       },
       {
         id: 2,
+        userId: 1,
+        content: "Second Post de Admin",
+        /* imageURL: null, */
+        createdAt: date,
+        updatedAt: date,
+      },
+      {
+        id: 3,
         userId: 2,
         content: "Premier Post de test1",
+        /* imageURL: null, */
+        createdAt: date,
+        updatedAt: date,
+      },
+      {
+        id: 4,
+        userId: 2,
+        content: "Second Post de test1",
         /* imageURL: null, */
         createdAt: date,
         updatedAt: date,

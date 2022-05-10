@@ -2,12 +2,6 @@
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     */
-
     const date = new Date();
 
     await queryInterface.bulkInsert("Comments", [
@@ -27,15 +21,27 @@ module.exports = {
         createdAt: date,
         updatedAt: date,
       },
+      {
+        id: 3,
+        userId: 1,
+        postId: 3,
+        content: "Salade",
+        createdAt: date,
+        updatedAt: date,
+      },
+      {
+        id: 4,
+        userId: 2,
+        postId: 4,
+        content: "Tomate",
+        createdAt: date,
+        updatedAt: date,
+      },
     ]);
   },
 
   async down(queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     */
+
     await queryInterface.bulkDelete("Comments", null);
   },
 };

@@ -4,7 +4,7 @@ const {Comment} = require('../models')
 
 exports.createComment = (req, res) => {
     const newComment = {
-        userId: req.body.id,
+        userId: req.body.userId,
         postId: req.body.postId,
         content: req.body.content
     };

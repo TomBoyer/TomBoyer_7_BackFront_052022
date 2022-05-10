@@ -11,9 +11,9 @@ exports.createPost = (req, res) => {
   }
 
   const newPost = {
-    userId: req.body.id,
+    userId: req.body.userId,
     content: req.body.content,
-    image: postImage,
+    // image: postImage,
   };
 
   Post.create(newPost)
@@ -21,27 +21,27 @@ exports.createPost = (req, res) => {
     .catch((error) => res.status(500).json({ error }));
 };
 
-
 exports.getAllPosts = (req, res) => {
   Post.findAll({
-    // include: [
+    include: [
       // {
       //   model: User,
-      //   as: "Users",
+      //   // as: "Users",
       //   attributes: ["username"],
       // },
-      // {
-      //   model: Comment,
-      //   include: [
-      //     { model: User,
-      //       attributes: ["username"]
-      //     }],
-      // },
-    // ],
+      {
+        model: Comment,
+        as : "Comment",
+        // include: [
+        //   { model: User,
+        //     attributes: ["username"]
+        //   }],
+      },
+    ],
 
     order: [
       ["createdAt", "DESC"],
-      // [Comment, "createdAt", "DESC"],
+      [Comment, "createdAt", "DESC"],
     ],
   })
     .then((posts) => {
@@ -55,11 +55,12 @@ exports.getAllPosts = (req, res) => {
 exports.getOnePost = (req, res) => {
   Post.findOne({
     where: { id: req.params.id },
-    // include: [
-    //   {
-    //     model: Comment,
-    //   },
-    // ],
+    include: [
+      {
+        model: Comment,
+        as: "Comment"
+      },
+    ],
   })
     .then((posts) => {
       res.status(200).json(posts);
