@@ -4,11 +4,6 @@ const bcrypt = require("bcrypt");
 
 module.exports = {
   async up(queryInterface, Sequelize) {
-    /**
-     * Add seed commands here.
-     *
-     * Example:
-     */
 
     const date = new Date();
     const hash = bcrypt.hashSync("123Soleil", 13);
@@ -20,7 +15,7 @@ module.exports = {
         isAdmin: 1,
         password: hash,
         username: "Admin",
-        /* imageUrl: null, */
+        imageUrl: "http://localhost:3000/images/Pic2.jpg",
         createdAt: date,
         updatedAt: date,
       },
@@ -30,7 +25,7 @@ module.exports = {
         isAdmin: 0,
         password: hash,
         username: "test1",
-        /* imageUrl: null, */
+        imageUrl: "http://localhost:3000/images/Pic3.jpg",
         createdAt: date,
         updatedAt: date,
       },
@@ -38,11 +33,6 @@ module.exports = {
   },
 
   async down(queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     */
     await queryInterface.bulkDelete("Users", null);
   },
 };

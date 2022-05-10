@@ -14,6 +14,7 @@ exports.signup = (req, res) => {
         email: req.body.email,
         username: req.body.username,
         password: hash,
+        imageUrl: `${req.protocol}://${req.get("host")}/images/Pic1.jpg`,
       };
 
       User.create(newUser)
@@ -70,13 +71,11 @@ exports.getOneUser = (req, res) => {
 };
 
 exports.getAllUsers = (req, res) => {
-    findAll({
-        order: [
-            ['username', 'ASC']
-        ]
-    })
-        .then(user => res.status(200).json(user))
-        .catch(error => res.status(500).json({ error }))
+  findAll({
+    order: [["username", "ASC"]],
+  })
+    .then((user) => res.status(200).json(user))
+    .catch((error) => res.status(500).json({ error }));
 };
 
 exports.updateOneUser = (req, res) => {
@@ -118,25 +117,53 @@ exports.updateOneUser = (req, res) => {
     .catch((error) => res.status(500).json({ error }));
 };
 
+exports.updateProfilePicture = (req, res) => {
+  // User.findOne({
+  //   where: { id: req.params.id },
+  // }).then((user) => {
+  //   if (req.file) {
+  //     const filename = user.imageUrl.split("/images/")[1];
+
+  //     if (filename != "Pic1.jpg") {
+  //       fs.unlink(`images/${filename}`, (err) => {
+  //         if (err) {
+  //           throw err;
+  //         }
+  //       });
+  //     }
+
+  //     const newImage = {
+  //       imageUrl: `${req.protocol}://${req.get("host")}/images/${
+  //         req.file.filename
+  //       }`,
+  //     };
+
+  //     User.update(newImage, { where: { id: req.params.id } })
+  //       .then(() => res.status(201).json({ message: "Image modifiée !" }))
+  //       .catch((error) => res.status(500).json({ error }));
+  //   }
+  // });
+};
+
 exports.deleteUser = (req, res) => {
-    console.log(req.params);
-    User.findOne({ where: { id: req.params.id } })
-        .then(user => {
-            // const filename = user.imageUrl.split('/images/')[1];
+  console.log(req.params);
+  User.findOne({ where: { id: req.params.id } })
+    .then((user) => {
+      const filename = user.imageUrl.split("/images/")[1];
 
-            // if(filename != "image_profil_default.jpg") {
-            //     fs.unlink(`images/${filename}`, (err) => {
-            //         if(err) {
-            //             console.log("Erreur: " + err);
-            //         };
-            //     });
-            // };
+      if (filename != "Pic1.jpg") {
+        fs.unlink(`images/${filename}`, (err) => {
+          if (err) {
+            console.log("Erreur: " + err);
+          }
+        });
+      }
 
-            User.destroy({ where: { id: req.params.id } })
-                .then(() => res.status(200).json({ message: "Utilisateur supprimé !" }))
-                .catch(error => res.status(500).json({ error }));
-        })
-        .catch(error => res.status(500).json({ error }))
+      User.destroy({ where: { id: req.params.id } })
+        .then(() => res.status(200).json({ message: "Utilisateur supprimé !" }))
+        .catch((error) => res.status(500).json({ error }));
+    })
+    .catch((error) => res.status(500).json({ error }));
 };
 
 // exports.logout = (req,res) => {

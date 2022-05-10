@@ -16,6 +16,7 @@ router.get("/:id", auth, userControl.getOneUser);
 router.get("/", auth, userControl.getAllUsers);
 
 router.put("/", auth, userControl.updateOneUser);
+// router.put("/:id", auth, multer, userControl.updateProfilePicture);
 
 router.delete('/:id', auth, userControl.deleteUser);
 
