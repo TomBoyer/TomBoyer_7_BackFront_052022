@@ -1,7 +1,21 @@
-import React from 'react'
+import React from "react";
+import { NavLink } from "react-router-dom";
+
+import Nav from "./Nav";
 
 export default function Header() {
   return (
-    <div>Header</div>
-  )
+    <header className="header">
+      <div className="logo__container">
+        <NavLink to="/home">
+          <img
+            className="logo"
+            src="./imgs/icon-left-font-monochrome-black.png"
+            alt="logo groupomania black"
+          />
+        </NavLink>
+      </div>
+      <Nav />
+    </header>
+  );
 }
