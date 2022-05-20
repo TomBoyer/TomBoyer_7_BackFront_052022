@@ -1,0 +1,80 @@
+
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+
+body {
+  background-color: $color-3;
+  font-family: 'Montserrat', sans-serif;
+}
+
+main {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  justify-content: center;
+  text-align: center;
+}
+
+h1 {
+  color: $color-6;
+  font-size: 10.5rem;
+  letter-spacing: .10em;
+  margin: .025em 0;
+  text-shadow: .05em .05em 0 rgba(0,0,0,.25);
+  white-space: nowrap;
+
+  text-align: center;
+
+  animation: spooky 2s alternate infinite linear;
+  
+  @media(max-width: 30rem) {
+    font-size: 8.5rem;
+  }
+  
+}
+
+h2 {
+  color: $color-5;
+  margin-bottom: .40em;
+
+  font-size: 5rem;
+
+  text-align: center;
+
+  animation: spooky 2s alternate infinite linear;
+
+  @media(max-width: 30rem) {
+    font-size: 8.5rem;
+  }
+}
+
+p {
+  color: #ccc;
+  margin-top: 0;
+
+  font-size: 3rem;
+
+  text-align: center;
+}
+
+.btn-home-container{
+  @include flex-center;
+  margin-top: 2em
+}
+
+.btn-home {
+  @include btn;
+  width: 20em;
+
+  &:hover {
+    @include btn-hover;
+  }
+
+  &:active {
+    @include btn-active;
+  }
+}
