@@ -1,0 +1,16 @@
+.title__container {
+    @include border;
+    @include flex-center;
+    @include border-radius;
+
+    background-color: $color-5;
+    color: $color-4;
+
+    width: 20em;
+    text-align: center;
+
+
+    h1 {
+        text-transform: uppercase;
+    }
+}

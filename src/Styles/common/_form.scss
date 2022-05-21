@@ -1,0 +1,52 @@
+.form__container {
+
+    @include border-radius;
+    @include flex-center;
+    background-color: $color-5;
+
+    form {
+        @include border;
+        padding: 3em;
+
+        .label__container {
+
+            position: relative;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+
+            font-size: 1.3rem;
+
+            input {
+                @include border-radius;
+                background-color: $color-6;
+                width: 30rem;
+                padding: 1em;
+                margin: .5em 0 2em 0;
+                box-shadow: 2px 2px rgb(94, 94, 94);
+            }
+
+            button {
+                width: 10em;
+            }
+
+            .password-toggle {
+                padding: 0.6em;
+                position: absolute;
+                right: 1em;
+                font-size: 1.2em;
+                cursor: pointer;
+
+                transition: $duration;
+
+                :hover {
+                    color: $color-2;
+                }
+
+            }
+
+        }
+    }
+}

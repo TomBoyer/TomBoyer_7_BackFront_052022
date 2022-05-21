@@ -5,6 +5,7 @@
 //components
 @import './components/nav';
 @import './components/header';
+@import './components/title1';
 
 //pages
 @import './pages/Signup';
@@ -19,3 +20,4 @@
 
 //common
 @import './common/buttons.scss';
+@import './common/form';
