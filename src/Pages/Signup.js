@@ -1,18 +1,63 @@
+//libs
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import axios from "axios";
+
+//components
 import Header from "../Components/Header";
 import Title from "../Components/Title";
 import { ShowInput, HideInput } from "../Components/icons-logos/icons";
 
+//dataApi + schema
+import { apiSignup } from "../Datas/DatasApi";
+import signupSchema from "../Yup/SignupSchema";
+
+// envoyer les infos au back (server) pour s'enregistrer sue le site. Si les infos rentrées sont ok (pas deja signup, bon mdp ...) retour sur la page login pour se co
 export default function Signup() {
-  //useState
+
+  //utiliser le yup schema pour vérifier les infos reseignées dans les inputs
+  const {
+    register,
+    handleSubmit,
+    formState,
+    errors
+  } = useForm({ resolver: yupResolver(signupSchema) });
+
+   //desac le btn de submit avant remplissage des champs
+   const {isSumitting, isSubmitted, isSubmitSuccessful ,setE} = formState
+
+  //useState :
+  //affichage/masquage mdp
   const [isHidden, setIsHidden] = useState(true);
-  const [validation, setValidation] = useState("");
+  //mdp valide
+  // const [validation, setValidation] = useState("");
+  //err de link avec l'api
+  const [apiErr, setApiErr] = useState("");
 
   // afficher/cacher le mdp du user dans l'input
   const passwordToggle = () => setIsHidden((e) => !e);
 
-  // envoyer les infos au back (server) pour s'enregistrer sue le site. Si les infos rentrées sont ok (pas deja signup, bon mdp ...) retour sur la page login pour se co
-  
+
+  //navigation
+  const navigate = useNavigate();
+
+  //utiliser axios pour fetch l'api
+  const sendForm = async (formDatas) => {
+    try {
+      await axios.post(apiSignup, formDatas);
+      navigate("/login");
+    } catch (err) {
+      console.log(err);
+      const { status, data } = err.response;
+      setApiErr({ status, data });
+    }
+  };
+
+
+
+  // console.log({ ...register("Username") });
 
   return (
     <div className="signup__container">
@@ -22,23 +67,25 @@ export default function Signup() {
       <Title name="Inscription" />
 
       <div className="form__container">
-        <form
-        // onSubmit={handleform}
-        >
+        <form 
+        onSubmit={handleSubmit((data) => sendForm(data))}>
           <div className="label__container">
-            <label htmlFor="Username">Pseudo</label>
+            <label htmlFor="username">Pseudo</label>
             <input
+              // {...register('Username')}
               required
-              id="Username"
-              name="Username"
-              type="Username"
+              id="username"
+              name="username"
+              type="username"
               placeholder="Batman"
             />
+            {/* {errors.username && <span>{errors.username.message}</span>} */}
           </div>
 
           <div className="label__container">
             <label htmlFor="Email">Email</label>
             <input
+              // {...register('email')}
               required
               id="signupEmail"
               name="email"
@@ -50,6 +97,7 @@ export default function Signup() {
           <div className="label__container">
             <label htmlFor="SignupPwd">Mot de passe</label>
             <input
+              // {...register('pwd')}
               required
               id="signupPwd"
               name="pwd"
@@ -61,9 +109,10 @@ export default function Signup() {
             </div>
           </div>
 
-          <div className="label__container">
+          {/* <div className="label__container">
             <label htmlFor="RepeatPwd">Vérification du mot de passe</label>
             <input
+              // ref={register}
               required
               id="signupPwd"
               name="pwd"
@@ -73,9 +122,7 @@ export default function Signup() {
             <div className="password-toggle" onClick={passwordToggle}>
               {isHidden ? <HideInput /> : <ShowInput />}
             </div>
-          </div>
-
-          <p>{validation}</p>
+          </div> */}
 
           <div className="label__container">
             <button className="btn">Connection</button>

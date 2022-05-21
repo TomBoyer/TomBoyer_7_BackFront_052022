@@ -17,6 +17,7 @@ const signupSchema = yup.object().shape({
       (value) => !forbiddenCharacters.test(value)
     )
     .trim()
+    .matches(pseudoRegex, 'Le pseudo peut contenir maj, min, espaces')
     .min(2, "Le pseudo doit contenir au minimum 2 caractères")
     .max(15, "Le pseudo ne doit pas dépasser 15 caractères"),
 

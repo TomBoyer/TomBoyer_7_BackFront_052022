@@ -1,13 +1,12 @@
-import React from 'react'
-import Header from '../Components/Header'
+import React from "react";
+import Header from "../Components/Header";
+import Title from "../Components/Title";
 
-
-
-export default function Profile() {
+export default function Home() {
   return (
     <div>
-      <h1>Page PROFILE</h1>
-      <Header/>
+      <Header />
+      <Title name="Profile Page" />
     </div>
-  )
+  );
 }
