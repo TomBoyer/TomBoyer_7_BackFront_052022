@@ -1,12 +1,13 @@
+
 .form__container {
 
-    @include border-radius;
     @include flex-center;
-    background-color: $color-5;
+
 
     form {
-        @include border;
+        @include border-radius;
         padding: 3em;
+        background-color: $color-5;
 
         .label__container {
 

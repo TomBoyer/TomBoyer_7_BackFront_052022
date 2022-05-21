@@ -47,6 +47,7 @@ body {
 
 @mixin btn {
   @include flex-center;
+  cursor: pointer;
 
   background: $color-4;
   // background: linear-gradient(355deg,$color-2 0%, $color-3 100%);
