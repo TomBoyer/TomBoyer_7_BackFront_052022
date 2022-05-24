@@ -1,4 +1,4 @@
-const { Post, User, Comment } = require("../models");
+const { Post, User, Comment, sequelize } = require("../models");
 const fs = require("fs");
 
 exports.createPost = (req, res) => {
@@ -26,6 +26,18 @@ exports.createPost = (req, res) => {
 
 exports.getAllPosts = (req, res) => {
   Post.findAll({
+    attributes: {
+      include: [
+        [
+          sequelize.fn(
+            'DATE_FORMAT',
+            sequelize.col('post.createdAt'),
+            '%d/%m/%y %H:%i'
+          ),
+          'createdAt',
+        ],
+      ],
+    },
     include: [
       {
         model: User,
@@ -39,6 +51,18 @@ exports.getAllPosts = (req, res) => {
           { model: User,
             attributes: ["username"]
           }],
+          attributes: {
+            include: [
+              [
+                sequelize.fn(
+                  'DATE_FORMAT',
+                  sequelize.col('Comment.createdAt'),
+                  '%d/%m/%y %H:%i'
+                ),
+                'createdAt',
+              ],
+            ],
+          },
       },
     ],
 

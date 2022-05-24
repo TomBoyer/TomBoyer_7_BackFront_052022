@@ -51,3 +51,7 @@ server.on('listening', () => {
 db.sequelize.sync().then((req) => {
     server.listen(port);
 });
+
+const databaseOptions = {
+    timezone:"+02:00" // here
+  };
