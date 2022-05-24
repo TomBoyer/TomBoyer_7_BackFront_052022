@@ -1,13 +1,31 @@
-.btn{
+.btn {
     @include btn;
 
-    &:hover{
+    &:hover {
         @include btn-hover;
 
     }
 
-    &:active{
+    &:active {
         @include btn-active;
 
+    }
+
+
+}
+
+.btn-home-container {
+    // width: 15vw;
+    @include border;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 1em 0 2rem 1em;
+
+    animation: spooky 2s alternate infinite linear;
+
+    .btn-go-post {
+        width: 15vw;
     }
 }

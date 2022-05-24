@@ -1,15 +1,20 @@
+//libs
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
+
+//compo
 import Header from "../Components/Header";
 import Title from "../Components/Title";
 import { Card } from "antd";
 
-import { axiosIsLogged, getToken } from "../Datas/ConfigAxios";
-import { apiPost, apiUser } from "../Datas/DatasApi";
+//datas + api schema
+import { /* axiosIsLogged, */ getToken } from "../Datas/ConfigAxios";
+import { apiPost, /* apiUser */ } from "../Datas/DatasApi";
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
-  const [comments, setComments] = useState([]);
+  // const [comments, setComments] = useState([]);
 
   // console.log(axiosIsLogged);
   useEffect(() => {
@@ -41,7 +46,7 @@ export default function Home() {
         // });
         /* Plus besoin FIN */
 
-        // console.log(res.data);
+        console.log(res.data);
         setPosts(res.data);
       })
       .catch((error) => {
@@ -49,11 +54,21 @@ export default function Home() {
       });
   }, []);
 
+  // myDateFormat = function(d) {
+  //   return d.getFullYear() + "/" + ("0" + d.getDate()).slice(-2) + "/" + ("0"+(d.getMonth()+1)).slice(-2);
+  // };
+
   return (
     <div>
       <h1>PAGE HOME</h1>
       <Header />
       <Title name="Accueil" />
+
+      <div className="btn-home-container">
+        <NavLink className="btn btn-go-post " to="/createPost">
+          Créer une publication
+        </NavLink>
+      </div>
 
       {posts.map((post) => (
         // console.log(post.Comment),
@@ -72,6 +87,7 @@ export default function Home() {
               style={{ width: 350 }}
             >
               <p>{comment.content}</p>
+              {/* <p>{comment.createdAt.getDay()}</p> */}
             </Card>
           ))}
         </Card>
