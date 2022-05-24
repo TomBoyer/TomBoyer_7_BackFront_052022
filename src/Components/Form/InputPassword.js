@@ -11,6 +11,7 @@ export default function InputPassword({
 }) {
   const [isHidden, setIsHidden] = useState(true);
   const passwordToggle = () => setIsHidden((e) => !e);
+  
   return (
     <div className="label__container">
       <label htmlFor={name}>{label}</label>

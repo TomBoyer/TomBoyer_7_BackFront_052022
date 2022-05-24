@@ -7,7 +7,7 @@ import axios from "axios";
 import Header from "../Components/Header";
 import Title from "../Components/Title";
 
-import { ShowInput, HideInput } from "../Components/icons-logos/icons";
+// import { ShowInput, HideInput } from "../Components/icons-logos/icons";
 import { apiSignup } from "../Datas/DatasApi";
 import Input from "../Components/Form/Input";
 import FormError from "../Components/Form/FormError";
