@@ -7,7 +7,7 @@ const forbiddenCharacters = /[$<>;]/;
 
 //def schema de signUp
 
-const signupSchema = yup.object().shape({
+const loginSchema = yup.object().shape({
   username: yup
     .string()
     .required("Champs Requis")
@@ -35,30 +35,11 @@ const signupSchema = yup.object().shape({
       "Caractère(s) interdit(s)",
       (value) => !forbiddenCharacters.test(value)
     )
-    // .trim()
+    .trim()
     .min(8, `Veuillez mettre au minimum 6 caractères`)
     .matches(/[a-z]/, "Le mot de passe doit contenir au moins 1 minuscule")
     .matches(/[A-Z]/, "Le mot de passe doit contenir au moins 1 majuscule")
     .matches(/[0-9]/, "Le mot de passe doit contenir au moins 1 chiffre"),
 });
 
-export default signupSchema;
-
-
-// passwordSchema
-//   .is()
-//   .min(8)
-//   .is()
-//   .max(20)
-//   .has()
-//   .uppercase(1)
-//   .has()
-//   .lowercase(1)
-//   .has()
-//   .digits(1)
-//   .has()
-//   .not()
-//   .spaces()
-//   .is()
-//   .not()
-//   .oneOf(["Passw0rd", "Password123", "M0tdepasse"]);
+export default loginSchema;

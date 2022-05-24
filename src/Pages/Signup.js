@@ -15,37 +15,34 @@ import { apiSignup } from "../Datas/DatasApi";
 import signupSchema from "../Yup/SignupSchema";
 
 // envoyer les infos au back (server) pour s'enregistrer sue le site. Si les infos rentrées sont ok (pas deja signup, bon mdp ...) retour sur la page login pour se co
-export default function Signup() {
 
+export default function Signup() {
   //utiliser le yup schema pour vérifier les infos reseignées dans les inputs
   const {
     register,
     handleSubmit,
-    formState,
-    errors
-  } = useForm({ resolver: yupResolver(signupSchema) });
-
-   //desac le btn de submit avant remplissage des champs
-   const {isSumitting, isSubmitted, isSubmitSuccessful ,setE} = formState
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(signupSchema),
+  });
+  //navigation
+  const navigate = useNavigate();
 
   //useState :
   //affichage/masquage mdp
   const [isHidden, setIsHidden] = useState(true);
-  //mdp valide
-  // const [validation, setValidation] = useState("");
   //err de link avec l'api
   const [apiErr, setApiErr] = useState("");
+  //mdp valide
+  // const [validation, setValidation] = useState("");
 
   // afficher/cacher le mdp du user dans l'input
   const passwordToggle = () => setIsHidden((e) => !e);
 
-
-  //navigation
-  const navigate = useNavigate();
-
   //utiliser axios pour fetch l'api
   const sendForm = async (formDatas) => {
     try {
+      console.log(formDatas, apiSignup);
       await axios.post(apiSignup, formDatas);
       navigate("/login");
     } catch (err) {
@@ -55,9 +52,9 @@ export default function Signup() {
     }
   };
 
-
-
   // console.log({ ...register("Username") });
+
+  // console.log("testage");
 
   return (
     <div className="signup__container">
@@ -67,12 +64,15 @@ export default function Signup() {
       <Title name="Inscription" />
 
       <div className="form__container">
-        <form 
-        onSubmit={handleSubmit((data) => sendForm(data))}>
+        <form
+          onSubmit={handleSubmit(
+            (data) => console.log(data) /* sendForm(data) */
+          )}
+        >
           <div className="label__container">
             <label htmlFor="username">Pseudo</label>
             <input
-              // {...register('Username')}
+              {...register("username")}
               required
               id="username"
               name="username"
@@ -83,9 +83,9 @@ export default function Signup() {
           </div>
 
           <div className="label__container">
-            <label htmlFor="Email">Email</label>
+            <label htmlFor="email">Email</label>
             <input
-              // {...register('email')}
+              {...register("email")}
               required
               id="signupEmail"
               name="email"
@@ -97,7 +97,7 @@ export default function Signup() {
           <div className="label__container">
             <label htmlFor="SignupPwd">Mot de passe</label>
             <input
-              // {...register('pwd')}
+              {...register("pwd")}
               required
               id="signupPwd"
               name="pwd"
@@ -125,7 +125,15 @@ export default function Signup() {
           </div> */}
 
           <div className="label__container">
-            <button className="btn">Connection</button>
+            {/* <input type="submit" value="send"/> */}
+            <button
+              type="submit"
+              className="btn"
+              form="submitForm"
+              value="Submit"
+            >
+              Insciption
+            </button>
           </div>
         </form>
       </div>
