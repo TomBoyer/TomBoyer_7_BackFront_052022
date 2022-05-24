@@ -1,34 +1,25 @@
+//config axios pour vérifier si logged ?
 import axios from 'axios';
 
-export const axiosDrupalClient = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_BACKEND_URL,
-});
+const baseUrl = "http://localhost:8080";
+// export const axiosIsLogged = axios.create({
+//   baseURL: baseUrl,
+// });
 
-export const axiosDrupalClientWithAuthJson = async (req: NextApiRequest) => {
+export const getToken = () => {
+  return JSON.parse(sessionStorage.getItem("token"))
+}
+
+export const axiosIsLogged = async (req) => {
   const token = await getToken({ req });
-  const csrfToken = await getCsrfToken({ req });
+  // const csrfToken = await getCsrfToken({ req });
   return axios.create({
-    baseURL: process.env.NEXT_PUBLIC_BACKEND_URL,
+    baseURL: baseUrl,
     headers: {
-      Authorization: Bearer ${token.user.access_token},
-      'X-CSRF-Token': csrfToken,
-      Accept: 'application/vnd.api+json',
+      "Authorization": `Bearer ${token.user.token}`,
+      // 'X-CSRF-Token': csrfToken,
+      "Accept": 'application/vnd.api+json',
       'Content-Type': 'application/vnd.api+json',
-    },
-  });
-};
-
-export const axiosDrupalClientWithAuthImage = async (req: NextApiRequest, filename:string) => {
-  const token = await getToken({ req });
-  const csrfToken = await getCsrfToken({ req });
-  return axios.create({
-    baseURL: process.env.NEXT_PUBLIC_BACKEND_URL,
-    headers: {
-      Authorization: Bearer ${token.user.access_token},
-      'X-CSRF-Token': csrfToken,
-      Accept: 'application/vnd.api+json',
-      'Content-Type': 'application/octet-stream',
-      'Content-Disposition': file; filename="${filename}"
     },
   });
 };

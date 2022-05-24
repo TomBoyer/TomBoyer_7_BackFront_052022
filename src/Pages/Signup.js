@@ -1,141 +1,124 @@
-//libs
 import React, { useState } from "react";
+import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
-import { useForm } from "react-hook-form";
-import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 import axios from "axios";
 
-//components
 import Header from "../Components/Header";
 import Title from "../Components/Title";
+
 import { ShowInput, HideInput } from "../Components/icons-logos/icons";
-
-//dataApi + schema
 import { apiSignup } from "../Datas/DatasApi";
-import signupSchema from "../Yup/SignupSchema";
-
-// envoyer les infos au back (server) pour s'enregistrer sue le site. Si les infos rentrées sont ok (pas deja signup, bon mdp ...) retour sur la page login pour se co
+import Input from "../Components/Form/Input";
+import FormError from "../Components/Form/FormError";
+import InputPassword from "../Components/Form/InputPassword";
 
 export default function Signup() {
-  //utiliser le yup schema pour vérifier les infos reseignées dans les inputs
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({
-    resolver: yupResolver(signupSchema),
+  //   const PseudoRegex =
+  //     /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð\s'.-]+$/;
+  const VALID_EMAIL = /^[\w_-]+@[\w-]+\.[a-z]{2,4}$/i;
+  const VALID_PASSWORD =
+    /^(?=.*[A-Z])(?=.*[a-z])(?=(.*\d){2,})(?=.*[!@#$%])[A-Za-z\d@$!%*#?&]{8,16}$/;
+
+  const validate = yup.object({
+    username: yup.string().lowercase().required("username requis"),
+    email: yup
+      .string()
+      .lowercase()
+      .matches(VALID_EMAIL, "Email non valide")
+      .email("Email non valide")
+      .required("Email requis"),
+    password: yup
+      .string()
+      .required("Merci d'inscrire un password")
+      .matches(
+        VALID_PASSWORD,
+        "votre mdp doit contenir : 1 maj 1 min 8 cara un sign parmit (!@#$%)"
+      ),
   });
+
+  const formik = useFormik({
+    initialValues: {
+      username: "",
+      email: "",
+      password: "",
+    },
+    validationSchema: validate,
+    onSubmit: ({ username, email, password }) => {
+      // console.log(username, email, password);
+      axios
+        .post(apiSignup, { username, email, password })
+        .then(navigate("/login"))
+        .catch((error) => {
+          console.error(error);
+        });
+    },
+  });
+
+  const handleChange = (e) => {
+    formik.handleChange(e);
+  };
+
+  const handleSubmit = (event) => {
+    formik.handleSubmit(event);
+
+    // if (!formik.isValid || Object.values(formik.values).includes('')) {
+    //   setShowAlert(true);
+    // }
+  };
+
+  const [isHidden, setIsHidden] = useState(true);
+  const passwordToggle = () => setIsHidden((e) => !e);
+
   //navigation
   const navigate = useNavigate();
 
-  //useState :
-  //affichage/masquage mdp
-  const [isHidden, setIsHidden] = useState(true);
-  //err de link avec l'api
-  const [apiErr, setApiErr] = useState("");
-  //mdp valide
-  // const [validation, setValidation] = useState("");
-
-  // afficher/cacher le mdp du user dans l'input
-  const passwordToggle = () => setIsHidden((e) => !e);
-
-  //utiliser axios pour fetch l'api
-  const sendForm = async (formDatas) => {
-    try {
-      console.log(formDatas, apiSignup);
-      await axios.post(apiSignup, formDatas);
-      navigate("/login");
-    } catch (err) {
-      console.log(err);
-      const { status, data } = err.response;
-      setApiErr({ status, data });
-    }
-  };
-
-  // console.log({ ...register("Username") });
-
-  // console.log("testage");
-
   return (
-    <div className="signup__container">
-      <h1>Page de SIGNUP</h1>
+    <div>
+      <div className="signup__container">
+        <h1>Page de SIGNUP2</h1>
 
-      <Header />
-      <Title name="Inscription" />
+        <Header />
+        <Title name="Inscription" />
 
-      <div className="form__container">
-        <form
-          onSubmit={handleSubmit(
-            (data) => console.log(data) /* sendForm(data) */
-          )}
-        >
-          <div className="label__container">
-            <label htmlFor="username">Pseudo</label>
-            <input
-              {...register("username")}
-              required
-              id="username"
+        <div className="form__container">
+          <form onSubmit={handleSubmit}>
+            <Input
               name="username"
-              type="username"
+              label="Pseudo"
+              handleChange={handleChange}
               placeholder="Batman"
+              value={formik.values.username}
+              error={formik.errors.username}
             />
-            {/* {errors.username && <span>{errors.username.message}</span>} */}
-          </div>
 
-          <div className="label__container">
-            <label htmlFor="email">Email</label>
-            <input
-              {...register("email")}
-              required
-              id="signupEmail"
+            <Input
               name="email"
+              label="email"
               type="email"
+              handleChange={handleChange}
               placeholder="email@email.fr"
+              value={formik.values.email}
+              error={formik.errors.email}
             />
-          </div>
 
-          <div className="label__container">
-            <label htmlFor="SignupPwd">Mot de passe</label>
-            <input
-              {...register("pwd")}
-              required
-              id="signupPwd"
-              name="pwd"
-              type={isHidden ? "password" : "text"}
-              placeholder="ton super code secret"
+            <InputPassword
+              name="password"
+              label="password"
+              handleChange={handleChange}
+              placeholder="Ton super mdp"
+              value={formik.values.password}
+              error={formik.errors.password}
             />
-            <div className="password-toggle" onClick={passwordToggle}>
-              {isHidden ? <HideInput /> : <ShowInput />}
+
+            <div className="label__container">
+              <button type="submit" className="btn">
+                Insciption
+              </button>
+              {formik.errors && formik.touched && <FormError />}
             </div>
-          </div>
-
-          {/* <div className="label__container">
-            <label htmlFor="RepeatPwd">Vérification du mot de passe</label>
-            <input
-              // ref={register}
-              required
-              id="signupPwd"
-              name="pwd"
-              type={isHidden ? "password" : "text"}
-              placeholder="ton super code secret"
-            />
-            <div className="password-toggle" onClick={passwordToggle}>
-              {isHidden ? <HideInput /> : <ShowInput />}
-            </div>
-          </div> */}
-
-          <div className="label__container">
-            {/* <input type="submit" value="send"/> */}
-            <button
-              type="submit"
-              className="btn"
-              form="submitForm"
-              value="Submit"
-            >
-              Insciption
-            </button>
-          </div>
-        </form>
+          </form>
+        </div>
       </div>
     </div>
   );

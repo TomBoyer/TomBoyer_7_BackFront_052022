@@ -1,8 +1,8 @@
-// const LogOutIcon = () => {
-//   return (
-//     <svg className='logout-icon' width="1em" height="1em" viewBox="0 0 24 24"><path d="M4 18h2v2h12V4H6v2H4V3a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3zm2-7h7v2H6v3l-5-4l5-4v3z" fill="currentColor"></path></svg>
-//   );
-// };
+const LogOutIcon = () => {
+  return (
+    <svg className='logout-icon' width="1em" height="1em" viewBox="0 0 24 24"><path d="M4 18h2v2h12V4H6v2H4V3a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v18a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-3zm2-7h7v2H6v3l-5-4l5-4v3z" fill="currentColor"></path></svg>
+  );
+};
 
 // const MessageIcon = () => {
 //   return (
@@ -10,13 +10,11 @@
 //   );
 // };
 
-
 // const LikeIcon = ({ hasLiked }) => {
 //   return (
 //     <svg className={hasLiked() ? 'like-icon liked' : 'like-icon neutral'} width="1em" height="1em" viewBox="0 0 48 48"><path d="M34 9c-4.2 0-7.9 2.1-10 5.4C21.9 11.1 18.2 9 14 9C7.4 9 2 14.4 2 21c0 11.9 22 24 22 24s22-12 22-24c0-6.6-5.4-12-12-12z"></path></svg>
 //   );
 // };
-
 
 // const DislikeIcon = ({ hasDisliked }) => {
 //   return (
@@ -24,13 +22,11 @@
 //   );
 // };
 
-
 // const HomeIcon = () => {
 //   return (
 //     <svg width="1em" height="1em" viewBox="0 0 16 16"><path d="M16 9.226l-8-6.21l-8 6.21V6.694l8-6.21l8 6.21zM14 9v6h-4v-4H6v4H2V9l6-4.5z" fill="currentColor"></path></svg>
 //   );
 // };
-
 
 // const DeleteIcon = () => {
 //   return (
@@ -46,17 +42,25 @@
 
 const ShowInput = () => {
   return (
-    <svg width="1em" className='showInput' height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5s5 2.24 5 5s-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3s3-1.34 3-3s-1.34-3-3-3z"></path></svg>
+    <svg width="1em" className="showInput" height="1em" viewBox="0 0 24 24">
+      <path
+        fill="currentColor"
+        d="M12 4.5C7 4.5 2.73 7.61 1 12c1.73 4.39 6 7.5 11 7.5s9.27-3.11 11-7.5c-1.73-4.39-6-7.5-11-7.5zM12 17c-2.76 0-5-2.24-5-5s2.24-5 5-5s5 2.24 5 5s-2.24 5-5 5zm0-8c-1.66 0-3 1.34-3 3s1.34 3 3 3s3-1.34 3-3s-1.34-3-3-3z"
+      ></path>
+    </svg>
   );
 };
-
 
 const HideInput = () => {
   return (
-    <svg width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M12 7c2.76 0 5 2.24 5 5c0 .65-.13 1.26-.36 1.83l2.92 2.92c1.51-1.26 2.7-2.89 3.43-4.75c-1.73-4.39-6-7.5-11-7.5c-1.4 0-2.74.25-3.98.7l2.16 2.16C10.74 7.13 11.35 7 12 7zM2 4.27l2.28 2.28l.46.46A11.804 11.804 0 0 0 1 12c1.73 4.39 6 7.5 11 7.5c1.55 0 3.03-.3 4.38-.84l.42.42L19.73 22L21 20.73L3.27 3L2 4.27zM7.53 9.8l1.55 1.55c-.05.21-.08.43-.08.65c0 1.66 1.34 3 3 3c.22 0 .44-.03.65-.08l1.55 1.55c-.67.33-1.41.53-2.2.53c-2.76 0-5-2.24-5-5c0-.79.2-1.53.53-2.2zm4.31-.78l3.15 3.15l.02-.16c0-1.66-1.34-3-3-3l-.17.01z"></path></svg>
+    <svg width="1em" height="1em" viewBox="0 0 24 24">
+      <path
+        fill="currentColor"
+        d="M12 7c2.76 0 5 2.24 5 5c0 .65-.13 1.26-.36 1.83l2.92 2.92c1.51-1.26 2.7-2.89 3.43-4.75c-1.73-4.39-6-7.5-11-7.5c-1.4 0-2.74.25-3.98.7l2.16 2.16C10.74 7.13 11.35 7 12 7zM2 4.27l2.28 2.28l.46.46A11.804 11.804 0 0 0 1 12c1.73 4.39 6 7.5 11 7.5c1.55 0 3.03-.3 4.38-.84l.42.42L19.73 22L21 20.73L3.27 3L2 4.27zM7.53 9.8l1.55 1.55c-.05.21-.08.43-.08.65c0 1.66 1.34 3 3 3c.22 0 .44-.03.65-.08l1.55 1.55c-.67.33-1.41.53-2.2.53c-2.76 0-5-2.24-5-5c0-.79.2-1.53.53-2.2zm4.31-.78l3.15 3.15l.02-.16c0-1.66-1.34-3-3-3l-.17.01z"
+      ></path>
+    </svg>
   );
 };
-
 
 // const UpArrow = () => {
 //   return (
@@ -64,11 +68,13 @@ const HideInput = () => {
 //   );
 // };
 
-
 // const ModerationPanel = () => {
 //   return (
 //     <svg width="1em" height="1em" viewBox="0 0 24 24"><path fill="currentColor" d="M12 1L3 5v6c0 5.55 3.84 10.74 9 12c5.16-1.26 9-6.45 9-12V5Zm0 3.9a3 3 0 1 1-3 3a3 3 0 0 1 3-3Zm0 7.9c2 0 6 1.09 6 3.08a7.2 7.2 0 0 1-12 0c0-1.99 4-3.08 6-3.08Z"></path></svg>
 //   );
 // };
 
-export { /* LogOutIcon, MessageIcon, LikeIcon, DislikeIcon, HomeIcon, DeleteIcon, EditIcon,  UpArrow, ModerationPanel */ ShowInput, HideInput,};
+export {
+  /*MessageIcon, LikeIcon, DislikeIcon, HomeIcon, DeleteIcon, EditIcon,  UpArrow, ModerationPanel */ ShowInput,
+  HideInput,  LogOutIcon
+};
