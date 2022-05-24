@@ -46,9 +46,12 @@ export default function Signup2() {
     validationSchema: validate,
     onSubmit: ({ username, email, password }) => {
       console.log(username, email, password);
-      axios.post(apiSignup, { username, email, password }).catch((error) => {
-        console.error(error);
-      });
+      axios
+        .post(apiSignup, { username, email, password })
+        .then(navigate("/login"))
+        .catch((error) => {
+          console.error(error);
+        });
     },
   });
 
@@ -66,6 +69,9 @@ export default function Signup2() {
 
   const [isHidden, setIsHidden] = useState(true);
   const passwordToggle = () => setIsHidden((e) => !e);
+
+  //navigation
+  const navigate = useNavigate();
 
   return (
     <div>
