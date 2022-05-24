@@ -18,24 +18,27 @@ exports.createPost = (req, res) => {
 
   Post.create(newPost)
     .then((post) => res.status(201).json(post))
-    .catch((error) => res.status(500).json({ error }));
+    .catch((error) => {
+      // console.log(error);
+      res.status(500).json({ error });
+    });
 };
 
 exports.getAllPosts = (req, res) => {
   Post.findAll({
     include: [
-      // {
-      //   model: User,
-      //   // as: "Users",
-      //   attributes: ["username"],
-      // },
+      {
+        model: User,
+        // as: "Users",
+        attributes: ["username"],
+      },
       {
         model: Comment,
-        as : "Comment",
-        // include: [
-        //   { model: User,
-        //     attributes: ["username"]
-        //   }],
+        as: "Comment",
+        include: [
+          { model: User,
+            attributes: ["username"]
+          }],
       },
     ],
 
@@ -58,7 +61,7 @@ exports.getOnePost = (req, res) => {
     include: [
       {
         model: Comment,
-        as: "Comment"
+        as: "Comment",
       },
     ],
   })

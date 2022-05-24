@@ -28,11 +28,20 @@ const {
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Comment extends Model {
- 
-    static associate(models) {
-      // define association here
-    }
+
+  static associate(models) {
+    // define association here
+    Comment.belongsTo(models.Post, {
+      foreignKey: "postId",
+    });
+
+    //test
+    models.Comment.belongsTo(models.User, {
+      foreignKey:"userId",
+    });
   }
+}
+  
   Comment.init({
     content: DataTypes.STRING,
     userId : DataTypes.INTEGER,

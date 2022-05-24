@@ -29,10 +29,22 @@ module.exports = (sequelize, DataTypes) => {
     {
       clasMethods: {
         associate: function (models) {
-          models.User.hasMany(models.Post);
-          models.User.hasMany(models.Comment);
+          models.User.hasMany(models.Post, {
+            sourceKey: "userId",
+            foreignKey: "id"
+          });
+          models.User.hasMany(models.Comment, {
+            sourceKey: "userId",
+            foreignKey: "id"
+          });
         },
       },
+      // clasMethods: {
+      //   associate: function (models) {
+      //     models.User.hasMany(models.Post);
+      //     models.User.hasMany(models.Comment);
+      //   },
+      // }
     }
   );
 
