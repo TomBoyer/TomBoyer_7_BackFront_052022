@@ -16,16 +16,21 @@
 
 .btn-home-container {
     // width: 15vw;
-    @include border;
+    position: relative;
+
     display: flex;
     justify-content: space-between;
     align-items: center;
 
     margin: 1em 0 2rem 1em;
 
-    animation: spooky 2s alternate infinite linear;
+    animation: spooky 1s alternate infinite linear;
 
     .btn-go-post {
-        width: 15vw;
+        //marche pas le sticky
+        min-width: 15vw;
+        padding: 1rem 1.5rem;
+        position: sticky;
+        top: 10em;
     }
 }

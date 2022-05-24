@@ -10,7 +10,7 @@ import { Card } from "antd";
 
 //datas + api schema
 import { /* axiosIsLogged, */ getToken } from "../Datas/ConfigAxios";
-import { apiPost, /* apiUser */ } from "../Datas/DatasApi";
+import { apiPost /* apiUser */ } from "../Datas/DatasApi";
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
@@ -46,17 +46,13 @@ export default function Home() {
         // });
         /* Plus besoin FIN */
 
-        console.log(res.data);
+        // console.log(res.data);
         setPosts(res.data);
       })
       .catch((error) => {
         console.error(error);
       });
   }, []);
-
-  // myDateFormat = function(d) {
-  //   return d.getFullYear() + "/" + ("0" + d.getDate()).slice(-2) + "/" + ("0"+(d.getMonth()+1)).slice(-2);
-  // };
 
   return (
     <div>
@@ -70,28 +66,37 @@ export default function Home() {
         </NavLink>
       </div>
 
-      {posts.map((post) => (
-        // console.log(post.Comment),
+      <div className="form__container__container">
+        {posts.map((post) => (
+          // console.log(post.Comment),
 
-        <Card
-          key={post.id}
-          title={`${post.createdAt} - ${post.User.username}`}
-          style={{ width: 500 }}
-        >
-          <p>{post.content}</p>
+          <Card
+          className="card__post"
+            key={post.id}
+            title={`Le ${post.createdAt} --
+            auteur : 
+            ${post.User.username}`}
+            style={{ width: 500 }}
+          >
+            <p>{post.content}</p>
 
-          {post.Comment.map((comment) => (
-            <Card
+                      <div className="card__comment__container">
+            {post.Comment.map((comment) => (
+              // console.log(comment),
+              <Card
+              className="card__comment"
               key={comment.id}
-              title={`${comment.createdAt} - ${comment.User.username}`}
+              title={`Le ${comment.createdAt} --
+              auteur : ${comment.User.username}`}
               style={{ width: 350 }}
-            >
-              <p>{comment.content}</p>
-              {/* <p>{comment.createdAt.getDay()}</p> */}
-            </Card>
-          ))}
-        </Card>
-      ))}
+              >
+                <p>{comment.content}</p>
+              </Card>
+            ))}
+                    </div>
+          </Card>
+        ))}
+      </div>
     </div>
   );
 }
