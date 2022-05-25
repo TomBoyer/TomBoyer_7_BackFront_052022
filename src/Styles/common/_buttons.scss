@@ -1,0 +1,49 @@
+.btn {
+    @include btn;
+
+    &:hover {
+        @include btn-hover;
+
+    }
+
+    &:active {
+        @include btn-active;
+
+    }
+
+
+}
+
+.btn-home-container {
+    // width: 15vw;
+    position: relative;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    margin: 1em 0 2rem 1em;
+
+    animation: spooky 1s alternate infinite linear;
+
+    .btn-go-post {
+        //marche pas le sticky
+        min-width: 15vw;
+        padding: 1rem 1.5rem;
+        position: sticky;
+        top: 10em;
+    }
+
+
+}
+
+.btn-go-comment {
+    // border-radius: 50%;
+    max-width: 100px;
+    max-height: 100px;
+
+    position: absolute;
+    bottom: .5em;
+    right: .5em;
+
+}

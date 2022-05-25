@@ -1,0 +1,25 @@
+//settings
+@import './settings/base';
+@import './settings/normalize';
+
+
+//components
+@import './components/nav';
+@import './components/header';
+@import './components/title1';
+
+//pages
+@import './pages/Signup';
+@import './pages/Login';
+@import './pages/Home';
+@import './pages/CreatePost';
+@import './pages/Profile';
+@import './pages/NotFound';
+
+//animations
+@import './animations/animations';
+
+//common
+@import './common/buttons.scss';
+@import './common/form';
+@import './common/card';

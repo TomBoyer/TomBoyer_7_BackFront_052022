@@ -1,0 +1,112 @@
+@import url("https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap");
+
+$color-1: #ffd7d7;
+$color-2: #fd2d01;
+$color-3: #3a405a;
+$color-4: #091f43;
+$color-5: #b4c5e4;
+$color-6: #d9e2f2;
+
+$duration: 0.3s;
+$duration2: 0.5s;
+
+// $media: 800px;
+// $media-medium: 600px;
+// $media-small: 400px;
+// $media-header: 580px;
+
+body {
+  background-color: $color-3;
+  font-family: 'Montserrat', sans-serif;
+
+  scroll-behavior: smooth;
+
+  @media screen and (max-width: 600px) {
+    padding: 0;
+  }
+}
+
+body::-webkit-scrollbar {
+
+  background-color: $color-4;
+}
+
+body::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: darkgrey;
+  outline: 1px solid slategrey;
+  border-radius: 10px;
+}
+
+
+//mixins
+@mixin border {
+  border: 1px black solid;
+}
+
+@mixin border-radius {
+  border-radius: 20px;
+}
+
+@mixin box-shadow-1 {
+  box-shadow: 0px 2px 5px 0px rgba(0 0 0 / 15%);
+}
+
+@mixin box-shadow-2 {
+  box-shadow: 0px 2px 5px 0px rgba(0 0 0 / 40%);
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin btn {
+  @include flex-center;
+  cursor: pointer;
+
+  background: $color-4;
+  // background: linear-gradient(355deg,$color-2 0%, $color-3 100%);
+  color: $color-6;
+  padding: .8em 1em;
+  border-radius: 7em;
+  box-shadow: 0px 5px 2px 0px rgba(0 0 0 / 15%);
+}
+
+@mixin btn-hover {
+  transform: scale(1.1);
+  opacity: 0.8;
+  box-shadow: 0px 10px 10px 0px rgba(0 0 0 / 20%);
+
+  transition: all $duration ease-out;
+}
+
+@mixin btn-active {
+  transform: translate(0.2em, 0.2em);
+  box-shadow: 0px 5px 2px 0px rgba(0 0 0 / 15%);
+  transition: transform ease-out;
+}
+
+
+//mixin media queries
+@mixin tel {
+  @media screen and (max-width: 698px) {
+    @content;
+  }
+}
+
+@mixin tablette {
+  @media screen and (min-width: 699px) and (max-width: 999px) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media screen and (min-width: 1000px) and (max-width: 1900px) {
+    @content;
+  }
+}

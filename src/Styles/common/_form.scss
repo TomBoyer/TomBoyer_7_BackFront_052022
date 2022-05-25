@@ -1,0 +1,110 @@
+.form__container {
+    // @include border;
+    @include flex-center;
+
+
+
+    form {
+        @include border-radius;
+        padding: 3em;
+        background-color: $color-5;
+
+        @include flex-center;
+        flex-direction: column;
+
+        // max-width: 65vw;
+
+
+        .label__container {
+
+            // @include border;
+            position: relative;
+
+            @include flex-center;
+
+            flex-direction: column;
+
+            font-size: 1.3rem;
+
+            margin: 0.3em;
+
+            max-width: 35rem;
+
+            input {
+                @include border-radius;
+                background-color: $color-6;
+                // max-width: 55vw;
+                min-width: 20vw;
+                padding: 1em;
+                margin: .5em 0.5em 2em 0.5em;
+                box-shadow: 2px 2px rgb(94, 94, 94);
+            }
+
+            textarea {
+                @include border-radius;
+
+                padding: 5px;
+                background-color: $color-6;
+                width: 30rem;
+                height: 25rem;
+                padding: 1em;
+                margin: .5em 0 2em 0;
+                box-shadow: 2px 2px rgb(94, 94, 94);
+
+                scroll-snap-type: mandatory;
+
+                &:focus {
+                    outline: none;
+                }
+            }
+
+            textarea::-webkit-scrollbar {
+                @include border-radius;
+                background-color: $color-4;
+
+            }
+
+            textarea::-webkit-scrollbar-track {
+                box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+                background-color: $color-4;
+                @include border-radius;
+
+            }
+
+            textarea::-webkit-scrollbar-thumb {
+                background-color: darkgrey;
+                outline: 1px solid slategrey;
+                @include border-radius;
+
+            }
+
+
+            button {
+                width: 10em;
+            }
+
+            .password-toggle {
+                // @include border;
+
+                // padding: 0.6em;
+                position: absolute;
+                top: 58px;
+                right: - 1em;
+                font-size: 1.2em;
+                cursor: pointer;
+
+                transition: $duration;
+
+                :hover {
+                    color: $color-2;
+                }
+
+            }
+
+            span{
+                max-width: 20rem; ;
+            }
+
+        }
+    }
+}
