@@ -1,15 +1,16 @@
-.form__container__container {
+.form__card__container {
 
     @include flex-center;
     flex-direction: column;
     position: relative;
 
+
     .card__post {
         @include border-radius;
         @include flex-center;
-        flex-direction: column;
-
-       
+        flex-direction: column;   
+        
+        position: relative;
 
         margin-bottom: 2.5rem;
 
@@ -24,7 +25,7 @@
 
             
         }
-        .card__comment__container {
+        // .card__comment__container {
             
             .card__comment {
                 @include border-radius;
@@ -32,7 +33,13 @@
                 
                 background-color: $color-3;
                 color: $color-4;
+
+                display: flex;
+
+                p{
+                    max-width: 90%;
+                }
             }
-        }
+        // }
     }
 }

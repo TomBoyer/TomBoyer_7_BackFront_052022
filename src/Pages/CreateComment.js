@@ -4,13 +4,16 @@ import axios from "axios";
 import * as yup from "yup";
 import { axiosIsLogged, getToken, getUserId } from "../Datas/ConfigAxios";
 import { apiComment } from "../Datas/DatasApi";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import InputTextArea from "../Components/Form/InputTextArea";
 import FormError from "../Components/Form/FormError";
 import Header from "../Components/Header";
 import Title from "../Components/Title";
 
-export default function CreatePost() {
+export default function CreateComment() {
+  let { postIdUrl } = useParams();
+  
+  //console.log("postId : " + postId);
 
   const navigate = useNavigate();
 
@@ -22,10 +25,11 @@ export default function CreatePost() {
     initialValues: {
       content: "",
       userId: "",
+      postId: "",
     },
     validationSchema: validate,
     onSubmit: ({ content }) => {
-      // console.log("token : " + getToken());  
+      // console.log("token : " + getToken());
       // console.log("User ID : " + parseInt(getUserId(), 10));
 
       axios({
@@ -35,7 +39,7 @@ export default function CreatePost() {
           Authorization: `Bearer ${getToken()}`,
           //"Content-Type": "application/json",
         },
-        data: { content, userId: parseInt(getUserId(), 10) },
+        data: { content, userId: parseInt(getUserId(), 10), postId: postIdUrl },
       })
         .then((res) => {
           console.log(res);
@@ -56,19 +60,20 @@ export default function CreatePost() {
   };
   return (
     <div>
-      <h1>PAGE CREATE POST</h1>
+      <h1>PAGE CREATE COMMENT</h1>
 
       <Header />
-      <Title name="Créer une publication" />
+      <Title name="Créer un commentaire" />
 
       <div className="form__container">
         <form onSubmit={handleSubmit}>
+          <p>{"ici le post à commenter : "}</p>
           <InputTextArea
             name="content"
             id="content"
-            label="Un truc à partager ? : "
+            label="Un commentaire ? : "
             handleChange={handleChange}
-            placeholder="Tu peux écrire ton post ici pour le partager avec le monde !"
+            placeholder="Tu peux écrire ton commentaire ici pour le partager avec le monde !"
             value={formik.values.content}
             error={formik.errors.content}
           />

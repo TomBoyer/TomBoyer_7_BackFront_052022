@@ -9,9 +9,9 @@ import Home from "./Pages/Home";
 import CreatePost from "./Pages/CreatePost";
 import Profile from "./Pages/Profile";
 import NotFound from "./Pages/NotFound";
+import CreateComment from "./Pages/CreateComment";
 
 export default function App() {
-  
   return (
     <BrowserRouter>
       <Routes>
@@ -19,6 +19,7 @@ export default function App() {
         <Route path="/signup" element={<Signup />} />
         <Route path="/home" element={<Home />} />
         <Route path="/createPost" element={<CreatePost />} />
+        <Route path="/createComment/:postIdUrl" element={<CreateComment />} />
         <Route path="/profile/:id" element={<Profile />} />
 
         <Route path="/" element={<Navigate replace to="/home" />} />

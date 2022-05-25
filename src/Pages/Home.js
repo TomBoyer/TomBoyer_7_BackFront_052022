@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 //compo
 import Header from "../Components/Header";
 import Title from "../Components/Title";
-import { Card } from "antd";
+import { Button, Card } from "antd";
 
 //datas + api schema
 import { /* axiosIsLogged, */ getToken } from "../Datas/ConfigAxios";
@@ -54,6 +54,8 @@ export default function Home() {
       });
   }, []);
 
+  
+
   return (
     <div>
       <h1>PAGE HOME</h1>
@@ -66,12 +68,12 @@ export default function Home() {
         </NavLink>
       </div>
 
-      <div className="form__container__container">
+      <div className="form__card__container">
         {posts.map((post) => (
           // console.log(post.Comment),
-
+          console.log(post),
           <Card
-          className="card__post"
+            className="card__post"
             key={post.id}
             title={`Le ${post.createdAt} --
             auteur : 
@@ -80,20 +82,30 @@ export default function Home() {
           >
             <p>{post.content}</p>
 
-                      <div className="card__comment__container">
+
+            {/* <Button type="primary" shape="circle"> */}
+
+            <div className="">
+              <NavLink className="btn btn-go-comment " to={`/createComment/${post.id}`}>
+                Commentaire
+              </NavLink>
+            </div>
+            {/* </Button> */}
+
+            {/* <div className="card__comment__container"> */}
             {post.Comment.map((comment) => (
               // console.log(comment),
               <Card
-              className="card__comment"
-              key={comment.id}
-              title={`Le ${comment.createdAt} --
+                className="card__comment"
+                key={comment.id}
+                title={`Le ${comment.createdAt} --
               auteur : ${comment.User.username}`}
-              style={{ width: 350 }}
+                style={{ width: 350 }}
               >
                 <p>{comment.content}</p>
               </Card>
             ))}
-                    </div>
+            {/* </div> */}
           </Card>
         ))}
       </div>
