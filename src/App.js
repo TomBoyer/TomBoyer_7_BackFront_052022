@@ -10,6 +10,7 @@ import CreatePost from "./Pages/CreatePost";
 import Profile from "./Pages/Profile";
 import NotFound from "./Pages/NotFound";
 import CreateComment from "./Pages/CreateComment";
+import PageTest from "./Pages/PageTest";
 
 export default function App() {
   return (
@@ -24,6 +25,9 @@ export default function App() {
 
         <Route path="/" element={<Navigate replace to="/home" />} />
         <Route path="*" element={<NotFound />} />
+
+
+        <Route path="/pageTest" element={<PageTest />} />
       </Routes>
     </BrowserRouter>
   );

@@ -1,0 +1,75 @@
+.card__container {
+    @include border;
+    @include flex-center;
+    position: relative;
+
+    .container {
+        @include border;
+        @include border-radius;
+        @include flex-center;
+        flex-direction: column;
+        margin: .5em;
+
+        width: 55vw;
+
+        .btn {
+            position: sticky;
+            right: 0;
+            // bottom: 0;
+        }
+
+        .container__top {
+            @include border;
+            @include border-radius;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+
+            width: 100%;
+            padding: .5em;
+            gap: .3em;
+
+            font-size: calc(1vmin + 10px);
+
+            .author {
+                @include border;
+                @include border-radius;
+                text-align: center;
+                padding: .5em;
+            }
+
+            .date {
+                @include border;
+                @include border-radius;
+                text-align: center;
+                padding: .5em;
+            }
+
+            .hour {
+                @include border;
+                @include border-radius;
+                text-align: center;
+                padding: .5em;
+            }
+        }
+
+        .container__content {
+            @include border;
+            @include border-radius;
+            @include flex-center;
+            flex-direction: column;
+            width: 80%;
+            margin: .5em 0;
+
+            .content {
+                @include border;
+                @include border-radius;
+                margin: .5em 0;
+                padding: .5em;
+            }
+
+        }
+
+    }
+
+}
