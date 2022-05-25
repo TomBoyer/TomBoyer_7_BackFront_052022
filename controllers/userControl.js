@@ -47,9 +47,10 @@ exports.login = (req, res) => {
             .status(401)
             .json({ message: "Vérifiez votre mot de passe !" });
         }
-        // console.log(user.dataValues);
+        // console.log(user);
         res.status(200).json({
           userId: user.id,
+          username: user.username,
           token: jwt.sign(
             {
               userId: user.id,
@@ -123,7 +124,6 @@ exports.updateProfilePicture = (req, res) => {
   // }).then((user) => {
   //   if (req.file) {
   //     const filename = user.imageUrl.split("/images/")[1];
-
   //     if (filename != "Pic1.jpg") {
   //       fs.unlink(`images/${filename}`, (err) => {
   //         if (err) {
@@ -131,13 +131,11 @@ exports.updateProfilePicture = (req, res) => {
   //         }
   //       });
   //     }
-
   //     const newImage = {
   //       imageUrl: `${req.protocol}://${req.get("host")}/images/${
   //         req.file.filename
   //       }`,
   //     };
-
   //     User.update(newImage, { where: { id: req.params.id } })
   //       .then(() => res.status(201).json({ message: "Image modifiée !" }))
   //       .catch((error) => res.status(500).json({ error }));
