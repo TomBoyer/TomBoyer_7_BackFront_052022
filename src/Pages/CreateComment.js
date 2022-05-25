@@ -12,7 +12,7 @@ import Title from "../Components/Title";
 
 export default function CreateComment() {
   let { postIdUrl } = useParams();
-  
+
   //console.log("postId : " + postId);
 
   const navigate = useNavigate();

@@ -19,7 +19,7 @@ export default function Nav() {
           Accueil
         </NavLink>
 
-        <NavLink to="/profile/:id" className="link-login">
+        <NavLink to="/profile" className="link-login">
           Profil
         </NavLink>
 

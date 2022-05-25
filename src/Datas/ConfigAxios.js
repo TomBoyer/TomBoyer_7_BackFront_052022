@@ -14,6 +14,10 @@ export const getUserId = () => {
   return sessionStorage.getItem("userId");
 };
 
+export const getUsername = () => {
+  return sessionStorage.getItem("username");
+};
+
 export const axiosIsLogged =  () => {
   return axios.create({
     baseURL: baseUrl,

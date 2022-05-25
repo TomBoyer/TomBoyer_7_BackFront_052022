@@ -1,6 +1,7 @@
 .form__container {
-
+    // @include border;
     @include flex-center;
+
 
 
     form {
@@ -8,30 +9,39 @@
         padding: 3em;
         background-color: $color-5;
 
+        @include flex-center;
+        flex-direction: column;
+
+        // max-width: 65vw;
+
+
         .label__container {
 
+            // @include border;
             position: relative;
 
-            display: flex;
+            @include flex-center;
+
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
 
             font-size: 1.3rem;
+
+            margin: 0.3em;
+
+            max-width: 35rem;
 
             input {
                 @include border-radius;
                 background-color: $color-6;
-                width: 30rem;
+                // max-width: 55vw;
+                min-width: 20vw;
                 padding: 1em;
-                margin: .5em 0 2em 0;
+                margin: .5em 0.5em 2em 0.5em;
                 box-shadow: 2px 2px rgb(94, 94, 94);
             }
 
             textarea {
                 @include border-radius;
-
-
 
                 padding: 5px;
                 background-color: $color-6;
@@ -74,9 +84,12 @@
             }
 
             .password-toggle {
-                padding: 0.6em;
+                // @include border;
+
+                // padding: 0.6em;
                 position: absolute;
-                right: 1em;
+                top: 58px;
+                right: - 1em;
                 font-size: 1.2em;
                 cursor: pointer;
 
@@ -86,6 +99,10 @@
                     color: $color-2;
                 }
 
+            }
+
+            span{
+                max-width: 20rem; ;
             }
 
         }

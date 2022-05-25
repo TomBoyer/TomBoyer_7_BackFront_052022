@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import axios from "axios";
 import * as yup from "yup";
 import { axiosIsLogged, getToken, getUserId } from "../Datas/ConfigAxios";
-import { apiComment } from "../Datas/DatasApi";
+import { apiPost } from "../Datas/DatasApi";
 import { useNavigate } from "react-router-dom";
 import InputTextArea from "../Components/Form/InputTextArea";
 import FormError from "../Components/Form/FormError";
@@ -30,12 +30,12 @@ export default function CreatePost() {
 
       axios({
         method: "POST",
-        url: apiComment,
+        url: apiPost,
         headers: {
           Authorization: `Bearer ${getToken()}`,
           //"Content-Type": "application/json",
         },
-        data: { content, userId: parseInt(getUserId(), 10) },
+        data: { content, userId: parseInt(getUserId()/* 10 */) },
       })
         .then((res) => {
           console.log(res);

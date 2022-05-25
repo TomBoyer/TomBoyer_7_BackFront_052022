@@ -50,8 +50,10 @@ export default function Login() {
       axios
         .post(apiLogin, { email, password })
         .then((res) => {
+          // console.log(res.data);
           sessionStorage.setItem("userId", res.data.userId);
           sessionStorage.setItem("token", res.data.token);
+          sessionStorage.setItem("username", res.data.username);
           navigate("/home");
         })
         .catch((error) => {

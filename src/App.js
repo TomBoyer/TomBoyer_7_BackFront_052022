@@ -20,7 +20,7 @@ export default function App() {
         <Route path="/home" element={<Home />} />
         <Route path="/createPost" element={<CreatePost />} />
         <Route path="/createComment/:postIdUrl" element={<CreateComment />} />
-        <Route path="/profile/:id" element={<Profile />} />
+        <Route path="/profile" element={<Profile />} />
 
         <Route path="/" element={<Navigate replace to="/home" />} />
         <Route path="*" element={<NotFound />} />
