@@ -51,7 +51,7 @@ export default function Home(props) {
         <Row /* gutter={[32, 24]} */ justify="center">
           <Card
             style={{
-              background: "#b4c5e4",
+              background: "#e4e8ee",
               borderRadius: "20px",
               width: "55vw",
               margin: ".5em",
@@ -61,14 +61,14 @@ export default function Home(props) {
             <div
                 // container top
               style={{
-                background: "#d9e2f2",
+                background: "#1b407a",
                 borderRadius: "20px",
                 fontWeight: "bold",
                 display: "flex",
                 justifyContent: "space-around",
                 alignItems: "center",
                 padding: "0.5em",
-                boxShadow: "2px 2px rgb(94, 94, 94)",
+                boxShadow: "2px 2px rgb(253, 45, 1)",
                 gap: ".3em",
                 margin: ".8em",
               }}
@@ -79,7 +79,7 @@ export default function Home(props) {
                   borderRadius: "20px",
                   textAlign: "center",
                   padding: "1em",
-                  background: "#b4c5e4",
+                  background: "#d9e2f2",
                   boxShadow: "2px 2px rgb(94, 94, 94)",
                 }}
               >
@@ -91,7 +91,7 @@ export default function Home(props) {
                   borderRadius: "20px",
                   textAlign: "center",
                   padding: "1em",
-                  background: "#b4c5e4",
+                  background: "#d9e2f2",
                   boxShadow: "2px 2px rgb(94, 94, 94)",
                 }}
               >
@@ -102,14 +102,14 @@ export default function Home(props) {
             // container content
               style={{
 
-                background: "#d9e2f2",
+                background: "#1b407a",
                 borderRadius: "20px",
                 fontWeight: "bold",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
                 padding: "0.5em",
-                boxShadow: "2px 2px rgb(94, 94, 94)",
+                boxShadow: "2px 2px rgb(253, 45, 1)",
                 height:"auto",
                 gap: ".3em",
               }}
@@ -120,7 +120,7 @@ export default function Home(props) {
                   maxWidth: "35vw",
                   padding: "0.8em",
                   borderRadius: "20px",
-                  background: "#b4c5e4",
+                  background: "#d9e2f2",
                   boxShadow: "2px 2px rgb(94, 94, 94)",
                 }}
               >
@@ -143,22 +143,23 @@ export default function Home(props) {
               //ESPACE COMMENT
             <Card
             style={{
-              background: "#ffd7d7",
+              background: "#96b1da",
               borderRadius: "20px",
               width: "35vw",
               margin: ".5em",
+              boxShadow: "2px 2px rgb(58, 64, 90)",
             }}>
               <div
                 // container top
               style={{
-                background: "#b4c5e4",
+                background: "#598ada",
                 borderRadius: "20px",
                 fontWeight: "bold",
                 display: "flex",
                 justifyContent: "space-around",
                 alignItems: "center",
                 padding: "0.5em",
-                boxShadow: "2px 2px rgb(94, 94, 94)",
+                boxShadow: "2px 2px rgb(58, 64, 90)",
                 gap: ".3em",
                 margin: ".8em",
               }}
@@ -169,8 +170,8 @@ export default function Home(props) {
                   borderRadius: "20px",
                   textAlign: "center",
                   padding: "1em",
-                  background: "#ffd7d7",
-                  boxShadow: "2px 2px rgb(94, 94, 94)",
+                  background: "#d9e2f2",
+                  boxShadow: "2px 2px rgb(58, 64, 90)",
                 }}
               >
                 {comment.User.username}
@@ -181,8 +182,8 @@ export default function Home(props) {
                   borderRadius: "20px",
                   textAlign: "center",
                   padding: "1em",
-                  background: "#ffd7d7",
-                  boxShadow: "2px 2px rgb(94, 94, 94)",
+                  background: "#d9e2f2",
+                  boxShadow: "2px 2px rgb(58, 64, 90)",
                 }}
               >
                 {comment.createdAt}
@@ -193,14 +194,14 @@ export default function Home(props) {
             // container content
               style={{
 
-                background: "#b4c5e4",
+                background: "#598ada",
                 borderRadius: "20px",
                 fontWeight: "bold",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",
                 padding: "0.5em",
-                boxShadow: "2px 2px rgb(94, 94, 94)",
+                boxShadow: "2px 2px rgb(58, 64, 90)",
                 height:"auto",
                 gap: ".3em",
               }}
@@ -211,8 +212,8 @@ export default function Home(props) {
                   maxWidth: "35vw",
                   padding: "0.8em",
                   borderRadius: "20px",
-                  background: "#ffd7d7",
-                  boxShadow: "2px 2px rgb(94, 94, 94)",
+                  background: "#d9e2f2",
+                  boxShadow: "2px 2px rgb(58, 64, 90)",
                   
                 }}
               >
