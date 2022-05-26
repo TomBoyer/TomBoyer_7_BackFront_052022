@@ -1,22 +1,27 @@
 .card__container {
-    
-    @include flex-center;
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
     position: relative;
 
     .container {
-        
-        @include border-radius;
-        @include flex-center;
+
+        border-radius: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         flex-direction: column;
         margin: .5em;
 
         width: 55vw;
 
-        background-color: $color-5;
+        background-color: #b4c5e4;
 
         .container__top {
-            
-            @include border-radius;
+
+            border-radius: 20px;
             display: flex;
             justify-content: space-around;
             align-items: center;
@@ -29,36 +34,36 @@
             font-weight: bold;
 
             .author {
-                
-                @include border-radius;
-                
+
+                border-radius: 20px;
+
                 text-align: center;
                 padding: .5em;
 
-                background-color: $color-6;
+                background-color: #d9e2f2;
                 box-shadow: 2px 2px rgb(94, 94, 94);
             }
 
             .date {
-                
-                @include border-radius;
+
+                border-radius: 20px;
                 text-align: center;
                 padding: .5em;
-                background-color: $color-6;
+                background-color: #d9e2f2;
                 box-shadow: 2px 2px rgb(94, 94, 94);
             }
 
             .hour {
-                
-                @include border-radius;
+
+                border-radius: 20px;
                 text-align: center;
                 padding: .5em;
             }
         }
 
         .container__content {
-            
-            @include border-radius;
+
+            border-radius: 20px;
             // @include flex-center;
             flex-direction: column;
             width: 80%;
@@ -66,13 +71,13 @@
             box-shadow: 2px 2px rgb(94, 94, 94);
 
             .content {
-                
-                @include border-radius;
+
+                border-radius: 20px;
                 margin: .5em 0.2em;
                 padding: .5em;
 
                 font-size: calc(1vmin + 10px);
-                background-color: $color-6;
+                background-color: #d9e2f2;
                 box-shadow: 2px 2px rgb(94, 94, 94);
             }
 
@@ -81,7 +86,7 @@
                 position: sticky;
                 // top:0px;
                 // right: 0px;
-                
+
             }
 
         }

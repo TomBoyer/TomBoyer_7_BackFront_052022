@@ -36,14 +36,17 @@ export default function Home() {
       <Header />
       <Title name="Accueil" />
 
-      <div className="btn-home-container">
+      {/* <div className="btn-home-container"> */}
         <NavLink className="btn btn-go-post " to="/createPost">
           Créer une publication
         </NavLink>
-      </div>
+      {/* </div> */}
 
       <div className="form__card__container">
+        
         {posts.map((post) => (
+
+          
           // console.log(post.Comment),
           //console.log(post),
           <Card
