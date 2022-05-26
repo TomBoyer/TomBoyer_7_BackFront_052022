@@ -20,6 +20,8 @@ style home ? le feed d'actu => auto refresh ?
  delete post -> logo delete
  delete comment -> logo delete
 
+slice date et heure pour affichage dans le feed
+
 img post ? img user ?  
 update post
 

@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 //compo
 import Header from "../Components/Header";
 import Title from "../Components/Title";
-import { Button, Card } from "antd";
+import { /*  Button, */ Card } from "antd";
 
 //datas + api schema
 import { /* axiosIsLogged, */ getToken } from "../Datas/ConfigAxios";
@@ -14,9 +14,7 @@ import { apiPost /* apiUser */ } from "../Datas/DatasApi";
 
 export default function Home() {
   const [posts, setPosts] = useState([]);
-  // const [comments, setComments] = useState([]);
 
-  // console.log(axiosIsLogged);
   useEffect(() => {
     axios
       .get(apiPost, {
@@ -25,36 +23,12 @@ export default function Home() {
         },
       })
       .then((res) => {
-        // console.log(res.data);
-
-        /* Plus besoin */
-        // let usernames = [];
-        // res.data.forEach((post) => {
-        //   axios
-        //     .get(`${apiUser}/${post.userId}`, {
-        //       headers: {
-        //         Authorization: `Bearer ${getToken()}`,
-        //       },
-        //     })
-
-        //     .then((result) => {
-        //       // console.log("usernames :" + usernames);
-        //       // console.log(result.data.username);
-        //       usernames.push(result.data.username);
-        //       // post.username = result.data.username;
-        //     })
-        // });
-        /* Plus besoin FIN */
-
-        // console.log(res.data);
         setPosts(res.data);
       })
       .catch((error) => {
         console.error(error);
       });
   }, []);
-
-  
 
   return (
     <div>
@@ -71,7 +45,7 @@ export default function Home() {
       <div className="form__card__container">
         {posts.map((post) => (
           // console.log(post.Comment),
-          console.log(post),
+          //console.log(post),
           <Card
             className="card__post"
             key={post.id}
@@ -82,12 +56,21 @@ export default function Home() {
           >
             <p>{post.content}</p>
 
-
             {/* <Button type="primary" shape="circle"> */}
 
-            <div className="">
-              <NavLink className="btn btn-go-comment " to={`/createComment/${post.id}`}>
+            <div className="container__btn__post">
+              <NavLink
+                className="btn btn-go-comment "
+                to={`/createComment/${post.id}`}
+              >
                 Commentaire
+              </NavLink>
+
+              <NavLink
+                className="btn btn-delete-post "
+                to={`/deletePost/${post.id}`}
+              >
+                suppr
               </NavLink>
             </div>
             {/* </Button> */}

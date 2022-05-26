@@ -8,8 +8,8 @@
     .card__post {
         @include border-radius;
         @include flex-center;
-        flex-direction: column;   
-        
+        flex-direction: column;
+
         position: relative;
 
         margin-bottom: 2.5rem;
@@ -23,23 +23,25 @@
             background-color: $color-5;
             text-align: justify;
 
-            
+
         }
+
         // .card__comment__container {
-            
-            .card__comment {
-                @include border-radius;
-                // @include flex-center;
-                
-                background-color: $color-3;
-                color: $color-4;
 
-                display: flex;
+        .card__comment {
+            @include border-radius;
+            // @include flex-center;
 
-                p{
-                    max-width: 90%;
-                }
+            background-color: $color-3;
+            color: $color-4;
+
+            display: flex;
+
+            p {
+                max-width: 90%;
             }
+        }
+
         // }
     }
 }

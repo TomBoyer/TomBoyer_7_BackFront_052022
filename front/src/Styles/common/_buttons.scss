@@ -16,7 +16,9 @@
 
 .btn-home-container {
     // width: 15vw;
-    position: relative;
+    // position: relative;
+
+    @include border;
 
     display: flex;
     justify-content: space-between;
@@ -26,15 +28,18 @@
 
     animation: spooky 1s alternate infinite linear;
 
-    .btn-go-post {
-        //marche pas le sticky
-        min-width: 15vw;
-        padding: 1rem 1.5rem;
-        position: sticky;
-        top: 10em;
-    }
+}
 
+.btn-go-post {
+    min-width: 15vw;
+    padding: 1rem 1.5rem;
+    position: fixed;
+    top: 15em;
+    left: 1em;
 
+    z-index: 10;
+
+    border: solid 1px $color-2;
 }
 
 .btn-go-comment {
