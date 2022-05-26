@@ -118,7 +118,7 @@ export default function Home(props) {
               // content
                 style={{
                   maxWidth: "35vw",
-                  padding: "0.5em",
+                  padding: "0.8em",
                   borderRadius: "20px",
                   background: "#b4c5e4",
                   boxShadow: "2px 2px rgb(94, 94, 94)",
@@ -151,7 +151,7 @@ export default function Home(props) {
               <div
                 // container top
               style={{
-                background: "#d9e2f2",
+                background: "#b4c5e4",
                 borderRadius: "20px",
                 fontWeight: "bold",
                 display: "flex",
@@ -169,7 +169,7 @@ export default function Home(props) {
                   borderRadius: "20px",
                   textAlign: "center",
                   padding: "1em",
-                  background: "#b4c5e4",
+                  background: "#ffd7d7",
                   boxShadow: "2px 2px rgb(94, 94, 94)",
                 }}
               >
@@ -181,7 +181,7 @@ export default function Home(props) {
                   borderRadius: "20px",
                   textAlign: "center",
                   padding: "1em",
-                  background: "#b4c5e4",
+                  background: "#ffd7d7",
                   boxShadow: "2px 2px rgb(94, 94, 94)",
                 }}
               >
@@ -193,7 +193,7 @@ export default function Home(props) {
             // container content
               style={{
 
-                background: "#d9e2f2",
+                background: "#b4c5e4",
                 borderRadius: "20px",
                 fontWeight: "bold",
                 display: "flex",
@@ -209,10 +209,11 @@ export default function Home(props) {
               // content
                 style={{
                   maxWidth: "35vw",
-                  padding: "0.5em",
+                  padding: "0.8em",
                   borderRadius: "20px",
-                  background: "#b4c5e4",
+                  background: "#ffd7d7",
                   boxShadow: "2px 2px rgb(94, 94, 94)",
+                  
                 }}
               >
                 {comment.content}
