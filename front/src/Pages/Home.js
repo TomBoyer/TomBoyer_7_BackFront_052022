@@ -40,16 +40,19 @@ export default function Home(props) {
       <Header />
       <Title name="Accueil" />
 
-      {/* <div className="btn-home-container"> */}
-        <NavLink className="btn btn-go-post " to="/createPost">
-          Créer une publication
-        </NavLink>
-      {/* </div> */}
+      
+      <NavLink className="btn btn-go-post " to="/createPost">
+        Créer une publication
+      </NavLink>
+      
 
       {posts.map((post) => (
+        // console.log(post),
         //ESPACE POST
+          
         <Row /* gutter={[32, 24]} */ justify="center">
           <Card
+          key={post.id}
             style={{
               background: "#e4e8ee",
               borderRadius: "20px",
@@ -57,9 +60,8 @@ export default function Home(props) {
               margin: ".5em",
             }}
           >
-
             <div
-                // container top
+              // container top
               style={{
                 background: "#1b407a",
                 borderRadius: "20px",
@@ -74,7 +76,8 @@ export default function Home(props) {
               }}
             >
               <div
-                  // container username
+                // container username
+                key={post.userId}
                 style={{
                   borderRadius: "20px",
                   textAlign: "center",
@@ -86,7 +89,7 @@ export default function Home(props) {
                 {post.User.username}
               </div>
               <div
-                  // container date
+                // container date
                 style={{
                   borderRadius: "20px",
                   textAlign: "center",
@@ -99,9 +102,8 @@ export default function Home(props) {
               </div>
             </div>
             <div
-            // container content
+              // container content
               style={{
-
                 background: "#1b407a",
                 borderRadius: "20px",
                 fontWeight: "bold",
@@ -110,121 +112,121 @@ export default function Home(props) {
                 alignItems: "center",
                 padding: "0.5em",
                 boxShadow: "2px 2px rgb(253, 45, 1)",
-                height:"auto",
+                height: "auto",
                 gap: ".3em",
+                marginBottom: "3em",
               }}
             >
               <p
-              // content
+                // content
                 style={{
-                  maxWidth: "35vw",
+                  width: "45vw",
                   padding: "0.8em",
                   borderRadius: "20px",
                   background: "#d9e2f2",
                   boxShadow: "2px 2px rgb(94, 94, 94)",
+                  textAlign: "center",
                 }}
               >
                 {post.content}
               </p>
             </div>
 
-
-            {/* <div className="container__btn__post"> */}
-              <NavLink
-                className="btn btn-go-comment "
-                to={`/createComment/${post.id}`}
-              >
-                Commentaire
-              </NavLink>
-            {/* </div> */}
-
+        
 
             {post.Comment.map((comment) => (
               //ESPACE COMMENT
-            <Card
-            style={{
-              background: "#96b1da",
-              borderRadius: "20px",
-              width: "35vw",
-              margin: ".5em",
-              boxShadow: "2px 2px rgb(58, 64, 90)",
-            }}>
-              <div
-                // container top
-              style={{
-                background: "#598ada",
-                borderRadius: "20px",
-                fontWeight: "bold",
-                display: "flex",
-                justifyContent: "space-around",
-                alignItems: "center",
-                padding: "0.5em",
-                boxShadow: "2px 2px rgb(58, 64, 90)",
-                gap: ".3em",
-                margin: ".8em",
-              }}
+              <Card
+              key={comment.id}
+                style={{
+                  background: "#96b1da",
+                  borderRadius: "20px",
+                  width: "35vw",
+                  margin: ".5em",
+                  boxShadow: "2px 2px rgb(58, 64, 90)",
+                }}
+              >
+                <div
+                  // container top
+                  style={{
+                    background: "#598ada",
+                    borderRadius: "20px",
+                    fontWeight: "bold",
+                    display: "flex",
+                    justifyContent: "space-around",
+                    alignItems: "center",
+                    padding: "0.5em",
+                    boxShadow: "2px 2px rgb(58, 64, 90)",
+                    gap: ".3em",
+                    margin: ".8em",
+                  }}
+                >
+                  <div
+                    // container username
+                    key={comment.userId}
+                    style={{
+                      borderRadius: "20px",
+                      textAlign: "center",
+                      padding: "1em",
+                      background: "#d9e2f2",
+                      boxShadow: "2px 2px rgb(58, 64, 90)",
+                    }}
+                  >
+                    {comment.User.username}
+                  </div>
+                  <div
+                    // container date
+                    style={{
+                      borderRadius: "20px",
+                      textAlign: "center",
+                      padding: "1em",
+                      background: "#d9e2f2",
+                      boxShadow: "2px 2px rgb(58, 64, 90)",
+                    }}
+                  >
+                    {comment.createdAt}
+                  </div>
+                </div>
+
+                <div
+                  // container content
+                  style={{
+                    background: "#598ada",
+                    borderRadius: "20px",
+                    fontWeight: "bold",
+                    display: "flex",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    padding: "0.5em",
+                    boxShadow: "2px 2px rgb(58, 64, 90)",
+                    height: "auto",
+                    // gap: ".3em",
+                  }}
+                >
+                  <p
+                    // content
+                    style={{
+                      width: "25vw",
+                      padding: "0.8em",
+                      borderRadius: "20px",
+                      background: "#d9e2f2",
+                      boxShadow: "2px 2px rgb(58, 64, 90)",
+                      textAlign: "center",
+                    }}
+                  >
+                    {comment.content}
+                  </p>
+                </div>
+              </Card>
+            ))}
+
+            <NavLink
+              className="btn btn-go-comment "
+              to={`/createComment/${post.id}`}
             >
-              <div
-                  // container username
-                style={{
-                  borderRadius: "20px",
-                  textAlign: "center",
-                  padding: "1em",
-                  background: "#d9e2f2",
-                  boxShadow: "2px 2px rgb(58, 64, 90)",
-                }}
-              >
-                {comment.User.username}
-              </div>
-              <div
-                  // container date
-                style={{
-                  borderRadius: "20px",
-                  textAlign: "center",
-                  padding: "1em",
-                  background: "#d9e2f2",
-                  boxShadow: "2px 2px rgb(58, 64, 90)",
-                }}
-              >
-                {comment.createdAt}
-              </div>
-            </div>
-
-            <div
-            // container content
-              style={{
-
-                background: "#598ada",
-                borderRadius: "20px",
-                fontWeight: "bold",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                padding: "0.5em",
-                boxShadow: "2px 2px rgb(58, 64, 90)",
-                height:"auto",
-                gap: ".3em",
-              }}
-            >
-              <p
-              // content
-                style={{
-                  maxWidth: "35vw",
-                  padding: "0.8em",
-                  borderRadius: "20px",
-                  background: "#d9e2f2",
-                  boxShadow: "2px 2px rgb(58, 64, 90)",
-                  
-                }}
-              >
-                {comment.content}
-              </p>
-            </div>
-            </Card>
-          ))}
-
+              Commentaire
+            </NavLink>
           </Card>
-          
         </Row>
       ))}
     </div>

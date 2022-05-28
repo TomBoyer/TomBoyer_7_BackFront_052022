@@ -16,6 +16,7 @@ export default function InputPassword({
     <div className="label__container">
       <label htmlFor={name}>{label}</label>
       <input
+      autoComplete="false"
         onChange={handleChange}
         // required
         id={name}

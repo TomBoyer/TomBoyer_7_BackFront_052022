@@ -59,7 +59,7 @@ export default function PwdForm() {
       })
         .then((res) => {
           //   console.log(res);
-            navigate("/home");
+          navigate("/home");
         })
         .catch((error) => {
           console.error(error);
@@ -75,7 +75,7 @@ export default function PwdForm() {
     formik.handleSubmit(event);
   };
 
-    const navigate = useNavigate();
+  const navigate = useNavigate();
   return (
     <div className="form__container">
       <form onSubmit={handleSubmit}>
