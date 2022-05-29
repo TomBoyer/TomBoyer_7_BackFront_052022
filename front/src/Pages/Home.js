@@ -15,12 +15,12 @@ import "../Styles/common/_card2.scss";
 //datas + api schema
 import { apiPost /* apiUser */ } from "../Datas/DatasApi";
 import { getToken, getUser } from "../Storage/AuthenticationStorage";
+import BtnTop from "../Components/icons-logos/BtnTop";
 
 export default function Home(props) {
   const [posts, setPosts] = useState([]);
 
-
-  console.info( "You are logged as :", getUser())
+  console.info("You are logged as :", getUser());
 
   useEffect(() => {
     axios
@@ -42,22 +42,26 @@ export default function Home(props) {
       <h1>PAGE HOME</h1>
       <Header />
       <Title name="Accueil" />
-      {getUser() && <h2>Bonjour {getUser().username} quoi de neuf à partager ?</h2>}
+      {getUser() && (
+        <h2>Bonjour {getUser().username} quoi de neuf à partager ?</h2>
+      )}
 
-      
-      {getUser() && <NavLink className="btn btn-go-post " to="/createPost">
-        Créer une publication
-      </NavLink>}
-      
+      {getUser() && (
+        <NavLink className="btn btn-go-post " to="/createPost">
+          Créer une publication
+        </NavLink>
+      )}
+
+      <BtnTop />
 
       {posts.map((post) => (
         // console.log(post),
         //ESPACE POST
-          
+
         <Row /* gutter={[32, 24]} */ justify="center">
           <Card
-          key={post.id}
-          className="test"
+            key={post.id}
+            className="test"
             style={{
               background: "#e4e8ee",
               borderRadius: "20px",
@@ -119,7 +123,7 @@ export default function Home(props) {
                 boxShadow: "2px 2px rgb(253, 45, 1)",
                 height: "auto",
                 gap: ".3em",
-                marginBottom: "3em",
+                marginBottom: "4em",
               }}
             >
               <p
@@ -137,12 +141,10 @@ export default function Home(props) {
               </p>
             </div>
 
-        
-
             {post.Comment.map((comment) => (
               //ESPACE COMMENT
               <Card
-              key={comment.id}
+                key={comment.id}
                 style={{
                   background: "#96b1da",
                   borderRadius: "20px",

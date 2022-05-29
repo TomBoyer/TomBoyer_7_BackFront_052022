@@ -1,10 +1,10 @@
-- Stocker le token en local storage : méthode utilisée ici fonctionne normalement
+<!-- - Stocker le token en local storage : méthode utilisée ici fonctionne normalement -->
 <!-- - useContext : islogged pas opérationnel -> fait par authStorage.js -->
-- temps de chargement login trop long:
-		- ajouter un spin pour symboliser le chargement -> ok
-		- msg erreur si mauvais mdp
+<!-- - temps de chargement login trop long: -->
+<!-- - ajouter un spin pour symboliser le chargement -> ok -->
+		- msg erreur si mauvais mdp - a verifier
 
-- page login : 
+- page login/signup : 
 	- ajouter picture profile (choix par def OU choix d'une photo)
 
 - page home : 
@@ -23,7 +23,7 @@
 - page profil : 
 	- autocomplete du username : si le user change son pseudo le username autocomplete ne change pas sans avoir logout -> login car le username est stocké au login dans le back
 	- ajouter affichage de picture profile
-	- gestion update picture profile (back pas oéprationnel dans abandon pour le moment)
+	- gestion update picture profile (back pas opérationnel dans abandon pour le moment)
 
 - compte Admin avec tous les droits : abandon pour le moment car pas implanté dans le back
 
