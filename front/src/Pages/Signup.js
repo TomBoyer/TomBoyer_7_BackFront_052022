@@ -16,7 +16,7 @@ import InputPassword from "../Components/Form/InputPassword";
 export default function Signup() {
   //   const PseudoRegex =
   //     /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð\s'.-]+$/;
-  const VALID_EMAIL = /^[\w_-]+@[\w-]+\.[a-z]{2,4}$/i;
+  const VALID_EMAIL = /^[\w_.-]+@[\w-]+\.[a-z]{2,4}$/i;
   const VALID_PASSWORD =
     /^(?=.*[A-Z])(?=.*[a-z])(?=(.*\d){2,})(?=.*[!@#$%])[A-Za-z\d@$!%*#?&]{8,16}$/;
 
@@ -67,11 +67,13 @@ export default function Signup() {
     // }
   };
 
-  const [isHidden, setIsHidden] = useState(true);
-  const passwordToggle = () => setIsHidden((e) => !e);
+  // const [isHidden, setIsHidden] = useState(true);
+  // const passwordToggle = () => setIsHidden((e) => !e);
 
   //navigation
   const navigate = useNavigate();
+
+  console.error(formik.errors)
 
   return (
     <div>

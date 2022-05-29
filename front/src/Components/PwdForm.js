@@ -6,19 +6,20 @@ import * as yup from "yup";
 import axios from "axios";
 
 //compo
-import Input from "../Components/Form/Input";
+// import Input from "../Components/Form/Input";
 import InputPassword from "../Components/Form/InputPassword";
-import Header from "../Components/Header";
-import Title from "../Components/Title";
+// import Header from "../Components/Header";
+// import Title from "../Components/Title";
 import { apiUser } from "../Datas/DatasApi";
-import FormError from "../Components/Form/FormError";
+// import FormError from "../Components/Form/FormError";
+import { getToken, getUser } from "../Storage/AuthenticationStorage";
 
-import {
-  axiosIsLogged,
-  getToken,
-  getUserId,
-  getUsername,
-} from "../Datas/ConfigAxios";
+// import {
+//   axiosIsLogged,
+//   getToken,
+//   getUserId,
+//   getUsername,
+// } from "../Datas/ConfigAxios";
 
 export default function PwdForm() {
   const VALID_PASSWORD =
@@ -48,14 +49,14 @@ export default function PwdForm() {
     },
     validationSchema: validate,
     onSubmit: ({ oldPassword, newPassword }) => {
-      console.log({ id: parseInt(getUserId()), oldPassword, newPassword });
+      console.log({ id: parseInt(getUser()?.userId), oldPassword, newPassword })
       axios({
         method: "PUT",
         url: apiUser,
         headers: {
           Authorization: `Bearer ${getToken()}`,
         },
-        data: { id: parseInt(getUserId()), oldPassword, newPassword },
+        data: { id: parseInt(getUser()?.userId), oldPassword, newPassword },
       })
         .then((res) => {
           //   console.log(res);

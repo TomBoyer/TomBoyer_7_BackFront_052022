@@ -34,12 +34,18 @@
     min-width: 15vw;
     padding: 1rem 1.5rem;
     position: fixed;
-    top: 15em;
-    left: 1em;
+    top: 30rem;
+    left: .8rem;
 
     z-index: 10;
 
     border: solid 1px $color-2;
+
+    transition: $duration;
+    
+    @include tel {
+        padding: 1.5rem 2rem;
+    }
 }
 
 .btn-go-comment {
@@ -47,5 +53,4 @@
     position: absolute;
     bottom: .5em;
     right: .5em;
-
 }

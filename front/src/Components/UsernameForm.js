@@ -13,7 +13,7 @@ import Title from "../Components/Title";
 import { apiUser } from "../Datas/DatasApi";
 import FormError from "../Components/Form/FormError";
 
-import { axiosIsLogged, getToken, getUserId, getUsername } from "../Datas/ConfigAxios";
+import { getToken, getUser } from "../Storage/AuthenticationStorage";
 
 export default function UsernameForm() {
 
@@ -25,7 +25,7 @@ export default function UsernameForm() {
 
   const formik = useFormik({
     initialValues: {
-      username: getUsername(),
+      username: getUser()?.username,
     },
     validationSchema: validate,
     onSubmit: ({ username }) => {
@@ -37,7 +37,7 @@ export default function UsernameForm() {
           Authorization: `Bearer ${getToken()}`,
 
         },
-        data: {id: parseInt(getUserId()), username },
+        data: {id: parseInt(getUser()?.userId), username },
       })
         .then((res) => {
         //   console.log(res);

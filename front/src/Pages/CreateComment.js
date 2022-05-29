@@ -2,13 +2,13 @@ import React from "react";
 import { useFormik } from "formik";
 import axios from "axios";
 import * as yup from "yup";
-import { axiosIsLogged, getToken, getUserId } from "../Datas/ConfigAxios";
 import { apiComment } from "../Datas/DatasApi";
 import { useNavigate, useParams } from "react-router-dom";
 import InputTextArea from "../Components/Form/InputTextArea";
 import FormError from "../Components/Form/FormError";
 import Header from "../Components/Header";
 import Title from "../Components/Title";
+import { getToken, getUser } from "../Storage/AuthenticationStorage";
 
 export default function CreateComment() {
   let { postIdUrl } = useParams();
@@ -39,7 +39,7 @@ export default function CreateComment() {
           Authorization: `Bearer ${getToken()}`,
           //"Content-Type": "application/json",
         },
-        data: { content, userId: parseInt(getUserId(), 10), postId: postIdUrl },
+        data: { content, userId: parseInt(getUser().userId, 10), postId: postIdUrl },
       })
         .then((res) => {
           console.log(res);

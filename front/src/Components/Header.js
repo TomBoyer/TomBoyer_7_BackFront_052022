@@ -6,7 +6,7 @@ import Nav from "./Nav";
 export default function Header() {
   return (
     <header className="header">
-      <div className="logo__container">
+      {/* <div className="logo__container"> */}
         <NavLink to="/home">
           <img
             className="logo"
@@ -14,7 +14,7 @@ export default function Header() {
             alt="logo groupomania black"
           />
         </NavLink>
-      </div>
+      {/* </div> */}
       <Nav />
     </header>
   );

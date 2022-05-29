@@ -1,27 +1,34 @@
 - Stocker le token en local storage : méthode utilisée ici fonctionne normalement
-- useContext : islogged pas opérationnel
+<!-- - useContext : islogged pas opérationnel -> fait par authStorage.js -->
 - temps de chargement login trop long:
-		- ajouter un spin pour symboliser le chargement
+		- ajouter un spin pour symboliser le chargement -> ok
 		- msg erreur si mauvais mdp
 
 - page login : 
 	- ajouter picture profile (choix par def OU choix d'une photo)
 
 - page home : 
-	- cacher btn "créer un post" si user pas loggé	
+	- btn retour top
+	- cacher btn "créer un post" si user pas loggé	-> ok
 	- autorefresh du feed d'actu si nouveau post/comment
 	- date : moment : comment/post "depuis quand"
 	- Card : créer component pour le feed de la page home
 		- ajouter picture profile
-		- ajouter delete post
-		- ajouter delete comment
+		- ajouter delete post -> demander à tuteur
+		- ajouter delete comment -> demander à tuteur
 
-- page profile : 
+	- responsiv : 
+		- feed margin
+
+- page profil : 
 	- autocomplete du username : si le user change son pseudo le username autocomplete ne change pas sans avoir logout -> login car le username est stocké au login dans le back
 	- ajouter affichage de picture profile
 	- gestion update picture profile (back pas oéprationnel dans abandon pour le moment)
 
 - compte Admin avec tous les droits : abandon pour le moment car pas implanté dans le back
+
+- navBar : 
+	-responsiv menu déroulant
 
 
 

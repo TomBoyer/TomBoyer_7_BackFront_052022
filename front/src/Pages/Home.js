@@ -1,6 +1,6 @@
 //libs
 import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 //compo
@@ -13,11 +13,14 @@ import { Card, Col, Row } from "antd";
 import "../Styles/common/_card2.scss";
 
 //datas + api schema
-import { /* axiosIsLogged, */ getToken } from "../Datas/ConfigAxios";
 import { apiPost /* apiUser */ } from "../Datas/DatasApi";
+import { getToken, getUser } from "../Storage/AuthenticationStorage";
 
 export default function Home(props) {
   const [posts, setPosts] = useState([]);
+
+
+  console.info( "You are logged as :", getUser())
 
   useEffect(() => {
     axios
@@ -36,14 +39,15 @@ export default function Home(props) {
 
   return (
     <div>
-      <h1>PAGE HOME 2</h1>
+      <h1>PAGE HOME</h1>
       <Header />
       <Title name="Accueil" />
+      {getUser() && <h2>Bonjour {getUser().username} quoi de neuf à partager ?</h2>}
 
       
-      <NavLink className="btn btn-go-post " to="/createPost">
+      {getUser() && <NavLink className="btn btn-go-post " to="/createPost">
         Créer une publication
-      </NavLink>
+      </NavLink>}
       
 
       {posts.map((post) => (

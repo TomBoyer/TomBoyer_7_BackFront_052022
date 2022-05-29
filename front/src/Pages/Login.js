@@ -1,5 +1,5 @@
 //libs
-import React, { /* useState */ } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
@@ -16,12 +16,18 @@ import FormError from "../Components/Form/FormError";
 
 //dataApi + schema
 import { apiLogin } from "../Datas/DatasApi";
+import LoaderWrapper from "../Components/Loader/LoaderWrapper";
+import { setToken, setUser } from "../Storage/AuthenticationStorage";
 // import loginSchema from "../Yup//LoginSchema";
 
 export default function Login() {
-  const VALID_EMAIL = /^[\w_-]+@[\w-]+\.[a-z]{2,4}$/i;
+  const VALID_EMAIL = /^[\w_.-]+@[\w-]+\.[a-z]{2,4}$/i;
   const VALID_PASSWORD =
     /^(?=.*[A-Z])(?=.*[a-z])(?=(.*\d){2,})(?=.*[!@#$%])[A-Za-z\d@$!%*#?&]{8,16}$/;
+
+  const navigate = useNavigate();
+  const [hasErrors, sethasErrors] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   const validate = yup.object({
     email: yup
@@ -47,17 +53,45 @@ export default function Login() {
     validationSchema: validate,
     onSubmit: ({ email, password }) => {
       // console.log (email, password);
+
+      sethasErrors(false);
+      setLoading(true);
+
+      //   axios
+      //     .post(apiLogin, { email, password })
+      //     .then((res) => {
+      //       // console.log(res.data);
+      //       sessionStorage.setItem("userId", res.data.userId);
+      //       sessionStorage.setItem("token", res.data.token);
+      //       sessionStorage.setItem("username", res.data.username);
+      //       navigate("/home");
+      //     })
+      //     .catch((error) => {
+      //       console.error(error);
+      //       sethasErrors(true);
+      //       setLoading(false)
+      //     });
+      // },
       axios
         .post(apiLogin, { email, password })
         .then((res) => {
-          // console.log(res.data);
-          sessionStorage.setItem("userId", res.data.userId);
-          sessionStorage.setItem("token", res.data.token);
-          sessionStorage.setItem("username", res.data.username);
+          console.log(res.data);
+          // sessionStorage.setItem("token", res.data.token);
+          // sessionStorage.setItem("username", res.data.username);
+          // sessionStorage.setItem("userId", res.data.userId);
+          // setToken({ token: res.data.token });
+          setToken(res.data.token);
+          setUser({ userId: res.data.userId, username: res.data.username });
+
+          sethasErrors(false);
+          setLoading(false);
+
           navigate("/home");
         })
         .catch((error) => {
           console.error(error);
+          sethasErrors(true);
+          setLoading(false);
         });
     },
   });
@@ -76,90 +110,48 @@ export default function Login() {
     // }
   };
 
-  const navigate = useNavigate();
   return (
     <div>
-      <div className="signup__container">
-        <h1>Page de LOGIN</h1>
+      <LoaderWrapper displayLoader={loading}>
+        <div className="signup__container">
+          <h1>Page de LOGIN</h1>
 
-        <Header />
-        <Title name="Connexion" />
+          <Header />
+          <Title name="Connexion" />
 
-        <div className="form__container">
-          <form onSubmit={handleSubmit}>
-            <Input
-              name="email"
-              label="email"
-              type="email"
-              handleChange={handleChange}
-              placeholder="email@email.fr"
-              value={formik.values.email}
-              error={formik.errors.email}
-            />
+          <div className="form__container">
+            <form onSubmit={handleSubmit}>
+              <Input
+                name="email"
+                label="email"
+                type="email"
+                handleChange={handleChange}
+                placeholder="email@email.fr"
+                value={formik.values.email}
+                error={formik.errors.email}
+              />
 
-            <InputPassword
-              name="password"
-              label="password"
-              handleChange={handleChange}
-              placeholder="Ton super mdp"
-              value={formik.values.password}
-              error={formik.errors.password}
-            />
+              <InputPassword
+                name="password"
+                label="password"
+                handleChange={handleChange}
+                placeholder="Ton super mdp"
+                value={formik.values.password}
+                error={formik.errors.password}
+              />
 
-            <div className="label__container">
-              <button type="submit" className="btn">
-                Connexion
-              </button>
-              {formik.errors && formik.touched && <FormError />}
-            </div>
-          </form>
+              <div className="label__container">
+                <button type="submit" className="btn">
+                  Connexion
+                </button>
+
+                {hasErrors && <p>this is a backend error </p>}
+                {!formik.isValid && <FormError />}
+              </div>
+            </form>
+          </div>
         </div>
-      </div>
+      </LoaderWrapper>
     </div>
-    // <div className="login__container">
-    //   <h1>Page de LOGIN</h1>
-
-    //   <Header />
-    //   <Title name="Connexion" />
-
-    //   <div className="form__container">
-    //     <form
-    //     // onSubmit={handleform}
-    //     >
-    //       <div className="label__container">
-    //         <label htmlFor="Email">Email</label>
-    //         <input
-    //           required
-    //           id="loginEmail"
-    //           name="email"
-    //           type="email"
-    //           placeholder="email@email.fr"
-    //         />
-    //       </div>
-
-    //       <div className="label__container">
-    //         <label htmlFor="password">Mot de passe</label>
-    //         <input
-    //           required
-    //           id="loginPwd"
-    //           name="password"
-    //           type={isHidden ? "password" : "text"}
-    //           placeholder="ton super code secret"
-    //         />
-
-    //         <div className="password-toggle" onClick={passwordToggle}>
-    //           {isHidden ? <HideInput /> : <ShowInput />}
-    //         </div>
-
-    //       </div>
-
-    //       <p>{validation}</p>
-
-    //       <div className="label__container">
-    //         <button className="btn">Connection</button>
-    //       </div>
-    //     </form>
-    //   </div>
-    // </div>
   );
 }

@@ -2,13 +2,13 @@ import React from "react";
 import { useFormik } from "formik";
 import axios from "axios";
 import * as yup from "yup";
-import { axiosIsLogged, getToken, getUserId } from "../Datas/ConfigAxios";
 import { apiPost } from "../Datas/DatasApi";
 import { useNavigate } from "react-router-dom";
 import InputTextArea from "../Components/Form/InputTextArea";
 import FormError from "../Components/Form/FormError";
 import Header from "../Components/Header";
 import Title from "../Components/Title";
+import { getToken, getUser } from "../Storage/AuthenticationStorage";
 
 export default function CreatePost() {
 
@@ -35,7 +35,7 @@ export default function CreatePost() {
           Authorization: `Bearer ${getToken()}`,
           //"Content-Type": "application/json",
         },
-        data: { content, userId: parseInt(getUserId()/* 10 */) },
+        data: { content, userId: parseInt(getUser().userId/* 10 */) },
       })
         .then((res) => {
           console.log(res);
