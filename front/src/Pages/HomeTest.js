@@ -39,7 +39,7 @@ export default function Home(props) {
 
   return (
     <div>
-      <h1>PAGE HOME</h1>
+      <h1>PAGE HOMETEST</h1>
       <Header />
       <Title name="Accueil" />
       {getUser() && (
@@ -48,7 +48,7 @@ export default function Home(props) {
 
       {getUser() && (
         <NavLink className="btn btn-go-post " to="/createPost">
-          Créer une publication
+          Publication
         </NavLink>
       )}
 
@@ -58,182 +58,188 @@ export default function Home(props) {
         // console.log(post),
         //ESPACE POST
 
-        <Row /* gutter={[32, 24]} */ justify="center">
-          <Card
-            key={post.id}
-            className="test"
-            style={{
-              background: "#e4e8ee",
-              borderRadius: "20px",
-              width: "55vw",
-              margin: ".5em",
-            }}
-          >
-            <div
-              // container top
+        <Row /* gutter={[32, 24]} */ /* justify="center" */>
+          <Col offset={1}>
+            <Card
+              key={post.id}
+              className="test"
               style={{
-                background: "#1b407a",
+                background: "#e4e8ee",
                 borderRadius: "20px",
-                fontWeight: "bold",
-                display: "flex",
-                justifyContent: "space-around",
-                alignItems: "center",
-                padding: "0.5em",
-                boxShadow: "2px 2px rgb(253, 45, 1)",
-                gap: ".3em",
-                margin: ".8em",
+                width: "70vw",
+                margin: ".5em",
+                // padding:".5rem",
               }}
             >
               <div
-                // container username
-                key={post.userId}
+                // container top
                 style={{
+                  background: "#1b407a",
                   borderRadius: "20px",
-                  textAlign: "center",
-                  padding: "1em",
-                  background: "#d9e2f2",
-                  boxShadow: "2px 2px rgb(94, 94, 94)",
+                  fontWeight: "bold",
+                  display: "flex",
+                  justifyContent: "space-around",
+                  alignItems: "center",
+                  padding: "0.5em",
+                  boxShadow: "2px 2px rgb(253, 45, 1)",
+                  gap: ".3em",
+                  margin: ".8em",
+                  
                 }}
               >
-                {post.User.username}
+                <div
+                  // container username
+                  key={post.userId}
+                  style={{
+                    borderRadius: "20px",
+                    textAlign: "center",
+                    padding: "1em",
+                    background: "#d9e2f2",
+                    boxShadow: "2px 2px rgb(94, 94, 94)",
+                  }}
+                >
+                  {post.User.username}
+                </div>
+                <div
+                  // container date
+                  style={{
+                    borderRadius: "20px",
+                    textAlign: "center",
+                    padding: "1em",
+                    background: "#d9e2f2",
+                    boxShadow: "2px 2px rgb(94, 94, 94)",
+                  }}
+                >
+                  {post.createdAt}
+                </div>
               </div>
               <div
-                // container date
+                // container content
                 style={{
+                  background: "#1b407a",
                   borderRadius: "20px",
-                  textAlign: "center",
-                  padding: "1em",
-                  background: "#d9e2f2",
-                  boxShadow: "2px 2px rgb(94, 94, 94)",
+                  fontWeight: "bold",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                  padding: "0.5em",
+                  boxShadow: "2px 2px rgb(253, 45, 1)",
+                  height: "auto",
+                  gap: ".3em",
+                  marginBottom: "4em",
                 }}
               >
-                {post.createdAt}
+                <p
+                  // content
+                  style={{
+                    width: "45vw",
+                    padding: "0.8em",
+                    borderRadius: "20px",
+                    background: "#d9e2f2",
+                    boxShadow: "2px 2px rgb(94, 94, 94)",
+                    textAlign: "center",
+                  }}
+                >
+                  {post.content}
+                </p>
               </div>
-            </div>
-            <div
-              // container content
-              style={{
-                background: "#1b407a",
-                borderRadius: "20px",
-                fontWeight: "bold",
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                padding: "0.5em",
-                boxShadow: "2px 2px rgb(253, 45, 1)",
-                height: "auto",
-                gap: ".3em",
-                marginBottom: "4em",
-              }}
-            >
-              <p
-                // content
-                style={{
-                  width: "45vw",
-                  padding: "0.8em",
-                  borderRadius: "20px",
-                  background: "#d9e2f2",
-                  boxShadow: "2px 2px rgb(94, 94, 94)",
-                  textAlign: "center",
-                }}
-              >
-                {post.content}
-              </p>
-            </div>
 
-            {post.Comment.map((comment) => (
-              //ESPACE COMMENT
-              <Card
-                key={comment.id}
-                style={{
-                  background: "#96b1da",
-                  borderRadius: "20px",
-                  width: "35vw",
-                  margin: ".5em",
-                  boxShadow: "2px 2px rgb(58, 64, 90)",
-                }}
-              >
-                <div
-                  // container top
+              {post.Comment.map((comment) => (
+                //ESPACE COMMENT
+                <Card
+                bodyStyle={{ padding: "0.5rem"}}
+                  key={comment.id}
                   style={{
-                    background: "#598ada",
+                    background: "#96b1da",
                     borderRadius: "20px",
-                    fontWeight: "bold",
-                    display: "flex",
-                    justifyContent: "space-around",
-                    alignItems: "center",
-                    padding: "0.5em",
+                    width: "90%",
+                    margin: ".5em 0 3rem 0",
                     boxShadow: "2px 2px rgb(58, 64, 90)",
-                    gap: ".3em",
-                    margin: ".8em",
+                    
                   }}
                 >
                   <div
-                    // container username
-                    key={comment.userId}
+                    // container top
                     style={{
+                      background: "#598ada",
                       borderRadius: "20px",
-                      textAlign: "center",
-                      padding: "1em",
-                      background: "#d9e2f2",
+                      fontWeight: "bold",
+                      display: "flex",
+                      justifyContent: "space-around",
+                      alignItems: "center",
+                      padding: "0.5em",
                       boxShadow: "2px 2px rgb(58, 64, 90)",
+                      gap: ".3em",
+                      margin: ".8em",
                     }}
                   >
-                    {comment.User.username}
+                    <div
+                      // container username
+                      key={comment.userId}
+                      style={{
+                        borderRadius: "20px",
+                        textAlign: "center",
+                        padding: "1em",
+                        background: "#d9e2f2",
+                        boxShadow: "2px 2px rgb(58, 64, 90)",
+                      }}
+                    >
+                      {comment.User.username}
+                    </div>
+                    <div
+                      // container date
+                      style={{
+                        borderRadius: "20px",
+                        textAlign: "center",
+                        padding: "1em",
+                        background: "#d9e2f2",
+                        boxShadow: "2px 2px rgb(58, 64, 90)",
+                      }}
+                    >
+                      {comment.createdAt}
+                    </div>
                   </div>
+
                   <div
-                    // container date
+                    // container content
                     style={{
+                      background: "#598ada",
                       borderRadius: "20px",
-                      textAlign: "center",
-                      padding: "1em",
-                      background: "#d9e2f2",
+                      fontWeight: "bold",
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      padding: "0.5em",
                       boxShadow: "2px 2px rgb(58, 64, 90)",
+                      height: "auto",
+                      // gap: ".3em",
                     }}
                   >
-                    {comment.createdAt}
+                    <p
+                      // content
+                      style={{
+                        width: "95%",
+                        padding: "0.8em",
+                        borderRadius: "20px",
+                        background: "#d9e2f2",
+                        boxShadow: "2px 2px rgb(58, 64, 90)",
+                        textAlign: "center",
+                      }}
+                    >
+                      {comment.content}
+                    </p>
                   </div>
-                </div>
+                </Card>
+              ))}
 
-                <div
-                  // container content
-                  style={{
-                    background: "#598ada",
-                    borderRadius: "20px",
-                    fontWeight: "bold",
-                    display: "flex",
-                    justifyContent: "center",
-                    alignItems: "center",
-                    padding: "0.5em",
-                    boxShadow: "2px 2px rgb(58, 64, 90)",
-                    height: "auto",
-                    // gap: ".3em",
-                  }}
-                >
-                  <p
-                    // content
-                    style={{
-                      width: "25vw",
-                      padding: "0.8em",
-                      borderRadius: "20px",
-                      background: "#d9e2f2",
-                      boxShadow: "2px 2px rgb(58, 64, 90)",
-                      textAlign: "center",
-                    }}
-                  >
-                    {comment.content}
-                  </p>
-                </div>
-              </Card>
-            ))}
-
-            <NavLink
-              className="btn btn-go-comment "
-              to={`/createComment/${post.id}`}
-            >
-              Commentaire
-            </NavLink>
-          </Card>
+              <NavLink
+                className="btn btn-go-comment "
+                to={`/createComment/${post.id}`}
+              >
+                Commentaire
+              </NavLink>
+            </Card>
+          </Col>
         </Row>
       ))}
     </div>
