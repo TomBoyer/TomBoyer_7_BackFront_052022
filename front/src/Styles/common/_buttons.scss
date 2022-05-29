@@ -54,3 +54,13 @@
     bottom: .5em;
     right: .5em;
 }
+
+.btn-profile{
+    @include tablette {
+        font-size: calc(1vmin + 15px);
+        padding: 1.2rem 5rem;
+    }
+    @include tel {
+        font-size: calc(1vmin + 10px);
+    }
+}

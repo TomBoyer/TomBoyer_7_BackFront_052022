@@ -57,6 +57,7 @@ export default function Home(props) {
         <Row /* gutter={[32, 24]} */ justify="center">
           <Card
           key={post.id}
+          className="test"
             style={{
               background: "#e4e8ee",
               borderRadius: "20px",

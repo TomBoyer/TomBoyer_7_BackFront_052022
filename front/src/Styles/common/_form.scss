@@ -2,8 +2,6 @@
     // @include border;
     @include flex-center;
 
-
-
     form {
         @include border-radius;
         padding: 3em;
@@ -13,10 +11,15 @@
         flex-direction: column;
 
         // max-width: 65vw;
+        // width: calc(5vmin + 25em);
 
         box-shadow: 2px 2px rgb(253, 45, 1);
 
         margin-bottom: 2em;
+
+        @include tel {
+            max-width: 80%;
+        }
 
         .label__container {
 
@@ -33,6 +36,8 @@
 
             max-width: 35rem;
 
+
+
             input {
                 @include border-radius;
                 background-color: $color-6;
@@ -41,6 +46,11 @@
                 padding: 1em;
                 margin: .5em 0.5em 2em 0.5em;
                 box-shadow: 2px 2px rgb(94, 94, 94);
+
+                @include tel {
+
+                    width: 15rem;
+                }
             }
 
             textarea {
@@ -102,10 +112,16 @@
                     color: $color-2;
                 }
 
+                @include tel {
+                    top: 7.2rem;
+                    right: 7rem;
+                }
+
             }
 
-            span{
-                max-width: 20rem; ;
+            span {
+                max-width: 20rem;
+                ;
             }
 
         }

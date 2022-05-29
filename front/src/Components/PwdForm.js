@@ -98,8 +98,8 @@ export default function PwdForm() {
           error={formik.errors.newPassword}
         />
         <div className="label__container">
-          <button type="submit" className="btn">
-            Modifier pwd
+          <button type="submit" className="btn btn-profile">
+            Modifier MDP
           </button>
           {/* {formik.errors && formik.touched && <FormError />} */}
         </div>

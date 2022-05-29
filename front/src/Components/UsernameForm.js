@@ -76,7 +76,7 @@ export default function UsernameForm() {
           />
 
           <div className="label__container">
-            <button type="submit" className="btn">
+            <button type="submit" className="btn btn-profile">
               Modifier
             </button>
             {/* {formik.errors && formik.touched && <FormError />} */}
