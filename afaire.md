@@ -4,8 +4,11 @@
 <!-- - ajouter un spin pour symboliser le chargement -> ok -->
 		- msg erreur si mauvais mdp - a verifier
 
+/!\ autoprefixer all css
+
 - page login/signup : 
 	- ajouter picture profile (choix par def OU choix d'une photo)
+	- empecher les espaces avant/apres le pseudo (trim() fonctionne ?)
 
 - page home : 
 	- btn retour top
@@ -17,8 +20,8 @@
 		- ajouter delete post -> demander à tuteur
 		- ajouter delete comment -> demander à tuteur
 
-	- responsiv : 
-		- feed margin
+	<!-- - responsiv : 
+		- feed margin -->
 
 - page profil : 
 	- autocomplete du username : si le user change son pseudo le username autocomplete ne change pas sans avoir logout -> login car le username est stocké au login dans le back
@@ -27,8 +30,8 @@
 
 - compte Admin avec tous les droits : abandon pour le moment car pas implanté dans le back
 
-- navBar : 
-	-responsiv menu déroulant
+<!-- - navBar : 
+	-responsiv menu déroulant -->
 
 
 
