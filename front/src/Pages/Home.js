@@ -1,6 +1,6 @@
 //libs
 import axios from "axios";
-import React, { useContext, useEffect, useState } from "react";
+import React, { /* useContext, */ useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 //compo
@@ -16,6 +16,7 @@ import "../Styles/common/_card2.scss";
 import { apiPost /* apiUser */ } from "../Datas/DatasApi";
 import { getToken, getUser } from "../Storage/AuthenticationStorage";
 import BtnTop from "../Components/icons-logos/BtnTop";
+import PostCard from "../Components/Post/PostCard";
 
 export default function Home(props) {
   const [posts, setPosts] = useState([]);
@@ -57,11 +58,14 @@ export default function Home(props) {
       {posts.map((post) => (
         // console.log(post),
         //ESPACE POST
+        
+        <div key={post.id}>
+          <Row /* gutter={[32, 24]} */ /* justify="center" */>
+            <Col offset={1}>
+              <PostCard {...post} />
 
-        <Row /* gutter={[32, 24]} */ /* justify="center" */>
-          <Col offset={1}>
-            <Card
-            bodyStyle={{ padding: "0.8rem"}}
+              {/* <Card
+              bodyStyle={{ padding: "0.8rem" }}
               key={post.id}
               className="test"
               style={{
@@ -85,7 +89,6 @@ export default function Home(props) {
                   boxShadow: "2px 2px rgb(253, 45, 1)",
                   gap: ".3em",
                   margin: ".8em",
-                  
                 }}
               >
                 <div
@@ -128,6 +131,7 @@ export default function Home(props) {
                   height: "auto",
                   gap: ".3em",
                   marginBottom: "4em",
+                  position: "relative",
                 }}
               >
                 <p
@@ -143,12 +147,23 @@ export default function Home(props) {
                 >
                   {post.content}
                 </p>
+                {
+                  post.userId === getUser()?.userId &&
+
+                  <button
+                  onClick={() => handleDeletePost(post.id)}
+                  className="btn btn-suppr"
+                >
+                  Suppr
+                </button>
+                }
+
               </div>
 
               {post.Comment.map((comment) => (
                 //ESPACE COMMENT
                 <Card
-                bodyStyle={{ padding: "0.5rem"}}
+                  bodyStyle={{ padding: "0.5rem" }}
                   key={comment.id}
                   style={{
                     background: "#96b1da",
@@ -156,7 +171,6 @@ export default function Home(props) {
                     width: "90%",
                     margin: ".5em 0 3rem 0",
                     boxShadow: "2px 2px rgb(58, 64, 90)",
-                    
                   }}
                 >
                   <div
@@ -239,9 +253,10 @@ export default function Home(props) {
               >
                 Commentaire
               </NavLink>
-            </Card>
-          </Col>
-        </Row>
+            </Card> */}
+            </Col>
+          </Row>
+        </div>
       ))}
     </div>
   );

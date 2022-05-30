@@ -42,7 +42,7 @@
     border: solid 1px $color-2;
 
     transition: $duration;
-    
+
     @include tel {
         padding: 1.5rem 2rem;
     }
@@ -55,13 +55,21 @@
     right: .5em;
 }
 
-.btn-profile{
+.btn-profile {
     @include tablette {
         font-size: calc(1vmin + 15px);
         padding: 1.2rem 5rem;
     }
+
     @include tel {
         font-size: calc(1vmin + 10px);
         width: 2.5rem;
     }
+}
+
+.btn-suppr {
+    position: absolute;
+    bottom: -1em;
+    left: -1em;
+    font-size: .5rem;
 }

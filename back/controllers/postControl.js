@@ -97,24 +97,19 @@ exports.getOnePost = (req, res) => {
 exports.deletePost = (req, res) => {
   Post.findOne({ where: { id: req.params.id } })
     .then((Post) => {
-      // console.log("1 : " + Post.userId);
-      // console.log("2 : " + req.params.userId);
-
       if (!Post) {
         return res.status(404).json({ error: "Post non trouvé !" });
       }
-
       //soucis ici
-      if (Post.userId !== req.params.userId) {
-        return res.status(403).json({ error: "Requête non authorisée !" });
-      }
-
-      if (Post.image != null) {
-        const filename = Post.image.split("/images/")[1];
-        fs.unlink(`images/${filename}`, (err) => {
-          if (err) throw err;
-        });
-      }
+      // if (Post.userId !== req.params.userId) {
+      //   return res.status(403).json({ error: "Requête non authorisée !" });
+      // }
+      // if (Post.image != null) {
+      //   const filename = Post.image.split("/images/")[1];
+      //   fs.unlink(`images/${filename}`, (err) => {
+      //     if (err) throw err;
+      //   });
+      // }
 
       Post.destroy({ where: { id: req.params.id } })
         .then(() => res.status(201).json({ message: "Post supprimée" }))
