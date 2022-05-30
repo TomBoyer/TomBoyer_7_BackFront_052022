@@ -101,12 +101,13 @@ body::-webkit-scrollbar-thumb {
     max-width: 2rem;
     padding: 1rem 3rem;
     font-size: calc(1vmin + 5px);
-}
-@include tel {
-    max-width: 2rem;
+  }
+
+  @include tel {
+    max-width: 2.5rem;
     padding: 1rem 3rem;
     font-size: calc(1.2vmin + 7px);
-}
+  }
 }
 
 @mixin btn-hover {

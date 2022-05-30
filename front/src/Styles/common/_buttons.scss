@@ -62,5 +62,6 @@
     }
     @include tel {
         font-size: calc(1vmin + 10px);
+        width: 2.5rem;
     }
 }

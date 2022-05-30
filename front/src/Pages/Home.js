@@ -61,6 +61,7 @@ export default function Home(props) {
         <Row /* gutter={[32, 24]} */ /* justify="center" */>
           <Col offset={1}>
             <Card
+            bodyStyle={{ padding: "0.8rem"}}
               key={post.id}
               className="test"
               style={{
@@ -170,7 +171,7 @@ export default function Home(props) {
                       padding: "0.5em",
                       boxShadow: "2px 2px rgb(58, 64, 90)",
                       gap: ".3em",
-                      margin: ".8em",
+                      margin: ".8em 0 .8em 0",
                     }}
                   >
                     <div

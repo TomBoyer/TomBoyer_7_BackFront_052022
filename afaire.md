@@ -11,8 +11,8 @@
 	- empecher les espaces avant/apres le pseudo (trim() fonctionne ?)
 
 - page home : 
-	- btn retour top
-	- cacher btn "créer un post" si user pas loggé	-> ok
+	<!-- - btn retour top
+	- cacher btn "créer un post" si user pas loggé	-> ok -->
 	- autorefresh du feed d'actu si nouveau post/comment
 	- date : moment : comment/post "depuis quand"
 	- Card : créer component pour le feed de la page home
