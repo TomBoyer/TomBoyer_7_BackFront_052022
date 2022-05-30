@@ -41,7 +41,7 @@ module.exports = (sequelize, DataTypes) => {
 
       //test
       models.Post.belongsTo(models.User, {
-        foreignKey:"userId",
+        foreignKey: "userId",
       });
     }
   }
