@@ -36,12 +36,15 @@ exports.createComment = (req, res) => {
 exports.deleteComment = (req, res) => {
   Comment.findOne({ where: { id: req.params.id } })
     .then((Comment) => {
-      
       if (!Comment) {
         return res.status(404).json({ error: "Comment non trouvé !" });
       }
 
       //soucis ici
+      if (Comment.userId !== req.params.userId) {
+        return res.status(403).json({ error: "Requête non authorisée !" });
+      }
+
       Comment.destroy({ where: { id: req.params.id } })
         .then(() =>
           res
