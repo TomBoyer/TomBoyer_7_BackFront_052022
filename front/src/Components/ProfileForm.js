@@ -10,7 +10,7 @@ import Input from "./Form/Input";
 import { apiUser } from "../Datas/DatasApi";
 // import FormError from "./Form/FormError";
 
-import { getToken, getUser } from "../Storage/AuthenticationStorage";
+import { getToken, getUser, setUser } from "../Storage/AuthenticationStorage";
 
 export default function ProfileForm() {
   const validate = yup.object({
@@ -34,7 +34,7 @@ export default function ProfileForm() {
     validationSchema: validate,
     onSubmit: ({ username, imageUrl }) => {
       // console.log({id: parseInt(getUserId()), username });
-      console.log(username, imageUrl);
+
       axios({
         method: "PUT",
         url: apiUser,
@@ -45,6 +45,7 @@ export default function ProfileForm() {
       })
         .then((res) => {
           console.log(res);
+          setUser({ userId: getUser().userId, username, imageUrl });
           navigate("/home");
         })
         .catch((error) => {
@@ -75,7 +76,6 @@ export default function ProfileForm() {
           error={formik.errors.username}
         />
 
-        
         <Input
           name="imageUrl"
           label="Changer ton image : "

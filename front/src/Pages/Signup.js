@@ -1,4 +1,4 @@
-import React/* , { useState } */ from "react";
+import React /* , { useState } */ from "react";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
@@ -21,10 +21,11 @@ export default function Signup() {
     /^(?=.*[A-Z])(?=.*[a-z])(?=(.*\d){2,})(?=.*[!@#$%])[A-Za-z\d@$!%*#?&]{8,16}$/;
 
   const validate = yup.object({
-    username: yup.string().lowercase().required("username requis"),
+    username: yup.string().lowercase().trim().required("username requis"),
     email: yup
       .string()
       .lowercase()
+      .trim()
       .matches(VALID_EMAIL, "Email non valide")
       .email("Email non valide")
       .required("Email requis"),
@@ -73,7 +74,7 @@ export default function Signup() {
   //navigation
   const navigate = useNavigate();
 
-  console.error(formik.errors)
+  console.error(formik.errors);
 
   return (
     <div>

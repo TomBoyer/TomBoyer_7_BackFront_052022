@@ -1,7 +1,10 @@
-import React from 'react'
+import React from "react";
 
-export default function PostPicture() {
+export default function PostPicture(props) {
+  const { image } = props;
   return (
-    <div>PostPicture</div>
-  )
+    <div className="post-picture__container">
+      <img src={image} alt="profile-pricture" />
+    </div>
+  );
 }

@@ -16,6 +16,8 @@ exports.createPost = (req, res) => {
     image: req.body.image,
   };
 
+  console.log(newPost);
+
   Post.create(newPost)
     .then((post) => res.status(201).json(post))
     .catch((error) => {
@@ -42,7 +44,7 @@ exports.getAllPosts = (req, res) => {
       {
         model: User,
         // as: "Users",
-        attributes: ["username"],
+        attributes: ["username","imageUrl"],
       },
       {
         model: Comment,

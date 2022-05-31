@@ -13,10 +13,11 @@ import { apiPost /* apiUser */ } from "../../Datas/DatasApi";
 import { getToken, getUser } from "../../Storage/AuthenticationStorage";
 import CommentCard from "../Comment/CommentCard";
 import ProfilePicture from "../ProfilePicture";
+import PostPicture from "./PostPicture";
 
 export default function PostCard(props) {
-  const { id, userId, User, createdAt, content, Comment } = props;
-  const { username } = User;
+  const { id, userId, User, createdAt, content, Comment, image } = props;
+  const { username, imageUrl } = User;
 
   const handleDeletePost = () => {
     console.warn("je delete :", id);
@@ -28,6 +29,7 @@ export default function PostCard(props) {
     });
   };
 
+  // console.log("le user postCar:",User);
   return (
     <Card
       bodyStyle={{ padding: "0.8rem" }}
@@ -37,7 +39,6 @@ export default function PostCard(props) {
         borderRadius: "20px",
         width: "70vw",
         margin: "1em .5em 1em .5em",
-        // padding:".5rem",
       }}
     >
       <div
@@ -53,11 +54,11 @@ export default function PostCard(props) {
           boxShadow: "2px 2px rgb(253, 45, 1)",
           gap: ".3em",
           margin: ".8em",
-          position:'relative'
+          position: "relative",
         }}
       >
-        <ProfilePicture/>
-        
+        <ProfilePicture imageUrl={imageUrl} />
+
         <div
           // container username
 
@@ -114,6 +115,12 @@ export default function PostCard(props) {
         >
           {content}
         </p>
+
+          {
+            image && <PostPicture image={image} />
+          }
+        
+
         {userId === getUser()?.userId && (
           <button onClick={handleDeletePost} className="btn btn-suppr">
             Suppr

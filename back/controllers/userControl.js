@@ -51,6 +51,7 @@ exports.login = (req, res) => {
         res.status(200).json({
           userId: user.id,
           username: user.username,
+          imageUrl:user.imageUrl,
           token: jwt.sign(
             {
               userId: user.id,
@@ -106,9 +107,9 @@ exports.updateOneUser = (req, res) => {
           })
           .catch((error) => res.status(500).json({ error }));
       }
-      console.log(req.body);
+      // console.log(req.body);
 
-      if (req.body.username && req.body.username != user.username || req.body.imageUrl && req.body.imageUrl != user.imageUrl) {
+      if (req.body.username  && /*req.body.username != user.username || */ req.body.imageUrl /* && req.body.imageUrl != user.imageUrl */) {
         User.update(
           { username: req.body.username , imageUrl:req.body.imageUrl},
           { where: { id: req.body.id } }
@@ -119,7 +120,32 @@ exports.updateOneUser = (req, res) => {
     .catch((error) => res.status(500).json({ error }));
 };
 
-exports.updateProfilePicture = (req, res) => {
+exports.updateProfilePicture = (req, res, next) => {
+  //nouvelle images ou non ? si oui req.file si non traiter object directement
+  const userObject = req.file
+    ? {
+        ...JSON.parse(req.body.user),
+        imageUrl: `${req.protocol}://${req.get("host")}/images/${
+          req.file.filename
+        }`,
+      }
+    : { ...req.body };
+  //delet l'ancienne pic pour ne pas surcharger doc img
+  User.findOne({ id: req.params.id }).then((user) => {
+    const filename = user.imageUrl.split("/images/")[1];
+    fs.unlink(`images/${filename}`, () => {
+      //use l'_id dans la req pour trouver la sauce à modifier avec le meme _id que l'original sans en créer une nouvelle
+      Sauce.updateOne(
+        { id: req.params.id },
+        { ...userObject, id: req.params.id }
+      )
+        .then(() => res.status(200).json({ message: "Profile picture modifiée !" }))
+        .catch((error) => res.status(400).json({ error }));
+    });
+  });
+};
+
+// exports.updateProfilePicture = (req, res) => {
   // User.findOne({
   //   where: { id: req.params.id },
   // }).then((user) => {
@@ -142,7 +168,7 @@ exports.updateProfilePicture = (req, res) => {
   //       .catch((error) => res.status(500).json({ error }));
   //   }
   // });
-};
+// };
 
 exports.deleteUser = (req, res) => {
   console.log(req.params);
