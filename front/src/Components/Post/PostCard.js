@@ -1,10 +1,10 @@
 //libs
 import axios from "axios";
-import React, { /* useContext, */ useEffect, useState } from "react";
+import React from "react";
 import { NavLink } from "react-router-dom";
 
 //compo
-import { Card, Col, Row } from "antd";
+import { Card } from "antd";
 
 import "../../Styles/common/_card2.scss";
 
@@ -12,6 +12,7 @@ import "../../Styles/common/_card2.scss";
 import { apiPost /* apiUser */ } from "../../Datas/DatasApi";
 import { getToken, getUser } from "../../Storage/AuthenticationStorage";
 import CommentCard from "../Comment/CommentCard";
+import ProfilePicture from "../ProfilePicture";
 
 export default function PostCard(props) {
   const { id, userId, User, createdAt, content, Comment } = props;
@@ -35,7 +36,7 @@ export default function PostCard(props) {
         background: "#e4e8ee",
         borderRadius: "20px",
         width: "70vw",
-        margin: ".5em",
+        margin: "1em .5em 1em .5em",
         // padding:".5rem",
       }}
     >
@@ -52,8 +53,11 @@ export default function PostCard(props) {
           boxShadow: "2px 2px rgb(253, 45, 1)",
           gap: ".3em",
           margin: ".8em",
+          position:'relative'
         }}
       >
+        <ProfilePicture/>
+        
         <div
           // container username
 
@@ -115,11 +119,11 @@ export default function PostCard(props) {
             Suppr
           </button>
         )}
-      </div >
+      </div>
 
       {Comment.map((comment) => (
         <div key={`${id}${comment.id}`}>
-          <CommentCard  {...comment} />
+          <CommentCard {...comment} />
         </div>
       ))}
 

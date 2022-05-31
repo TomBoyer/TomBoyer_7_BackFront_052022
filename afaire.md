@@ -8,7 +8,7 @@
 
 - page login/signup : 
 	- ajouter picture profile (choix par def OU choix d'une photo)
-	- empecher les espaces avant/apres le pseudo (trim() fonctionne ?)
+	- empecher les espaces avant/apres le pseudo (trim() fonctionne ?) modifier regex pour exclure espace (noSpace)
 
 - page home : 
 	<!-- - btn retour top

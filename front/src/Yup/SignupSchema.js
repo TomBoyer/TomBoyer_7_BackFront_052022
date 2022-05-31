@@ -16,14 +16,16 @@ const signupSchema = yup.object().shape({
       "Caractère(s) interdit(s)",
       (value) => !forbiddenCharacters.test(value)
     )
-    .trim()
+    // .trim()
+    .noWhiteSpace()
     .matches(pseudoRegex, 'Le pseudo peut contenir maj, min, espaces')
     .min(2, "Le pseudo doit contenir au minimum 2 caractères")
     .max(15, "Le pseudo ne doit pas dépasser 15 caractères"),
 
   email: yup
     .string()
-    .trim()
+    // .trim()
+    .noWhiteSpace()
     .required("Champ Requis")
     .email("L'email n'est pas valide"),
 
@@ -36,6 +38,7 @@ const signupSchema = yup.object().shape({
       (value) => !forbiddenCharacters.test(value)
     )
     // .trim()
+    .noWhiteSpace()
     .min(8, `Veuillez mettre au minimum 6 caractères`)
     .matches(/[a-z]/, "Le mot de passe doit contenir au moins 1 minuscule")
     .matches(/[A-Z]/, "Le mot de passe doit contenir au moins 1 majuscule")

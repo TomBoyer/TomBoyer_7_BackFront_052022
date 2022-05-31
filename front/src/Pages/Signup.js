@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React/* , { useState } */ from "react";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
@@ -78,7 +78,7 @@ export default function Signup() {
   return (
     <div>
       <div className="signup__container">
-        <h1>Page de SIGNUP2</h1>
+        <h1>Page de SIGNUP</h1>
 
         <Header />
         <Title name="Inscription" />

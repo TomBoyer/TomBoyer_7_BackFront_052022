@@ -81,7 +81,7 @@ export default function Login() {
           // sessionStorage.setItem("userId", res.data.userId);
           // setToken({ token: res.data.token });
           setToken(res.data.token);
-          setUser({ userId: res.data.userId, username: res.data.username });
+          setUser({ userId: res.data.userId, username: res.data.username, imageUrl: res.data.imageUrl });
 
           sethasErrors(false);
           setLoading(false);

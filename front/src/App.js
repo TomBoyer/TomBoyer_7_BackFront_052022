@@ -6,7 +6,7 @@ import { BrowserRouter, Navigate, Routes, Route } from "react-router-dom";
 import Signup from "./Pages/Signup";
 import Login from "./Pages/Login";
 import Home from "./Pages/Home";
-import HomeTest from "./Pages/HomeTest";
+// import HomeTest from "./Pages/HomeTest";
 import CreatePost from "./Pages/CreatePost";
 import Profile from "./Pages/Profile";
 import NotFound from "./Pages/NotFound";
@@ -20,7 +20,7 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/hometest" element={<HomeTest />} />
+        {/* <Route path="/hometest" element={<HomeTest />} /> */}
         <Route path="/createPost" element={<CreatePost />} />
         <Route path="/createComment/:postIdUrl" element={<CreateComment />} />
         <Route path="/profile" element={<Profile />} />

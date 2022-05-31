@@ -1,9 +1,9 @@
 //libs
 import axios from "axios";
-import React, { /* useContext, */ useEffect, useState } from "react";
+import React from "react";
 
 //compo
-import { Card, Col, Row } from "antd";
+import { Card } from "antd";
 
 import "../../Styles/common/_card2.scss";
 

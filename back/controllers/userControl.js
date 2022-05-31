@@ -42,12 +42,12 @@ exports.login = (req, res) => {
           .json({ message: `${req.body.email} n'existe pas !` });
       }
       bcrypt.compare(req.body.password, user.password).then((valid) => {
+        
         if (!valid) {
           return res
             .status(401)
             .json({ message: "Vérifiez votre mot de passe !" });
         }
-        // console.log(user);
         res.status(200).json({
           userId: user.id,
           username: user.username,
@@ -106,13 +106,14 @@ exports.updateOneUser = (req, res) => {
           })
           .catch((error) => res.status(500).json({ error }));
       }
+      console.log(req.body);
 
-      if (req.body.username && req.body.username != user.username) {
+      if (req.body.username && req.body.username != user.username || req.body.imageUrl && req.body.imageUrl != user.imageUrl) {
         User.update(
-          { username: req.body.username },
+          { username: req.body.username , imageUrl:req.body.imageUrl},
           { where: { id: req.body.id } }
         );
-        res.status(201).json({ message: "Nouveau username enregistré" });
+        res.status(201).json({ message: "Parametres modifiés" });
       }
     })
     .catch((error) => res.status(500).json({ error }));

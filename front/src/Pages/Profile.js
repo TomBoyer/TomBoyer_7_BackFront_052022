@@ -7,7 +7,7 @@ import Header from "../Components/Header";
 import Title from "../Components/Title";
 
 
-import UsernameForm from "../Components/UsernameForm";
+import UsernameForm from "../Components/ProfileForm";
 import PwdForm from "../Components/PwdForm";
 
 export default function Profile() {

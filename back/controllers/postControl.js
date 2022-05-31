@@ -2,18 +2,18 @@ const { Post, User, Comment, sequelize } = require("../models");
 const fs = require("fs");
 
 exports.createPost = (req, res) => {
-  let postImage;
+  // let postImage;
 
-  if (req.file) {
-    postImage = `${req.protocol}://${req.get("host")}/images/${
-      req.file.filename
-    }`;
-  }
+  // if (req.file) {
+  //   postImage = `${req.protocol}://${req.get("host")}/images/${
+  //     req.file.filename
+  //   }`;
+  // }
 
   const newPost = {
     userId: req.body.userId,
     content: req.body.content,
-    // image: postImage,
+    image: req.body.image,
   };
 
   Post.create(newPost)

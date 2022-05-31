@@ -6,9 +6,8 @@ import { NavLink } from "react-router-dom";
 //compo
 import Header from "../Components/Header";
 import Title from "../Components/Title";
-// import Card from "../Components/Card";
-import { Card, Col, Row } from "antd";
-// import { Button, Card } from "antd";
+import { /* Card, */ Col, Row } from "antd";
+
 
 import "../Styles/common/_card2.scss";
 
