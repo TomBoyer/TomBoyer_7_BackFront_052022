@@ -138,9 +138,11 @@ export default function PostCard(props) {
           </button>
         )}
 
-        <NavLink className="btn btn-go-update " to={`/updatePost/${id}`}>
-          Modif
-        </NavLink>
+        {canDelete(userId) && (
+          <NavLink className="btn btn-go-update " to={`/updatePost/${id}`}>
+            Modif
+          </NavLink>
+        )}
       </div>
 
       {Comment.map((comment) => (
