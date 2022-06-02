@@ -20,7 +20,7 @@ import PostCard from "../Components/Post/PostCard";
 export default function Home(props) {
   const [posts, setPosts] = useState([]);
 
-  console.info("You are logged as :", getUser());
+  // console.info("You are logged as :", getUser());
 
   useEffect(() => {
     axios

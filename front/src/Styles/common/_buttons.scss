@@ -86,7 +86,7 @@
     }
 }
 
-.btn-go-update{
+.btn-go-update {
     position: absolute;
     bottom: -1em;
     left: 3em;
@@ -97,10 +97,14 @@
     padding: 1.5rem;
 
     border: $color-2 1px solid;
+    font-weight: normal;
 
     @include tel {
         padding: 1.6rem;
         width: .8rem;
         height: .8rem;
+
+        bottom: 3em;
+        left: -1em;
     }
 }

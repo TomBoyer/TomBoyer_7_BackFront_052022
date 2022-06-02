@@ -34,13 +34,6 @@ export default function PostCard(props) {
     });
   };
 
-  // const canDelete = () => {
-  //   if (userId === getUser()?.userId || getUser()?.isAdmin) {
-  //     return true;
-  //   }
-  // };
-
-  // console.log("le user postCar:",User);
   return (
     <Card
       bodyStyle={{ padding: "0.8rem" }}

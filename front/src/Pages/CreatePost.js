@@ -34,12 +34,12 @@ export default function CreatePost() {
         url: apiPost,
         headers: {
           Authorization: `Bearer ${getToken()}`,
-          //"Content-Type": "application/json",
+    
         },
-        data: { content, userId: parseInt(getUser().userId /* 10 */), image },
+        data: { content, userId: parseInt(getUser().userId), image },
       })
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           navigate("/home");
         })
         .catch((error) => {
