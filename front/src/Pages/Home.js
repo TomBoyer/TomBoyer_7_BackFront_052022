@@ -16,6 +16,7 @@ import { apiPost /* apiUser */ } from "../Datas/DatasApi";
 import { getToken, getUser } from "../Storage/AuthenticationStorage";
 import BtnTop from "../Components/icons-logos/BtnTop";
 import PostCard from "../Components/Post/PostCard";
+import BtnRefreshPage from "../Components/icons-logos/BtnRefreshPage";
 
 export default function Home(props) {
   const [posts, setPosts] = useState([]);
@@ -51,6 +52,8 @@ export default function Home(props) {
           Publication
         </NavLink>
       )}
+
+      <BtnRefreshPage/>
 
       <BtnTop />
 

@@ -19,6 +19,7 @@ import {
 import CommentCard from "../Comment/CommentCard";
 import ProfilePicture from "../ProfilePicture";
 import PostPicture from "./PostPicture";
+import { DeleteIcon, EditIcon } from "../icons-logos/icons";
 
 export default function PostCard(props) {
   const { id, userId, User, createdAt, content, Comment, image } = props;
@@ -127,13 +128,19 @@ export default function PostCard(props) {
           // userId === getUser()?.userId && (
 
           <button onClick={handleDeletePost} className="btn btn-suppr">
-            Suppr
+            {/* Suppr */}
+            <div>
+              <DeleteIcon />
+            </div>
           </button>
         )}
 
         {canDelete(userId) && (
           <NavLink className="btn btn-go-update " to={`/updatePost/${id}`}>
-            Modif
+            {/* Modif */}
+            <div>
+              <EditIcon />
+            </div>
           </NavLink>
         )}
       </div>
