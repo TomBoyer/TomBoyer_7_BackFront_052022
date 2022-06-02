@@ -1,25 +1,28 @@
 .profile-picure__container {
-    width: 4rem;
-    height: 4rem;
-    border-radius: 50%;
-    border: $color-2 1px solid;
-    background-color: $color-6;
-    box-shadow: 2px 2px rgb(94, 94, 94);
 
-    object-fit: contain;
+    img{
+        // @include flex-center;
 
-    position: absolute;
-    top: -1em;
-    left: -1em;
-
-
-
-    @include tel {
-        width: 3rem;
-        height: 3rem;
-
-        top: -2.7rem;
-        // left: 5rem;
-        left: 35%;
+        width: 4rem;
+        height: 4rem;
+        border-radius: 50%;
+        border: $color-2 1px solid;
+        background-color: $color-6;
+        box-shadow: 2px 2px rgb(94, 94, 94);
+    
+        // object-fit: contain;
+    
+        position: absolute;
+        top: -1em;
+        left: -1em;
+    
+        @include tel {
+            width: 3rem;
+            height: 3rem;
+    
+            top: -2.7rem;
+            // left: 5rem;
+            left: 35%;
+        }
     }
 }

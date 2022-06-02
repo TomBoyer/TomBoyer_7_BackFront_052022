@@ -1,0 +1,9 @@
+.post-picture__container {
+
+    img {
+
+        width: calc(25vw + 15px);
+
+        @include tel {}
+    }
+}

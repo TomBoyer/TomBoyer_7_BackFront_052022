@@ -94,6 +94,7 @@ export default function PostCard(props) {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          flexDirection:"column",
           padding: "0.5em",
           boxShadow: "2px 2px rgb(253, 45, 1)",
           height: "auto",

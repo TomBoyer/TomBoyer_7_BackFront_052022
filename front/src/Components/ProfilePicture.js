@@ -4,7 +4,7 @@ export default function ProfilePicture(props) {
   const { imageUrl } = props;
   return (
     <div className="profile-picure__container">
-      <img src={imageUrl} alt="profile-pricture" />
+      <img src={imageUrl} alt="profile-pricture" className="img-profile-pic"/>
     </div>
   );
 }
