@@ -27,6 +27,13 @@ export const getUser = () => {
 	return JSON.parse(user);
 };
 
+//vérifier si peut suppr
+export const canDelete = (userId) => {
+    if (userId === getUser()?.userId || getUser()?.isAdmin) {
+      return true;
+    }
+  };
+
 //vider session storage pour déco
 export const logout = () =>  {
 	    sessionStorage.clear();

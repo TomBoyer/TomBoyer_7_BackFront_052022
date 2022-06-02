@@ -11,9 +11,10 @@ import "../../Styles/common/_card2.scss";
 //datas + api schema
 import { apiPost /* apiUser */ } from "../../Datas/DatasApi";
 import {
+  canDelete,
   getToken,
-  getUser,
-  isAdmin,
+  /* getUser,
+  isAdmin, */
 } from "../../Storage/AuthenticationStorage";
 import CommentCard from "../Comment/CommentCard";
 import ProfilePicture from "../ProfilePicture";
@@ -33,11 +34,11 @@ export default function PostCard(props) {
     });
   };
 
-  const canDelete = () => {
-    if (userId === getUser()?.userId || getUser()?.isAdmin) {
-      return true;
-    }
-  };
+  // const canDelete = () => {
+  //   if (userId === getUser()?.userId || getUser()?.isAdmin) {
+  //     return true;
+  //   }
+  // };
   
 
   // console.log("le user postCar:",User);
@@ -130,7 +131,7 @@ export default function PostCard(props) {
 
         {image && <PostPicture image={image} />}
 
-        {canDelete() && (
+        {canDelete(userId) && (
           // userId === getUser()?.userId && (
 
           <button onClick={handleDeletePost} className="btn btn-suppr">

@@ -9,7 +9,7 @@ import "../../Styles/common/_card2.scss";
 
 //datas + api schema
 import { apiPost /* apiUser */ } from "../../Datas/DatasApi";
-import { getToken, getUser } from "../../Storage/AuthenticationStorage";
+import { canDelete, getToken, getUser } from "../../Storage/AuthenticationStorage";
 
 export default function CommentCard(props) {
   const { id, userId, User, createdAt, content } = props;
@@ -106,7 +106,8 @@ export default function CommentCard(props) {
         >
           {content}
         </p>
-        {userId === getUser()?.userId && (
+        {canDelete(userId) && (
+        // userId === getUser()?.userId && (
           <button onClick={handleDeleteComment} className="btn btn-suppr">
             Suppr
           </button>
