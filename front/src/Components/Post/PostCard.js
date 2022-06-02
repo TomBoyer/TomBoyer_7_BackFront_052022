@@ -10,7 +10,11 @@ import "../../Styles/common/_card2.scss";
 
 //datas + api schema
 import { apiPost /* apiUser */ } from "../../Datas/DatasApi";
-import { getToken, getUser } from "../../Storage/AuthenticationStorage";
+import {
+  getToken,
+  getUser,
+  isAdmin,
+} from "../../Storage/AuthenticationStorage";
 import CommentCard from "../Comment/CommentCard";
 import ProfilePicture from "../ProfilePicture";
 import PostPicture from "./PostPicture";
@@ -28,6 +32,13 @@ export default function PostCard(props) {
       },
     });
   };
+
+  const canDelete = () => {
+    if (userId === getUser()?.userId || getUser()?.isAdmin) {
+      return true;
+    }
+  };
+  
 
   // console.log("le user postCar:",User);
   return (
@@ -94,7 +105,7 @@ export default function PostCard(props) {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
-          flexDirection:"column",
+          flexDirection: "column",
           padding: "0.5em",
           boxShadow: "2px 2px rgb(253, 45, 1)",
           height: "auto",
@@ -117,12 +128,11 @@ export default function PostCard(props) {
           {content}
         </p>
 
-          {
-            image && <PostPicture image={image} />
-          }
-        
+        {image && <PostPicture image={image} />}
 
-        {userId === getUser()?.userId && (
+        {canDelete() && (
+          // userId === getUser()?.userId && (
+
           <button onClick={handleDeletePost} className="btn btn-suppr">
             Suppr
           </button>

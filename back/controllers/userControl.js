@@ -14,7 +14,8 @@ exports.signup = (req, res) => {
         email: req.body.email,
         username: req.body.username,
         password: hash,
-        imageUrl: `${req.protocol}://${req.get("host")}/images/Pic1.jpg`,
+        // imageUrl: `${req.protocol}://${req.get("host")}/images/Pic1.jpg`,
+        imageUrl: `https://iconarchive.com/download/i91978/icons8/windows-8/Users-Guest.ico`,
       };
 
       User.create(newUser)
@@ -52,6 +53,7 @@ exports.login = (req, res) => {
           userId: user.id,
           username: user.username,
           imageUrl:user.imageUrl,
+          isAdmin:user.isAdmin,
           token: jwt.sign(
             {
               userId: user.id,

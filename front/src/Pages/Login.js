@@ -81,7 +81,9 @@ export default function Login() {
           // sessionStorage.setItem("userId", res.data.userId);
           // setToken({ token: res.data.token });
           setToken(res.data.token);
-          setUser({ userId: res.data.userId, username: res.data.username, imageUrl: res.data.imageUrl });
+          setUser({ userId: res.data.userId, username: res.data.username, imageUrl: res.data.imageUrl, isAdmin:res.data.isAdmin });
+
+          console.log("verif admin", res.data.isAdmin);
 
           sethasErrors(false);
           setLoading(false);
@@ -95,6 +97,8 @@ export default function Login() {
         });
     },
   });
+
+  
 
   const handleChange = (e) => {
     formik.handleChange(e);

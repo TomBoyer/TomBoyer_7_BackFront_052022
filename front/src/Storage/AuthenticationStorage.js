@@ -10,9 +10,9 @@ export const getToken = () => {
 };
 
 //récup id user + username dans le sessiosn storage
-export const setUser = ({ userId, username, imageUrl }) => {
-	console.log(userId, username, imageUrl);
-	sessionStorage.setItem("user", JSON.stringify({userId, username, imageUrl}));
+export const setUser = ({ userId, username, imageUrl, isAdmin }) => {
+	// console.log(userId, username, imageUrl);
+	sessionStorage.setItem("user", JSON.stringify({userId, username, imageUrl, isAdmin}));
 };
 
 //vérifier que le session storage possede bien un user pour dire qu'il est login : sinon retunr null
