@@ -11,6 +11,7 @@ import CreatePost from "./Pages/CreatePost";
 import Profile from "./Pages/Profile";
 import NotFound from "./Pages/NotFound";
 import CreateComment from "./Pages/CreateComment";
+import UpdatePost from "./Pages/UpdatePost";
 // import PageTest from "./Pages/PageTest";
 
 export default function App() {
@@ -22,6 +23,7 @@ export default function App() {
         <Route path="/home" element={<Home />} />
         {/* <Route path="/hometest" element={<HomeTest />} /> */}
         <Route path="/createPost" element={<CreatePost />} />
+        <Route path="/updatePost/:postIdUrl" element={<UpdatePost />} />
         <Route path="/createComment/:postIdUrl" element={<CreateComment />} />
         <Route path="/profile" element={<Profile />} />
 

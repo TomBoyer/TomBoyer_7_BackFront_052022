@@ -15,7 +15,7 @@ export const setUser = ({ userId, username, imageUrl, isAdmin }) => {
 	sessionStorage.setItem("user", JSON.stringify({userId, username, imageUrl, isAdmin}));
 };
 
-//vérifier que le session storage possede bien un user pour dire qu'il est login : sinon retunr null
+//vérifier que le session storage possede bien un user pour dire qu'il est login : sinon return null
 export const getUser = () => {
 	const user = sessionStorage.getItem("user");
 	

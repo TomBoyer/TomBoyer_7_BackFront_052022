@@ -39,7 +39,6 @@ export default function PostCard(props) {
   //     return true;
   //   }
   // };
-  
 
   // console.log("le user postCar:",User);
   return (
@@ -138,6 +137,10 @@ export default function PostCard(props) {
             Suppr
           </button>
         )}
+
+        <NavLink className="btn btn-go-update " to={`/updatePost/${id}`}>
+          Modif
+        </NavLink>
       </div>
 
       {Comment.map((comment) => (

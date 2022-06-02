@@ -44,7 +44,7 @@ exports.getAllPosts = (req, res) => {
       {
         model: User,
         // as: "Users",
-        attributes: ["username","imageUrl"],
+        attributes: ["username", "imageUrl"],
       },
       {
         model: Comment,
@@ -114,7 +114,25 @@ exports.deletePost = (req, res) => {
       // }
 
       Post.destroy({ where: { id: req.params.id } })
-        .then(() => res.status(201).json({ message: "Post supprimée" }))
+        .then(() => res.status(201).json({ message: "Post supprimé" }))
+        .catch((error) => res.status(500).json({ error }));
+    })
+    .catch((error) => res.status(500).json({ error }));
+};
+
+exports.updatePost = (req, res) => {
+  Post.findOne({ where: { id: req.params.id } })
+    .then((Post) => {
+      if (!Post) {
+        return res.status(404).json({ error: "Post non trouvé !" });
+      }
+
+      Post.update(
+        { content: req.body.content },
+        { image: req.body.image },
+        { where: { id: req.params.id } }
+      )
+      .then(() => res.status(201).json({ message: "Post modifié" }))
         .catch((error) => res.status(500).json({ error }));
     })
     .catch((error) => res.status(500).json({ error }));
