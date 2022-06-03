@@ -1,4 +1,5 @@
 import React from "react";
+// import { RefreshIcon } from "./icons";
 
 export default function BtnRefreshPage() {
 
@@ -7,7 +8,10 @@ export default function BtnRefreshPage() {
     }
   return (
     <div>
-      <button className="btn-go-refresh" onClick={refresh}>Refresh</button>;
+      <button className="btn-go-refresh" onClick={refresh}>
+        Refresh
+        </button>;
+      
     </div>
   );
 }

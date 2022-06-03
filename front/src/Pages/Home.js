@@ -8,7 +8,6 @@ import Header from "../Components/Header";
 import Title from "../Components/Title";
 import { /* Card, */ Col, Row } from "antd";
 
-
 import "../Styles/common/_card2.scss";
 
 //datas + api schema
@@ -53,18 +52,18 @@ export default function Home(props) {
         </NavLink>
       )}
 
-      <BtnRefreshPage/>
+      <BtnRefreshPage />
 
       <BtnTop />
 
       {posts.map((post) => (
         // console.log(post),
-        //ESPACE POST
-        
+        // ESPACE POST
+
         <div key={post.id}>
           <Row /* gutter={[32, 24]} */ /* justify="center" */>
             <Col offset={1}>
-              <PostCard {...post} />
+              <PostCard {...post} setPosts={(posts) => setPosts(posts)} posts={posts} />
 
               {/* <Card
               bodyStyle={{ padding: "0.8rem" }}

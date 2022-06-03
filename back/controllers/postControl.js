@@ -127,12 +127,16 @@ exports.updatePost = (req, res) => {
         return res.status(404).json({ error: "Post non trouvé !" });
       }
 
+      
+
       Post.update(
-        { content: req.body.content },
-        { image: req.body.image },
+        { content: req.body.content ,
+         image: req.body.image },
         { where: { id: req.params.id } }
       )
-      .then(() => res.status(201).json({ message: "Post modifié" }))
+        .then(() => {
+          // console.log(res);
+          res.status(201).json({ message: "Post modifié" })})
         .catch((error) => res.status(500).json({ error }));
     })
     .catch((error) => res.status(500).json({ error }));

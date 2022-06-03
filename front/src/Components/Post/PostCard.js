@@ -33,6 +33,8 @@ export default function PostCard(props) {
         Authorization: `Bearer ${getToken()}`,
       },
     });
+    let newPosts = props.posts.filter((post) => post.id !== id);
+    props.setPosts(newPosts);
   };
 
   return (

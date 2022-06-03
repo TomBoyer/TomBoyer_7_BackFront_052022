@@ -1,9 +1,9 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import axios from "axios";
 import * as yup from "yup";
 import { apiPost } from "../Datas/DatasApi";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import InputTextArea from "../Components/Form/InputTextArea";
 // import FormError from "../Components/Form/FormError";
 import Header from "../Components/Header";
@@ -12,8 +12,28 @@ import { getToken, getUser } from "../Storage/AuthenticationStorage";
 import Input from "../Components/Form/Input";
 
 export default function UpdatePost(props) {
-  const { content, image } = props;
-  console.log("le content est ", content);
+  let { postIdUrl } = useParams();
+
+  const [initialValues, setInitialValues] = useState({
+    content: "",
+    image: "",
+  });
+
+  useEffect(() => {
+    axios
+      .get(`${apiPost}/${postIdUrl}`, {
+        headers: {
+          Authorization: `Bearer ${getToken()}`,
+        },
+      })
+      .then((res) => {
+        // console.log("la res", res.data);
+        setInitialValues({
+          content: res.data.content,
+          image: res.data.image,
+        });
+      });
+  }, [postIdUrl]);
 
   const navigate = useNavigate();
 
@@ -21,17 +41,17 @@ export default function UpdatePost(props) {
     content: yup.string().required("Contenu requis"),
   });
 
+//   console.log("la value", initialValues);
+
   const formik = useFormik({
-    initialValues: {
-      content: {content},
-      userId: "",
-      image: "",
-    },
+    initialValues,
+    enableReinitialize:true,
     validationSchema: validate,
     onSubmit: ({ content, image }) => {
+        console.log(content, image, getUser().userId);
       axios({
         method: "PUT",
-        url: apiPost,
+        url: `${apiPost}/${postIdUrl}`,
         headers: {
           Authorization: `Bearer ${getToken()}`,
         },
