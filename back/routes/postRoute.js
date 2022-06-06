@@ -17,4 +17,6 @@ router.put("/:id", auth, multer, postControl.updatePost);
 
 router.delete("/:id", auth, /* idPostCompare, */ multer, postControl.deletePost);
 
+router.post('/like', auth, postControl.likePost);
+
 module.exports = router;

@@ -1,17 +1,17 @@
 //libs
 import axios from "axios";
-import React, { /* useContext, */ useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 
 //compo
 import Header from "../Components/Header";
 import Title from "../Components/Title";
-import { /* Card, */ Col, Row } from "antd";
+import { Col, Row } from "antd";
 
 import "../Styles/common/_card2.scss";
 
 //datas + api schema
-import { apiPost /* apiUser */ } from "../Datas/DatasApi";
+import { apiPost } from "../Datas/DatasApi";
 import { getToken, getUser } from "../Storage/AuthenticationStorage";
 import BtnTop from "../Components/icons-logos/BtnTop";
 import PostCard from "../Components/Post/PostCard";
@@ -63,198 +63,11 @@ export default function Home(props) {
         <div key={post.id}>
           <Row /* gutter={[32, 24]} */ /* justify="center" */>
             <Col offset={1}>
-              <PostCard {...post} setPosts={(posts) => setPosts(posts)} posts={posts} />
-
-              {/* <Card
-              bodyStyle={{ padding: "0.8rem" }}
-              key={post.id}
-              className="test"
-              style={{
-                background: "#e4e8ee",
-                borderRadius: "20px",
-                width: "70vw",
-                margin: ".5em",
-                // padding:".5rem",
-              }}
-            >
-              <div
-                // container top
-                style={{
-                  background: "#1b407a",
-                  borderRadius: "20px",
-                  fontWeight: "bold",
-                  display: "flex",
-                  justifyContent: "space-around",
-                  alignItems: "center",
-                  padding: "0.5em",
-                  boxShadow: "2px 2px rgb(253, 45, 1)",
-                  gap: ".3em",
-                  margin: ".8em",
-                }}
-              >
-                <div
-                  // container username
-                  key={post.userId}
-                  style={{
-                    borderRadius: "20px",
-                    textAlign: "center",
-                    padding: "1em",
-                    background: "#d9e2f2",
-                    boxShadow: "2px 2px rgb(94, 94, 94)",
-                  }}
-                >
-                  {post.User.username}
-                </div>
-                <div
-                  // container date
-                  style={{
-                    borderRadius: "20px",
-                    textAlign: "center",
-                    padding: "1em",
-                    background: "#d9e2f2",
-                    boxShadow: "2px 2px rgb(94, 94, 94)",
-                  }}
-                >
-                  {post.createdAt}
-                </div>
-              </div>
-              <div
-                // container content
-                style={{
-                  background: "#1b407a",
-                  borderRadius: "20px",
-                  fontWeight: "bold",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                  padding: "0.5em",
-                  boxShadow: "2px 2px rgb(253, 45, 1)",
-                  height: "auto",
-                  gap: ".3em",
-                  marginBottom: "4em",
-                  position: "relative",
-                }}
-              >
-                <p
-                  // content
-                  style={{
-                    width: "45vw",
-                    padding: "0.8em",
-                    borderRadius: "20px",
-                    background: "#d9e2f2",
-                    boxShadow: "2px 2px rgb(94, 94, 94)",
-                    textAlign: "center",
-                  }}
-                >
-                  {post.content}
-                </p>
-                {
-                  post.userId === getUser()?.userId &&
-
-                  <button
-                  onClick={() => handleDeletePost(post.id)}
-                  className="btn btn-suppr"
-                >
-                  Suppr
-                </button>
-                }
-
-              </div>
-
-              {post.Comment.map((comment) => (
-                //ESPACE COMMENT
-                <Card
-                  bodyStyle={{ padding: "0.5rem" }}
-                  key={comment.id}
-                  style={{
-                    background: "#96b1da",
-                    borderRadius: "20px",
-                    width: "90%",
-                    margin: ".5em 0 3rem 0",
-                    boxShadow: "2px 2px rgb(58, 64, 90)",
-                  }}
-                >
-                  <div
-                    // container top
-                    style={{
-                      background: "#598ada",
-                      borderRadius: "20px",
-                      fontWeight: "bold",
-                      display: "flex",
-                      justifyContent: "space-around",
-                      alignItems: "center",
-                      padding: "0.5em",
-                      boxShadow: "2px 2px rgb(58, 64, 90)",
-                      gap: ".3em",
-                      margin: ".8em 0 .8em 0",
-                    }}
-                  >
-                    <div
-                      // container username
-                      key={comment.userId}
-                      style={{
-                        borderRadius: "20px",
-                        textAlign: "center",
-                        padding: "1em",
-                        background: "#d9e2f2",
-                        boxShadow: "2px 2px rgb(58, 64, 90)",
-                      }}
-                    >
-                      {comment.User.username}
-                    </div>
-                    <div
-                      // container date
-                      style={{
-                        borderRadius: "20px",
-                        textAlign: "center",
-                        padding: "1em",
-                        background: "#d9e2f2",
-                        boxShadow: "2px 2px rgb(58, 64, 90)",
-                      }}
-                    >
-                      {comment.createdAt}
-                    </div>
-                  </div>
-
-                  <div
-                    // container content
-                    style={{
-                      background: "#598ada",
-                      borderRadius: "20px",
-                      fontWeight: "bold",
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      padding: "0.5em",
-                      boxShadow: "2px 2px rgb(58, 64, 90)",
-                      height: "auto",
-                      // gap: ".3em",
-                    }}
-                  >
-                    <p
-                      // content
-                      style={{
-                        width: "95%",
-                        padding: "0.8em",
-                        borderRadius: "20px",
-                        background: "#d9e2f2",
-                        boxShadow: "2px 2px rgb(58, 64, 90)",
-                        textAlign: "center",
-                      }}
-                    >
-                      {comment.content}
-                    </p>
-                  </div>
-                </Card>
-              ))}
-
-              <NavLink
-                className="btn btn-go-comment "
-                to={`/createComment/${post.id}`}
-              >
-                Commentaire
-              </NavLink>
-            </Card> */}
+              <PostCard
+                {...post}
+                setPosts={(posts) => setPosts(posts)}
+                posts={posts}
+              />
             </Col>
           </Row>
         </div>

@@ -19,7 +19,9 @@ import {
 import CommentCard from "../Comment/CommentCard";
 import ProfilePicture from "../ProfilePicture";
 import PostPicture from "./PostPicture";
-import { DeleteIcon, EditIcon } from "../icons-logos/icons";
+import { DeleteIcon, EditIcon, LikeIcon } from "../icons-logos/icons";
+import LikeUp from "../Like/LikeUp";
+import PostLikeUp from "../Like/LikeUp";
 
 export default function PostCard(props) {
   const { id, userId, User, createdAt, content, Comment, image } = props;
@@ -124,6 +126,8 @@ export default function PostCard(props) {
           {content}
         </p>
 
+        
+
         {image && <PostPicture image={image} />}
 
         {canDelete(userId) && (
@@ -145,6 +149,10 @@ export default function PostCard(props) {
             </div>
           </NavLink>
         )}
+
+<div className="btn btn-go-like">
+  <PostLikeUp/>
+</div>
       </div>
 
       {Comment.map((comment) => (

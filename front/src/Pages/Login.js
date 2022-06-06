@@ -1,5 +1,5 @@
 //libs
-import React, { useContext, useEffect, useState } from "react";
+import React, {  useState } from "react";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
@@ -9,7 +9,7 @@ import axios from "axios";
 import Header from "../Components/Header";
 import Title from "../Components/Title";
 
-// import { ShowInput, HideInput } from "../Components/icons-logos/icons";
+
 import Input from "../Components/Form/Input";
 import InputPassword from "../Components/Form/InputPassword";
 import FormError from "../Components/Form/FormError";
@@ -18,7 +18,7 @@ import FormError from "../Components/Form/FormError";
 import { apiLogin } from "../Datas/DatasApi";
 import LoaderWrapper from "../Components/Loader/LoaderWrapper";
 import { setToken, setUser } from "../Storage/AuthenticationStorage";
-// import loginSchema from "../Yup//LoginSchema";
+
 
 export default function Login() {
   const VALID_EMAIL = /^[\w_.-]+@[\w-]+\.[a-z]{2,4}$/i;
@@ -57,21 +57,6 @@ export default function Login() {
       sethasErrors(false);
       setLoading(true);
 
-      //   axios
-      //     .post(apiLogin, { email, password })
-      //     .then((res) => {
-      //       // console.log(res.data);
-      //       sessionStorage.setItem("userId", res.data.userId);
-      //       sessionStorage.setItem("token", res.data.token);
-      //       sessionStorage.setItem("username", res.data.username);
-      //       navigate("/home");
-      //     })
-      //     .catch((error) => {
-      //       console.error(error);
-      //       sethasErrors(true);
-      //       setLoading(false)
-      //     });
-      // },
       axios
         .post(apiLogin, { email, password })
         .then((res) => {

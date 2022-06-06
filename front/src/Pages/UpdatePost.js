@@ -41,14 +41,14 @@ export default function UpdatePost(props) {
     content: yup.string().required("Contenu requis"),
   });
 
-//   console.log("la value", initialValues);
+  // console.log("la value", initialValues);
 
   const formik = useFormik({
     initialValues,
-    enableReinitialize:true,
+    enableReinitialize: true,
     validationSchema: validate,
     onSubmit: ({ content, image }) => {
-        console.log(content, image, getUser().userId);
+      console.log(content, image, getUser().userId);
       axios({
         method: "PUT",
         url: `${apiPost}/${postIdUrl}`,

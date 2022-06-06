@@ -1,32 +1,3 @@
-// "use strict";
-// const { Model } = require("sequelize");
-// module.exports = (sequelize, DataTypes) => {
-//   const Post = sequelize.define(
-//     "Post",
-//     {
-//       userId: DataTypes.INTEGER,
-//       content: DataTypes.STRING,
-//     },
-//     {
-//       clasMethods: {
-//         associate: function (models) {
-//           //models.Post.hasMany(models.Comment);
-//           models.Post.hasMany(models.Comment, {
-//             foreignKey: "postId",
-//             as: "Comment",
-//           });
-
-//           models.Post.belongsTo(models.User, {
-//             foreignKey: "userId",
-//           });
-//         },
-//       },
-//     }
-//   );
-
-//   return Post;
-// };
-
 "use strict";
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
@@ -39,7 +10,11 @@ module.exports = (sequelize, DataTypes) => {
         as: "Comment",
       });
 
-      //test
+      Post.hasMany(models.like, {
+        foreignKey: "postId",
+        as: "Like",
+      })
+
       models.Post.belongsTo(models.User, {
         foreignKey: "userId",
       });

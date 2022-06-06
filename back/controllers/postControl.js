@@ -126,9 +126,6 @@ exports.updatePost = (req, res) => {
       if (!Post) {
         return res.status(404).json({ error: "Post non trouvé !" });
       }
-
-      
-
       Post.update(
         { content: req.body.content ,
          image: req.body.image },
@@ -138,6 +135,134 @@ exports.updatePost = (req, res) => {
           // console.log(res);
           res.status(201).json({ message: "Post modifié" })})
         .catch((error) => res.status(500).json({ error }));
+    })
+    .catch((error) => res.status(500).json({ error }));
+};
+
+
+exports.likePost = (req, res) => {
+  Like.findOne({
+    where: {
+      userId: req.body.userId,
+      postId: req.body.postId,
+    },
+  })
+    .then((response) => {
+      // Si l'utilisateur n'a jamais liké ou disliké le post
+      if (response == null) {
+        // S'il clique sur "like"
+        if (req.body.likeValue == 1) {
+          Like.create({
+            userId: req.body.userId,
+            postId: req.body.postId,
+            liked: req.body.likeValue,
+          });
+          Post.increment(
+            { likes: 1 },
+            { where: { id: req.body.postId } }
+          );
+          res.status(201).json({ message: "Like ajouté" });
+        }
+        // S'il clique sur "dislike"
+        else if (req.body.likeValue == -1) {
+          Like.create({
+            userId: req.body.userId,
+            postId: req.body.postIdId,
+            liked: req.body.likeValue,
+          });
+          Post.increment(
+            { dislikes: 1 },
+            { where: { id: req.body.postId } }
+          );
+          res.status(201).json({ message: "Dislike ajouté" });
+        }
+      }
+
+      // Si l'utilisateur a déjà liké la Post
+      else if (response.dataValues.liked == 1) {
+        // S'il clique sur "dislike"
+        if (req.body.likeValue == -1) {
+          Like.update(
+            { liked: -1 },
+            {
+              where: {
+                [Op.and]: [
+                  { postId: req.body.postId },
+                  { userId: req.body.userId },
+                ],
+              },
+            }
+          );
+          Post.increment(
+            { dislikes: 1 },
+            { where: { id: req.body.postId } }
+          );
+          Post.decrement(
+            { likes: 1 },
+            { where: { id: req.body.postId } }
+          );
+          res.status(201).json({ message: "Dislike ajouté & like retiré" });
+        }
+        // S'il clique sur "like"
+        else {
+          Like.destroy({
+            where: {
+              [Op.and]: [
+                { postId: req.body.postId },
+                { userId: req.body.userId },
+              ],
+            },
+          });
+          Post.decrement(
+            { likes: 1 },
+            { where: { id: req.body.postId } }
+          );
+          res.status(201).json({ message: "Like retiré" });
+        }
+      }
+
+      // Si l'utilisateur a déjà disliké la Post
+      else if (response.dataValues.liked == -1) {
+        // S'il clique sur "like"
+        if (req.body.likeValue == 1) {
+          Like.update(
+            { liked: 1 },
+            {
+              where: {
+                [Op.and]: [
+                  { postId: req.body.postId },
+                  { userId: req.body.userId },
+                ],
+              },
+            }
+          );
+          Post.increment(
+            { likes: 1 },
+            { where: { id: req.body.postId } }
+          );
+          Post.decrement(
+            { dislikes: 1 },
+            { where: { id: req.body.postId } }
+          );
+          res.status(201).json({ message: "Like ajouté & dislike retiré" });
+        }
+        // S'il clique sur "dislike"
+        else {
+          Like.destroy({
+            where: {
+              [Op.and]: [
+                { postId: req.body.postId },
+                { userId: req.body.userId },
+              ],
+            },
+          });
+          Post.decrement(
+            { dislikes: 1 },
+            { where: { id: req.body.postId } }
+          );
+          res.status(201).json({ message: "Dislike retiré" });
+        }
+      }
     })
     .catch((error) => res.status(500).json({ error }));
 };

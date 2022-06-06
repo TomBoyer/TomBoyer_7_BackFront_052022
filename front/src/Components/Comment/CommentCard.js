@@ -9,7 +9,9 @@ import "../../Styles/common/_card2.scss";
 
 //datas + api schema
 import { apiPost /* apiUser */ } from "../../Datas/DatasApi";
-import { canDelete, getToken, getUser } from "../../Storage/AuthenticationStorage";
+import { canDelete, getToken } from "../../Storage/AuthenticationStorage";
+
+import { DeleteIcon } from "../icons-logos/icons";
 
 export default function CommentCard(props) {
   const { id, userId, User, createdAt, content } = props;
@@ -27,7 +29,6 @@ export default function CommentCard(props) {
   return (
     <Card
       bodyStyle={{ padding: "0.5rem" }}
-      
       style={{
         background: "#96b1da",
         borderRadius: "20px",
@@ -53,7 +54,7 @@ export default function CommentCard(props) {
       >
         <div
           // container username
-          
+
           style={{
             borderRadius: "20px",
             textAlign: "center",
@@ -107,9 +108,11 @@ export default function CommentCard(props) {
           {content}
         </p>
         {canDelete(userId) && (
-        // userId === getUser()?.userId && (
+          // userId === getUser()?.userId && (
           <button onClick={handleDeleteComment} className="btn btn-suppr">
-            Suppr
+            <div>
+              <DeleteIcon />
+            </div>
           </button>
         )}
       </div>

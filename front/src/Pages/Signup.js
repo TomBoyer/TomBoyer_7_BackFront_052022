@@ -1,4 +1,4 @@
-import React /* , { useState } */ from "react";
+import React, { useState /* , { useState } */ } from "react";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
@@ -14,6 +14,10 @@ import FormError from "../Components/Form/FormError";
 import InputPassword from "../Components/Form/InputPassword";
 
 export default function Signup() {
+  //navigation
+  const navigate = useNavigate();
+  const [hasErrors, sethasErrors] = useState(false);
+
   //   const PseudoRegex =
   //     /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð\s'.-]+$/;
   const VALID_EMAIL = /^[\w_.-]+@[\w-]+\.[a-z]{2,4}$/i;
@@ -47,6 +51,7 @@ export default function Signup() {
     validationSchema: validate,
     onSubmit: ({ username, email, password }) => {
       // console.log(username, email, password);
+      sethasErrors(false);
       axios
         .post(apiSignup, { username, email, password })
         .then(navigate("/login"))
@@ -67,12 +72,6 @@ export default function Signup() {
     //   setShowAlert(true);
     // }
   };
-
-  // const [isHidden, setIsHidden] = useState(true);
-  // const passwordToggle = () => setIsHidden((e) => !e);
-
-  //navigation
-  const navigate = useNavigate();
 
   console.error(formik.errors);
 
@@ -118,7 +117,9 @@ export default function Signup() {
               <button type="submit" className="btn">
                 Insciption
               </button>
-              {formik.errors && formik.touched && <FormError />}
+
+              {hasErrors && <p>this is a backend error </p>}
+              {!formik.isValid && <FormError />}
             </div>
           </form>
         </div>
