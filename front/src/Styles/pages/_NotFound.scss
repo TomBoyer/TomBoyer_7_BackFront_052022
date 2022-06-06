@@ -43,6 +43,21 @@
     }
   }
 
+  h3 {
+    color: $color-5;
+    margin-bottom: .40em;
+  
+    font-size: 5rem;
+  
+    text-align: center;
+  
+    animation: spooky 2s alternate infinite linear;
+  
+    @media(max-width: 30rem) {
+      font-size: 8.5rem;
+    }
+  }
+
   p {
     color: #ccc;
     margin-top: 0;

@@ -5,7 +5,7 @@ const router = express.Router();
 const postControl = require("../controllers/postControl");
 const auth = require("../middleware/authMiddleware");
 const multer = require("../middleware/multer-config");
-// const idPostCompare = require("../middleware/idPostCompare");
+
 
 //routes
 router.post("/", auth, multer, postControl.createPost);
@@ -15,8 +15,8 @@ router.get("/:id", auth, postControl.getOnePost);
 
 router.put("/:id", auth, multer, postControl.updatePost);
 
-router.delete("/:id", auth, /* idPostCompare, */ multer, postControl.deletePost);
+router.delete("/:id", auth, multer, postControl.deletePost);
 
-router.post('/like', auth, postControl.likePost);
+// router.post('/like', auth, postControl.likePost);
 
 module.exports = router;

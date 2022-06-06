@@ -22,6 +22,7 @@ export default function Home(props) {
 
   // console.info("You are logged as :", getUser());
 
+  //fetch la route post pour afficher allPost : vérifier si token
   useEffect(() => {
     axios
       .get(apiPost, {
@@ -39,7 +40,7 @@ export default function Home(props) {
 
   return (
     <div>
-      <h1>PAGE HOME</h1>
+      {/* <h1>PAGE HOME</h1> */}
       <Header />
       <Title name="Accueil" />
       {getUser() && (
@@ -52,7 +53,7 @@ export default function Home(props) {
         </NavLink>
       )}
 
-      <BtnRefreshPage />
+      {getUser() && <BtnRefreshPage />}
 
       <BtnTop />
 

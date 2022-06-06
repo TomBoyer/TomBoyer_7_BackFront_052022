@@ -1,25 +1,25 @@
-import React, { useState /* , { useState } */ } from "react";
+//libs
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import axios from "axios";
 
+//components
 import Header from "../Components/Header";
 import Title from "../Components/Title";
 
-// import { ShowInput, HideInput } from "../Components/icons-logos/icons";
-import { apiSignup } from "../Datas/DatasApi";
 import Input from "../Components/Form/Input";
 import FormError from "../Components/Form/FormError";
 import InputPassword from "../Components/Form/InputPassword";
 
+//data
+import { apiSignup } from "../Datas/DatasApi";
 export default function Signup() {
   //navigation
   const navigate = useNavigate();
   const [hasErrors, sethasErrors] = useState(false);
 
-  //   const PseudoRegex =
-  //     /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð\s'.-]+$/;
   const VALID_EMAIL = /^[\w_.-]+@[\w-]+\.[a-z]{2,4}$/i;
   const VALID_PASSWORD =
     /^(?=.*[A-Z])(?=.*[a-z])(?=(.*\d){2,})(?=.*[!@#$%])[A-Za-z\d@$!%*#?&]{8,16}$/;
@@ -78,7 +78,7 @@ export default function Signup() {
   return (
     <div>
       <div className="signup__container">
-        <h1>Page de SIGNUP</h1>
+        {/* <h1>Page de SIGNUP</h1> */}
 
         <Header />
         <Title name="Inscription" />

@@ -76,7 +76,7 @@ export default function UpdatePost(props) {
   };
   return (
     <div>
-      <h1>PAGE UPDATE POST</h1>
+      {/* <h1>PAGE UPDATE POST</h1> */}
 
       <Header />
       <Title name="Modifier ta publication" />

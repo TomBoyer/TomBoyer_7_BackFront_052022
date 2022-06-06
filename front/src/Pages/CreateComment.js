@@ -1,26 +1,31 @@
+//libs
 import React from "react";
 import { useFormik } from "formik";
 import axios from "axios";
 import * as yup from "yup";
 import { apiComment } from "../Datas/DatasApi";
 import { useNavigate, useParams } from "react-router-dom";
-import InputTextArea from "../Components/Form/InputTextArea";
-import FormError from "../Components/Form/FormError";
-import Header from "../Components/Header";
-import Title from "../Components/Title";
 import { getToken, getUser } from "../Storage/AuthenticationStorage";
 
+//components
+import InputTextArea from "../Components/Form/InputTextArea";
+import Title from "../Components/Title";
+import Header from "../Components/Header";
+
 export default function CreateComment() {
+  //récupérer l'id du post dans le params
   let { postIdUrl } = useParams();
 
   //console.log("postId : " + postId);
 
   const navigate = useNavigate();
 
+  //schéma de validation par yup
   const validate = yup.object({
     content: yup.string().required("Contenu requis"),
   });
 
+  //formik : valeurs initiales vides et validation suivant le schéma yup
   const formik = useFormik({
     initialValues: {
       content: "",
@@ -32,12 +37,12 @@ export default function CreateComment() {
       // console.log("token : " + getToken());
       // console.log("User ID : " + parseInt(getUserId(), 10));
 
+      //fetch la route comment pourt post un commentaire : vérifier si token
       axios({
         method: "POST",
         url: apiComment,
         headers: {
           Authorization: `Bearer ${getToken()}`,
-          //"Content-Type": "application/json",
         },
         data: { content, userId: parseInt(getUser().userId, 10), postId: postIdUrl },
       })
@@ -60,14 +65,13 @@ export default function CreateComment() {
   };
   return (
     <div>
-      <h1>PAGE CREATE COMMENT</h1>
+      {/* <h1>PAGE CREATE COMMENT</h1> */}
 
-      <Header />
+      <Header/>
       <Title name="Créer un commentaire" />
 
       <div className="form__container">
         <form onSubmit={handleSubmit}>
-          <p>{"ici le post à commenter : "}</p>
           <InputTextArea
             name="content"
             id="content"
@@ -82,7 +86,6 @@ export default function CreateComment() {
             <button type="submit" className="btn">
               Publier
             </button>
-            {/* {formik.errors && formik.touched && <FormError />} */}
           </div>
         </form>
       </div>

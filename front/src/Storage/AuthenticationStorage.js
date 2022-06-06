@@ -29,7 +29,7 @@ export const getUser = () => {
   return JSON.parse(user);
 };
 
-//vérifier si peut suppr
+//vérifier si user peut suppr
 export const canDelete = (userId) => {
   if (userId === getUser()?.userId || getUser()?.isAdmin) {
     return true;

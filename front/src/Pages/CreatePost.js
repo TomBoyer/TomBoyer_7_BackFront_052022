@@ -1,23 +1,27 @@
+//libs
 import React from "react";
 import { useFormik } from "formik";
 import axios from "axios";
 import * as yup from "yup";
 import { apiPost } from "../Datas/DatasApi";
 import { useNavigate } from "react-router-dom";
+import { getToken, getUser } from "../Storage/AuthenticationStorage";
+
+//components
 import InputTextArea from "../Components/Form/InputTextArea";
-import FormError from "../Components/Form/FormError";
 import Header from "../Components/Header";
 import Title from "../Components/Title";
-import { getToken, getUser } from "../Storage/AuthenticationStorage";
 import Input from "../Components/Form/Input";
 
 export default function CreatePost() {
   const navigate = useNavigate();
 
+  //schéma de validation par yup
   const validate = yup.object({
     content: yup.string().required("Contenu requis"),
   });
 
+  //formik : valeurs initiales vides et validation suivant le schéma yup
   const formik = useFormik({
     initialValues: {
       content: "",
@@ -29,12 +33,12 @@ export default function CreatePost() {
       // console.log("token : " + getToken());
       // console.log("User ID : " + parseInt(getUserId(), 10));
 
+      //fetch la route post pour publier post : vérifier si token
       axios({
         method: "POST",
         url: apiPost,
         headers: {
           Authorization: `Bearer ${getToken()}`,
-    
         },
         data: { content, userId: parseInt(getUser().userId), image },
       })
@@ -57,7 +61,7 @@ export default function CreatePost() {
   };
   return (
     <div>
-      <h1>PAGE CREATE POST</h1>
+      {/* <h1>PAGE CREATE POST</h1> */}
 
       <Header />
       <Title name="Créer une publication" />

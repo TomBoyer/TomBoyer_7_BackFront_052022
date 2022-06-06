@@ -2,9 +2,8 @@ const { User } = require("../models");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 const fs = require("fs");
-// const { restart } = require("nodemon");
-// require("dotenv").config();
 
+//CRUD : créer un User
 exports.signup = (req, res) => {
   //   console.log(req.body);
   bcrypt
@@ -31,6 +30,7 @@ exports.signup = (req, res) => {
     .catch((err) => res.status(500).json({ err }));
 };
 
+//CRUD : se connecter avec un User
 exports.login = (req, res) => {
   User.findOne({
     where: { email: req.body.email },
@@ -67,6 +67,7 @@ exports.login = (req, res) => {
     .catch((error) => res.status(500).json({ error }));
 };
 
+//CRUD : récupérer un User
 exports.getOneUser = (req, res) => {
   //   console.log(req.params);
   User.findOne({ where: { id: req.params.id } })
@@ -74,6 +75,7 @@ exports.getOneUser = (req, res) => {
     .catch((err) => res.status(500).json({ err }));
 };
 
+//CRUD : récupérer tous les Users
 exports.getAllUsers = (req, res) => {
   findAll({
     order: [["username", "ASC"]],
@@ -82,6 +84,7 @@ exports.getAllUsers = (req, res) => {
     .catch((error) => res.status(500).json({ error }));
 };
 
+//CRUD : modifier User : passeword/username
 exports.updateOneUser = (req, res) => {
   User.findOne({ where: { id: req.body.id } })
 
@@ -122,6 +125,7 @@ exports.updateOneUser = (req, res) => {
     .catch((error) => res.status(500).json({ error }));
 };
 
+//CRUD : modifier photo profil 
 exports.updateProfilePicture = (req, res, next) => {
   //nouvelle images ou non ? si oui req.file si non traiter object directement
   const userObject = req.file
@@ -147,31 +151,7 @@ exports.updateProfilePicture = (req, res, next) => {
   });
 };
 
-// exports.updateProfilePicture = (req, res) => {
-  // User.findOne({
-  //   where: { id: req.params.id },
-  // }).then((user) => {
-  //   if (req.file) {
-  //     const filename = user.imageUrl.split("/images/")[1];
-  //     if (filename != "Pic1.jpg") {
-  //       fs.unlink(`images/${filename}`, (err) => {
-  //         if (err) {
-  //           throw err;
-  //         }
-  //       });
-  //     }
-  //     const newImage = {
-  //       imageUrl: `${req.protocol}://${req.get("host")}/images/${
-  //         req.file.filename
-  //       }`,
-  //     };
-  //     User.update(newImage, { where: { id: req.params.id } })
-  //       .then(() => res.status(201).json({ message: "Image modifiée !" }))
-  //       .catch((error) => res.status(500).json({ error }));
-  //   }
-  // });
-// };
-
+//CRUD : supprimer un User
 exports.deleteUser = (req, res) => {
   console.log(req.params);
   User.findOne({ where: { id: req.params.id } })
@@ -192,10 +172,3 @@ exports.deleteUser = (req, res) => {
     })
     .catch((error) => res.status(500).json({ error }));
 };
-
-// exports.logout = (req,res) => {
-//   req.logout()
-//   req.session.destroy()
-//   res.redirect()
-
-// }

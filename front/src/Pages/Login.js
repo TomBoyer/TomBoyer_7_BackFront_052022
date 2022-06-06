@@ -103,7 +103,7 @@ export default function Login() {
     <div>
       <LoaderWrapper displayLoader={loading}>
         <div className="signup__container">
-          <h1>Page de LOGIN</h1>
+          {/* <h1>Page de LOGIN</h1> */}
 
           <Header />
           <Title name="Connexion" />

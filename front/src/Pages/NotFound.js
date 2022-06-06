@@ -5,11 +5,11 @@ export default function NotFound() {
   return (
     <div className="notfound_container">
       <h1 >NotFound</h1>
-      <h2 >
+      <h3 >
         Error :
         <br />
         404 page not found ¯\_(ツ)_/¯
-      </h2>
+      </h3>
       <p >hop hop hop reviens par ici !</p>
 
       <div className="btn-home-container">
