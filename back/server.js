@@ -27,7 +27,7 @@ const errorHandler = error => {
 
     switch (error.code) {
         case 'EACCESS':
-            console.error(blind + 'require elevated privilages');
+            console.error(bind + 'require elevated privilages');
             process.exit(1);
             break;
         case 'EADDRINUSE':
