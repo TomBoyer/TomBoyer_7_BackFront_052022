@@ -111,7 +111,7 @@ export default function Signup() {
 
             <div className="label__container">
               <button type="submit" className="btn">
-                Insciption
+                Inscription
               </button>
 
               {hasErrors && <p>this is a backend error </p>}

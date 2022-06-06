@@ -95,7 +95,7 @@ export default function UpdatePost(props) {
 
           <Input
             name="image"
-            label="poste une image : "
+            label="Poste une image : "
             type="url"
             handleChange={handleChange}
             placeholder="htts://example.jpg"

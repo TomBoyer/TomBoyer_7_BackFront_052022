@@ -62,7 +62,7 @@ export default function Home(props) {
         // ESPACE POST
 
         <div key={post.id}>
-          <Row /* gutter={[32, 24]} */ /* justify="center" */>
+          <Row>
             <Col offset={1}>
               <PostCard
                 {...post}

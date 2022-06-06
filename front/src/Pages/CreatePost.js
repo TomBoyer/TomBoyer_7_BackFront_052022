@@ -78,7 +78,7 @@ export default function CreatePost() {
 
           <Input
             name="image"
-            label="poset une image : "
+            label="Poste une image : "
             type="url"
             handleChange={handleChange}
             placeholder="htts://example.jpg"
