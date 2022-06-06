@@ -61,10 +61,6 @@ export default function Login() {
         .post(apiLogin, { email, password })
         .then((res) => {
           console.log(res.data);
-          // sessionStorage.setItem("token", res.data.token);
-          // sessionStorage.setItem("username", res.data.username);
-          // sessionStorage.setItem("userId", res.data.userId);
-          // setToken({ token: res.data.token });
           setToken(res.data.token);
           setUser({ userId: res.data.userId, username: res.data.username, imageUrl: res.data.imageUrl, isAdmin:res.data.isAdmin });
 
@@ -91,12 +87,6 @@ export default function Login() {
 
   const handleSubmit = (event) => {
     formik.handleSubmit(event);
-
-    // sessionStorage.setItem("token", )
-
-    // if (!formik.isValid || Object.values(formik.values).includes('')) {
-    //   setShowAlert(true);
-    // }
   };
 
   return (

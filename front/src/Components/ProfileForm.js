@@ -17,14 +17,9 @@ export default function ProfileForm() {
     username: yup.string().required("username requis"),
     imageUrl: yup
       .string()
-      // .matches(
-      //   /((https?):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/,
-      //   "Enter correct url!"
-      // )
+
       .required("image requis"),
   });
-
-  // console.log(getUser());
 
   const formik = useFormik({
     initialValues: {
@@ -33,8 +28,6 @@ export default function ProfileForm() {
     },
     validationSchema: validate,
     onSubmit: ({ username, imageUrl }) => {
-      // console.log({id: parseInt(getUserId()), username });
-
       axios({
         method: "PUT",
         url: apiUser,
@@ -90,7 +83,6 @@ export default function ProfileForm() {
           <button type="submit" className="btn btn-profile">
             Modifier
           </button>
-          {/* {formik.errors && formik.touched && <FormError />} */}
         </div>
       </form>
     </div>

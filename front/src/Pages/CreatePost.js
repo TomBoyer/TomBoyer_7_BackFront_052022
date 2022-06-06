@@ -30,8 +30,6 @@ export default function CreatePost() {
     },
     validationSchema: validate,
     onSubmit: ({ content, image }) => {
-      // console.log("token : " + getToken());
-      // console.log("User ID : " + parseInt(getUserId(), 10));
 
       //fetch la route post pour publier post : vérifier si token
       axios({

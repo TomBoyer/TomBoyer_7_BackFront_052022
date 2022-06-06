@@ -1,25 +1,14 @@
 //libs
-import React, { /* useState */ useEffect, useState } from "react";
+import React from "react";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import axios from "axios";
 
 //compo
-// import Input from "../Components/Form/Input";
 import InputPassword from "../Components/Form/InputPassword";
-// import Header from "../Components/Header";
-// import Title from "../Components/Title";
 import { apiUser } from "../Datas/DatasApi";
-// import FormError from "../Components/Form/FormError";
 import { getToken, getUser } from "../Storage/AuthenticationStorage";
-
-// import {
-//   axiosIsLogged,
-//   getToken,
-//   getUserId,
-//   getUsername,
-// } from "../Datas/ConfigAxios";
 
 export default function PwdForm() {
   const VALID_PASSWORD =
@@ -49,7 +38,11 @@ export default function PwdForm() {
     },
     validationSchema: validate,
     onSubmit: ({ oldPassword, newPassword }) => {
-      console.log({ id: parseInt(getUser()?.userId), oldPassword, newPassword })
+      console.log({
+        id: parseInt(getUser()?.userId),
+        oldPassword,
+        newPassword,
+      });
       axios({
         method: "PUT",
         url: apiUser,
@@ -101,7 +94,6 @@ export default function PwdForm() {
           <button type="submit" className="btn btn-profile">
             Modifier MDP
           </button>
-          {/* {formik.errors && formik.touched && <FormError />} */}
         </div>
       </form>
     </div>

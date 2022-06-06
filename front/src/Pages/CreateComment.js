@@ -34,8 +34,6 @@ export default function CreateComment() {
     },
     validationSchema: validate,
     onSubmit: ({ content }) => {
-      // console.log("token : " + getToken());
-      // console.log("User ID : " + parseInt(getUserId(), 10));
 
       //fetch la route comment pourt post un commentaire : vérifier si token
       axios({

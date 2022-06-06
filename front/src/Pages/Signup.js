@@ -67,10 +67,6 @@ export default function Signup() {
 
   const handleSubmit = (event) => {
     formik.handleSubmit(event);
-
-    // if (!formik.isValid || Object.values(formik.values).includes('')) {
-    //   setShowAlert(true);
-    // }
   };
 
   console.error(formik.errors);

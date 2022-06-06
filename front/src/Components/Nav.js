@@ -1,9 +1,10 @@
+//libs
 import React, { useState } from "react";
-import { NavLink, useEffect, useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
+
+//compo + data
 import { LogOutIcon } from "./icons-logos/icons";
-// import { getToken } from "../Datas/ConfigAxios";
 import { getUser, logout } from "../Storage/AuthenticationStorage";
-// import axios from "axios";
 
 export default function Nav() {
   const [showLinks, setShowLinks] = useState(false);

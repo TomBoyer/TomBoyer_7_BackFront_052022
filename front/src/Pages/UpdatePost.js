@@ -107,7 +107,6 @@ export default function UpdatePost(props) {
             <button type="submit" className="btn">
               Modifier
             </button>
-            {/* {formik.errors && formik.touched && <FormError />} */}
           </div>
         </form>
       </div>

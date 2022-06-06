@@ -5,22 +5,15 @@ import { NavLink } from "react-router-dom";
 
 //compo
 import { Card } from "antd";
-
 import "../../Styles/common/_card2.scss";
 
 //datas + api schema
-import { apiPost /* apiUser */ } from "../../Datas/DatasApi";
-import {
-  canDelete,
-  getToken,
-  /* getUser,
-  isAdmin, */
-} from "../../Storage/AuthenticationStorage";
+import { apiPost } from "../../Datas/DatasApi";
+import { canDelete, getToken } from "../../Storage/AuthenticationStorage";
 import CommentCard from "../Comment/CommentCard";
 import ProfilePicture from "../ProfilePicture";
 import PostPicture from "./PostPicture";
-import { DeleteIcon, EditIcon, LikeIcon } from "../icons-logos/icons";
-import LikeUp from "../Like/LikeUp";
+import { DeleteIcon, EditIcon } from "../icons-logos/icons";
 import PostLikeUp from "../Like/LikeUp";
 
 export default function PostCard(props) {
@@ -126,8 +119,6 @@ export default function PostCard(props) {
           {content}
         </p>
 
-        
-
         {image && <PostPicture image={image} />}
 
         {canDelete(userId) && (
@@ -150,9 +141,9 @@ export default function PostCard(props) {
           </NavLink>
         )}
 
-<div className="btn btn-go-like">
-  <PostLikeUp/>
-</div>
+        <div className="btn btn-go-like">
+          <PostLikeUp />
+        </div>
       </div>
 
       {Comment.map((comment) => (
