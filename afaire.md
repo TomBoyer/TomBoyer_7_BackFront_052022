@@ -4,25 +4,25 @@
 <!-- - ajouter un spin pour symboliser le chargement -> ok -->
 		- msg erreur si mauvais mdp - a verifier
 
-/!\ autoprefixer all css
+<!-- /!\ autoprefixer all css -->
 
-- page login/signup : 
+<!-- - page login/signup : 
 <!-- 	- ajouter picture profile (choix par def OU choix d'une photo) -->
-	- empecher les espaces avant/apres le pseudo (trim() fonctionne ?) modifier regex pour exclure espace (noSpace)
+	- empecher les espaces avant/apres le pseudo (trim() fonctionne ?) modifier regex pour exclure espace (noSpace) -->
 
-- page home : 
-	<!-- - btn retour top
-	- cacher btn "créer un post" si user pas loggé	-> ok -->
-	- autorefresh du feed d'actu si nouveau post/comment
+<!-- - page home :  -->
+<!-- 	<!-- - btn retour top
+	- cacher btn "créer un post" si user pas loggé	-> ok 
+	  autorefresh du feed d'actu si nouveau post/comment 
 	- date : moment : comment/post "depuis quand"
-	- Card : créer component pour le feed de la page home
+	- Card : créer component pour le feed de la page home -->
 <!-- 		- ajouter picture profile
 		- ajouter delete post -> demander à tuteur
 		- ajouter delete comment -> demander à tuteur -->
-		- like (back + front)
+		- like (back + front) -> lier back et front : exist pour les posts dans le back et btn affiché dans le front
 
-	- responsiv : 
-		- feed margin
+<!--  responsiv : 
+		 feed margin -->
 
 <!-- - page profil : 
 	- autocomplete du username : si le user change son pseudo le username autocomplete ne change pas sans avoir logout -> login car le username est stocké au login dans le back
