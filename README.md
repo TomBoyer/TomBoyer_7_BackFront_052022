@@ -66,7 +66,9 @@ From root in the second terminal :
 ## Start
   
 At launch you may encounter a server error of this type:
+
 ![Screenshot3](./screen3.jpeg)
+
 Do not hesitate to restart the back-end part from the first terminal with:
 - rs (if you are using nodemon server)
 - node server otherwise

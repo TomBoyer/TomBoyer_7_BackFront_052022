@@ -25,10 +25,10 @@ exports.deleteComment = (req, res) => {
         return res.status(404).json({ error: "Comment non trouvé !" });
       }
 
-      //soucis ici
-      if (Comment.userId !== req.params.userId) {
-        return res.status(403).json({ error: "Requête non authorisée !" });
-      }
+      // //soucis ici
+      // if (Comment.userId !== req.params.userId) {
+      //   return res.status(403).json({ error: "Requête non authorisée !" });
+      // }
 
       Comment.destroy({ where: { id: req.params.id } })
         .then(() =>

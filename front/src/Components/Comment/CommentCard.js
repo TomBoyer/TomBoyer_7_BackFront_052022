@@ -8,7 +8,7 @@ import { Card } from "antd";
 import "../../Styles/common/_card2.scss";
 
 //datas + api schema
-import { apiPost /* apiUser */ } from "../../Datas/DatasApi";
+import { apiComment } from "../../Datas/DatasApi";
 import { canDelete, getToken } from "../../Storage/AuthenticationStorage";
 
 import { DeleteIcon } from "../icons-logos/icons";
@@ -20,7 +20,7 @@ export default function CommentCard(props) {
   const handleDeleteComment = () => {
     console.warn("je delete :", id);
 
-    axios.delete(`${apiPost}/${id}`, {
+    axios.delete(`${apiComment}/${id}`, {
       headers: {
         Authorization: `Bearer ${getToken()}`,
       },
