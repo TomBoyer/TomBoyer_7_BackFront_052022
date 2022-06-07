@@ -33,7 +33,9 @@ Create an .env file at the root of the back and paste :
 
 Depending on the local web server used (XAMPP, MAMP, WAMP) change the port used in : 
 back > config > config.json
+
 ![Screenshot1](./screen1.jpeg)
+
 You will find the port used on your computer in the software settings :  
 MAMP default port: 8889 
 WAMP default port MYSQL: 3306 
@@ -56,7 +58,7 @@ From root in the second terminal :
 - cd front
 - npm i
 - npm start
-	-   a web page should open in your browser
+	- a web page should open in your browser
 	- if no page opens in the browser you can join the project here:
 		http://localhost:3000/
 
@@ -64,7 +66,7 @@ From root in the second terminal :
 ## Start
   
 At launch you may encounter a server error of this type:
-![Screenshot3](./screen3.jpg)
+![Screenshot3](./screen3.jpeg)
 Do not hesitate to restart the back-end part from the first terminal with:
 - rs (if you are using nodemon server)
 - node server otherwise
