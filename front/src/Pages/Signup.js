@@ -20,7 +20,7 @@ export default function Signup() {
   const navigate = useNavigate();
   const [hasErrors, sethasErrors] = useState(false);
 
-  const VALID_USERNAME = /^(?=.*?[A-Za-z0-9#!@$%^&*()+=])\S{8,20}$/;
+  const VALID_USERNAME = /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð\S'.-]+$/;
   const VALID_EMAIL = /^[\w_.-]+@[\w-]+\.[a-z]{2,4}$/i;
   const VALID_PASSWORD =
     /^(?=.*[A-Z])(?=.*[a-z])(?=(.*\d){2,})(?=.*[!@#$%])[A-Za-z\d@$!%*#?&]{8,16}$/;
