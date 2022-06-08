@@ -20,16 +20,22 @@ export default function Signup() {
   const navigate = useNavigate();
   const [hasErrors, sethasErrors] = useState(false);
 
+  const VALID_USERNAME = /^(?=.*?[A-Za-z0-9#!@$%^&*()+=])\S{8,20}$/;
   const VALID_EMAIL = /^[\w_.-]+@[\w-]+\.[a-z]{2,4}$/i;
   const VALID_PASSWORD =
     /^(?=.*[A-Z])(?=.*[a-z])(?=(.*\d){2,})(?=.*[!@#$%])[A-Za-z\d@$!%*#?&]{8,16}$/;
 
   const validate = yup.object({
-    username: yup.string().lowercase().trim().required("username requis"),
+    username: yup
+      .string()
+      .lowercase()
+      .matches(VALID_USERNAME, "Sans espace svp !")
+      .trim()
+      .required("username requis"),
     email: yup
       .string()
       .lowercase()
-      .trim()
+      .trim(yup.string())
       .matches(VALID_EMAIL, "Email non valide")
       .email("Email non valide")
       .required("Email requis"),
@@ -38,7 +44,7 @@ export default function Signup() {
       .required("Merci d'inscrire un password")
       .matches(
         VALID_PASSWORD,
-        "votre mdp doit contenir : 1 maj 1 min 8 cara un sign parmit (!@#$%)"
+        "votre mdp doit contenir : 1 maj 1 min 8 cara un signe parmi (!@#$%)"
       ),
   });
 

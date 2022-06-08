@@ -60,7 +60,7 @@ export default function Login() {
       axios
         .post(apiLogin, { email, password })
         .then((res) => {
-          console.log(res.data);
+          // console.log(res.data);
           setToken(res.data.token);
           setUser({ userId: res.data.userId, username: res.data.username, imageUrl: res.data.imageUrl, isAdmin:res.data.isAdmin });
 
