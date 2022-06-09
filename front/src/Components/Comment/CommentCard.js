@@ -109,7 +109,7 @@ export default function CommentCard(props) {
         </p>
         {canDelete(userId) && (
           // userId === getUser()?.userId && (
-          <button onClick={handleDeleteComment} className="btn btn-suppr">
+          <button onClick={handleDeleteComment} className="btn btn-suppr" aria-label="Supprimer le comment">
             <div>
               <DeleteIcon />
             </div>
