@@ -41,6 +41,8 @@ export default function PostCard(props) {
         borderRadius: "20px",
         width: "70vw",
         margin: "1em .5em 1em .5em",
+        border:"1px solid #3a405a",
+        boxShadow: "2px 2px rgb(58, 64, 90)",
       }}
     >
       <div
@@ -126,22 +128,22 @@ export default function PostCard(props) {
 
           <button onClick={handleDeletePost} className="btn btn-suppr" aria-label="Supprimer le post">
             {/* Suppr */}
-            <div>
+            <div name="lien vers supprimer le post">
               <DeleteIcon />
             </div>
           </button>
         )}
 
         {canDelete(userId) && (
-          <NavLink className="btn btn-go-update " to={`/updatePost/${id}`} aria-label="lien vers modifier le post">
+          <NavLink className="btn btn-go-update " to={`/updatePost/${id}`} name="link update post">
             {/* Modif */}
-            <div>
+            <button aria-label="lien vers modifier le post">
               <EditIcon />
-            </div>
+            </button>
           </NavLink>
         )}
 
-        <div className="btn btn-go-like" aria-label="like le post">
+        <div className="btn btn-go-like" name="like le post">
           <PostLikeUp />
         </div>
       </div>

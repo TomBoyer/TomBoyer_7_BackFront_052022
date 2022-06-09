@@ -19,8 +19,8 @@ exports.createComment = (req, res) => {
 //CRUD : supprimer un commentaire
 exports.deleteComment = (req, res) => {
   Comment.findOne({ where: { id: req.params.id } })
-    .then((Comment) => {
-      if (!Comment) {
+    .then((comment) => {
+      if (!comment) {
         return res.status(404).json({ error: "Comment non trouvé !" });
       }
 
@@ -28,7 +28,7 @@ exports.deleteComment = (req, res) => {
       // if (Comment.userId !== req.params.userId) {
       //   return res.status(403).json({ error: "Requête non authorisée !" });
       // }
-      if (post.userId == req.token.userId || req.token.isAdmin) {
+      if (comment.userId == req.token.userId || req.token.isAdmin) {
         Comment.destroy({ where: { id: req.params.id } })
           .then(() =>
             res

@@ -55,11 +55,14 @@ h2 {
     font-weight: bolder;
     font-size: calc(1.2vmin + 15px);
 
+    box-shadow: 2px 2px rgb(253 45 1);
+    background: $color-6;
+
     // background-color: $color-5;
-    background: #FD2D01;
-    background: linear-gradient(to top left, #FD2D01, #FFFFFF);
-    background: -webkit-linear-gradient(bottom right, #FD2D01, #FFFFFF);
-    background: -moz-linear-gradient(bottom right, #FD2D01, #FFFFFF);
+    // background: $color-2;
+    // background: linear-gradient(to top left, #FD2D01, #FFFFFF);
+    // background: -webkit-linear-gradient(bottom right, #FD2D01, #FFFFFF);
+    // background: -moz-linear-gradient(bottom right, #FD2D01, #FFFFFF);
     color: #000000;
 
     // width: 18em;
@@ -67,9 +70,9 @@ h2 {
     padding: 1.5rem 1rem;
 }
 
-.test{
+.test {
 
-    @include tel{
+    @include tel {
         background: red;
     }
 }

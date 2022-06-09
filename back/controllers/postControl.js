@@ -121,7 +121,9 @@ exports.deletePost = (req, res) => {
 
       if (post.userId == req.token.userId || req.token.isAdmin) {
         Post.destroy({ where: { id: req.params.id } })
-          .then(() => res.status(201).json({ message: "Post supprimé" }))
+          .then(() => {
+            res.status(201).json({ message: "Post supprimé" });
+          })
           .catch((error) => res.status(500).json({ error }));
       }
     })

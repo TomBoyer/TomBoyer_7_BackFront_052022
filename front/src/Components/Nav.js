@@ -25,18 +25,18 @@ export default function Nav() {
       <nav className={`navbar ${showLinks ? "show-nav" : "hide-nav"}`}>
         <ul className="navbar__links">
           <li>
-            <NavLink to="/home" className="link-login">
+            <NavLink to="/home" className="link-home">
               Accueil
             </NavLink>
           </li>
           <li>
-            <NavLink to="/profile" className="link-login">
+            <NavLink to="/profile" className="link-profile">
               Profil
             </NavLink>
           </li>
           <li>
-            <NavLink to="/login" className="link-logout">
-              <button onClick={logOut}>
+            <NavLink to="/login" className="link-logout" name="logout">
+              <button onClick={logOut} aria-label="logout">
                 <LogOutIcon />
               </button>
             </NavLink>
