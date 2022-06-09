@@ -1,10 +1,9 @@
 const { Comment } = require("../models");
 
-
 //CRUD : créer un commentaire
 exports.createComment = (req, res) => {
   const newComment = {
-    userId: req.body.userId,
+    userId: req.token.userId,
     postId: req.body.postId,
     content: req.body.content,
   };
@@ -29,14 +28,15 @@ exports.deleteComment = (req, res) => {
       // if (Comment.userId !== req.params.userId) {
       //   return res.status(403).json({ error: "Requête non authorisée !" });
       // }
-
-      Comment.destroy({ where: { id: req.params.id } })
-        .then(() =>
-          res
-            .status(200)
-            .json({ message: "Le commentaire à bien été supprimé !" })
-        )
-        .catch((error) => res.status(500).json({ error }));
+      if (post.userId == req.token.userId || req.token.isAdmin) {
+        Comment.destroy({ where: { id: req.params.id } })
+          .then(() =>
+            res
+              .status(200)
+              .json({ message: "Le commentaire à bien été supprimé !" })
+          )
+          .catch((error) => res.status(500).json({ error }));
+      }
     })
     .catch((error) => res.status(500).json({ error }));
 };

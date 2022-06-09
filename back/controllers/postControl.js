@@ -12,7 +12,8 @@ exports.createPost = (req, res) => {
   // }
 
   const newPost = {
-    userId: req.body.userId,
+    // userId: req.body.userId,
+    userId: req.token.userId,
     content: req.body.content,
     image: req.body.image,
   };
@@ -102,10 +103,11 @@ exports.getOnePost = (req, res) => {
 //CRUD : supprimer un Post
 exports.deletePost = (req, res) => {
   Post.findOne({ where: { id: req.params.id } })
-    .then((Post) => {
-      if (!Post) {
+    .then((post) => {
+      if (!post) {
         return res.status(404).json({ error: "Post non trouvé !" });
       }
+
       //soucis ici
       // if (Post.userId !== req.params.userId) {
       //   return res.status(403).json({ error: "Requête non authorisée !" });
@@ -117,9 +119,11 @@ exports.deletePost = (req, res) => {
       //   });
       // }
 
-      Post.destroy({ where: { id: req.params.id } })
-        .then(() => res.status(201).json({ message: "Post supprimé" }))
-        .catch((error) => res.status(500).json({ error }));
+      if (post.userId == req.token.userId || req.token.isAdmin) {
+        Post.destroy({ where: { id: req.params.id } })
+          .then(() => res.status(201).json({ message: "Post supprimé" }))
+          .catch((error) => res.status(500).json({ error }));
+      }
     })
     .catch((error) => res.status(500).json({ error }));
 };
@@ -127,23 +131,25 @@ exports.deletePost = (req, res) => {
 //CRUD : modifier un Post
 exports.updatePost = (req, res) => {
   Post.findOne({ where: { id: req.params.id } })
-    .then((Post) => {
-      if (!Post) {
+    .then((post) => {
+      if (!post) {
         return res.status(404).json({ error: "Post non trouvé !" });
       }
-      Post.update(
-        { content: req.body.content ,
-         image: req.body.image },
-        { where: { id: req.params.id } }
-      )
-        .then(() => {
-          // console.log(res);
-          res.status(201).json({ message: "Post modifié" })})
-        .catch((error) => res.status(500).json({ error }));
+
+      if (post.userId == req.token.userId || req.token.isAdmin) {
+        Post.update(
+          { content: req.body.content, image: req.body.image },
+          { where: { id: req.params.id } }
+        )
+          .then(() => {
+            // console.log(res);
+            res.status(201).json({ message: "Post modifié" });
+          })
+          .catch((error) => res.status(500).json({ error }));
+      }
     })
     .catch((error) => res.status(500).json({ error }));
 };
-
 
 // exports.likePost = (req, res) => {
 //   Like.findOne({

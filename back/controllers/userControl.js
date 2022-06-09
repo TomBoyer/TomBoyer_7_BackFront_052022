@@ -7,7 +7,7 @@ const fs = require("fs");
 exports.signup = (req, res) => {
   //   console.log(req.body);
   bcrypt
-    .hash(req.body.password, 17)
+    .hash(req.body.password, 10)
     .then((hash) => {
       const newUser = {
         email: req.body.email,
@@ -57,6 +57,7 @@ exports.login = (req, res) => {
           token: jwt.sign(
             {
               userId: user.id,
+              isAdmin:user.isAdmin,
             },
             process.env.SECRET_TOKEN,
             { expiresIn: "24h" }
@@ -140,7 +141,7 @@ exports.updateProfilePicture = (req, res, next) => {
   User.findOne({ id: req.params.id }).then((user) => {
     const filename = user.imageUrl.split("/images/")[1];
     fs.unlink(`images/${filename}`, () => {
-      //use l'_id dans la req pour trouver la sauce à modifier avec le meme _id que l'original sans en créer une nouvelle
+      //use l'id dans la req pour trouver l'img à modifier avec le meme id que l'original sans en créer une nouvelle
       Sauce.updateOne(
         { id: req.params.id },
         { ...userObject, id: req.params.id }
