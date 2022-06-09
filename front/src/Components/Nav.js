@@ -42,8 +42,8 @@ export default function Nav() {
             </NavLink>
           </li>
         </ul>
-        <button className="navbar__burger" onClick={handleShowLinks}>
-          <span className="burger-bar"></span>
+        <button className="navbar__burger" onClick={handleShowLinks} aria-label="burger-menu">
+          <span className="burger-bar" aria-hidden="true"></span>
         </button>
       </nav>
     </div>
@@ -62,8 +62,8 @@ export default function Nav() {
             </NavLink>
           </li>
         </ul>
-        <button className="navbar__burger" onClick={handleShowLinks}>
-          <span className="burger-bar"></span>
+        <button className="navbar__burger" onClick={handleShowLinks} aria-label="burger-menu">
+          <span className="burger-bar" name="burger-menu"></span>
         </button>
       </nav>
     </div>

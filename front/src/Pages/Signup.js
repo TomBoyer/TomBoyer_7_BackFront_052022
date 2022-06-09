@@ -75,7 +75,7 @@ export default function Signup() {
     formik.handleSubmit(event);
   };
 
-  console.error(formik.errors);
+  // console.error(formik.errors);
 
   return (
     <div>

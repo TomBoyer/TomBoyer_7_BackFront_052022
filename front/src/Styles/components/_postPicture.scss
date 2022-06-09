@@ -1,9 +1,10 @@
 .post-picture__container {
-
+// @include border;
+@include flex-center;
+    width: 100%;
+    
     img {
 
         width: calc(25vw + 15px);
-
-        @include tel {}
     }
 }

@@ -5,13 +5,10 @@
     form {
         @include border-radius;
         padding: 3em;
-        background-color: $color-5;
+        background-color: $color-6;
 
         @include flex-center;
         flex-direction: column;
-
-        // max-width: 65vw;
-        // width: calc(5vmin + 25em);
 
         box-shadow: 2px 2px rgb(253, 45, 1);
 
@@ -23,7 +20,6 @@
 
         .label__container {
 
-            // @include border;
             position: relative;
 
             @include flex-center;
@@ -43,8 +39,8 @@
 
             input {
                 @include border-radius;
+                @include border;
                 background-color: $color-6;
-                // max-width: 55vw;
                 width: 25rem;
                 padding: 1em;
                 margin: .5em 0.5em 2em 0.5em;
