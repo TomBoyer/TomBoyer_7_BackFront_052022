@@ -43,7 +43,6 @@ exports.login = (req, res) => {
           .json({ message: `${req.body.email} n'existe pas !` });
       }
       bcrypt.compare(req.body.password, user.password).then((valid) => {
-        
         if (!valid) {
           return res
             .status(401)
@@ -52,12 +51,12 @@ exports.login = (req, res) => {
         res.status(200).json({
           userId: user.id,
           username: user.username,
-          imageUrl:user.imageUrl,
-          isAdmin:user.isAdmin,
+          imageUrl: user.imageUrl,
+          isAdmin: user.isAdmin,
           token: jwt.sign(
             {
               userId: user.id,
-              isAdmin:user.isAdmin,
+              isAdmin: user.isAdmin,
             },
             process.env.SECRET_TOKEN,
             { expiresIn: "24h" }
@@ -115,9 +114,9 @@ exports.updateOneUser = (req, res) => {
       }
       // console.log(req.body);
 
-      if (req.body.username  && /*req.body.username != user.username || */ req.body.imageUrl /* && req.body.imageUrl != user.imageUrl */) {
+      if (req.body.username && req.body.imageUrl) {
         User.update(
-          { username: req.body.username , imageUrl:req.body.imageUrl},
+          { username: req.body.username, imageUrl: req.body.imageUrl },
           { where: { id: req.body.id } }
         );
         res.status(201).json({ message: "Parametres modifiés" });
@@ -126,7 +125,7 @@ exports.updateOneUser = (req, res) => {
     .catch((error) => res.status(500).json({ error }));
 };
 
-//CRUD : modifier photo profil 
+//CRUD : modifier photo profil
 exports.updateProfilePicture = (req, res, next) => {
   //nouvelle images ou non ? si oui req.file si non traiter object directement
   const userObject = req.file
@@ -146,7 +145,9 @@ exports.updateProfilePicture = (req, res, next) => {
         { id: req.params.id },
         { ...userObject, id: req.params.id }
       )
-        .then(() => res.status(200).json({ message: "Profile picture modifiée !" }))
+        .then(() =>
+          res.status(200).json({ message: "Profile picture modifiée !" })
+        )
         .catch((error) => res.status(400).json({ error }));
     });
   });
