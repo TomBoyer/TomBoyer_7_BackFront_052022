@@ -8,9 +8,9 @@ export default function BtnRefreshPage() {
     }
   return (
     <div>
-      <button className="btn-go-refresh" onClick={refresh}>
+      <button className="btn-go-refresh" onClick={refresh} aria-label="button refresh page">
         Refresh
-        </button>;
+        </button>
       
     </div>
   );

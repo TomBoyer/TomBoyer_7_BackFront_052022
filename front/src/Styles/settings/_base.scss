@@ -22,6 +22,7 @@ $color-3: #3a405a;
 $color-4: #091f43;
 $color-5: #b4c5e4;
 $color-6: #d9e2f2;
+$color-7: #4E5166;
 
 $duration: 0.3s;
 $duration2: 0.5s;
@@ -47,7 +48,7 @@ body {
 
 body::-webkit-scrollbar {
 
-  background-color: $color-3;
+  background-color: $color-7;
 }
 
 body::-webkit-scrollbar-track {
@@ -113,8 +114,11 @@ body::-webkit-scrollbar-thumb {
 
 @mixin btn-hover {
   transform: scale(1.1);
-  opacity: 0.9;
+  // opacity: 0.9;
   box-shadow: 0px 10px 10px 0px rgba(0 0 0 / 20%);
+
+  background-color: $color-7;
+  color: #FFF;
 
   transition: all $duration ease-out;
 }
