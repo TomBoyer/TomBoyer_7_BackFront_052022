@@ -12,7 +12,7 @@ exports.createPost = (req, res) => {
   // }
 
   const newPost = {
-    // userId: req.body.userId,
+    
     userId: req.token.userId,
     content: req.body.content,
     image: req.body.image,
@@ -23,7 +23,7 @@ exports.createPost = (req, res) => {
   Post.create(newPost)
     .then((post) => res.status(201).json(post))
     .catch((error) => {
-      // console.log(error);
+      
       res.status(500).json({ error });
     });
 };

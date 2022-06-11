@@ -1,0 +1,27 @@
+.tooltip{
+    border: solid 1px $color-2;
+    border-radius: 50%;
+
+    background-color: $color-7;
+    color: #fff;
+
+    padding: 5px;
+    margin-bottom: .5rem;
+    width: 1.5rem;
+    height: 1.5rem;
+
+    @include flex-center;
+    cursor: help;
+}
+
+.tooltiptext{
+    // @include border;
+    visibility: hidden;
+    margin-bottom: .5rem;
+
+}
+
+.tooltip:hover+.tooltiptext{
+    visibility: visible;
+    
+}

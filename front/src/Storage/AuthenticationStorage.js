@@ -11,11 +11,11 @@ export const getToken = () => {
 };
 
 //récup id user + username dans le sessiosn storage
-export const setUser = ({ /* userId, */ username, imageUrl/* , isAdmin */ }) => {
+export const setUser = ({ username, imageUrl }) => {
   // console.log(userId, username, imageUrl);
   sessionStorage.setItem(
     "user",
-    JSON.stringify({ /* userId, */ username, imageUrl/* , isAdmin */ })
+    JSON.stringify({  username, imageUrl })
   );
 };
 

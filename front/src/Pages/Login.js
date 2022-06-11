@@ -4,7 +4,6 @@ import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import axios from "axios";
-import jwt from "jwt-decode";
 
 //components
 import Header from "../Components/Header";
@@ -51,7 +50,6 @@ export default function Login() {
     },
     validationSchema: validate,
     onSubmit: ({ email, password }) => {
-      // console.log (email, password);
 
       sethasErrors(false);
       setLoading(true);
@@ -64,7 +62,6 @@ export default function Login() {
 
           setToken(token);
           setUser({
-            // userId: res.data.userId,
             username: res.data.username,
             imageUrl: res.data.imageUrl
           });

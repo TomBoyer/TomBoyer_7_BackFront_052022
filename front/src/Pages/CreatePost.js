@@ -5,7 +5,7 @@ import axios from "axios";
 import * as yup from "yup";
 import { apiPost } from "../Datas/DatasApi";
 import { useNavigate } from "react-router-dom";
-import { getToken, /* getUser */ } from "../Storage/AuthenticationStorage";
+import { getToken /* getUser */ } from "../Storage/AuthenticationStorage";
 import jwt from "jwt-decode";
 
 //components
@@ -33,7 +33,6 @@ export default function CreatePost() {
     },
     validationSchema: validate,
     onSubmit: ({ content, image }) => {
-
       //fetch la route post pour publier post : vérifier si token
       axios({
         method: "POST",
@@ -88,6 +87,12 @@ export default function CreatePost() {
             value={formik.values.image}
             error={formik.errors.image}
           />
+
+          <div className="tooltip">i</div>
+          <div className="tooltiptext">
+            {" "}
+            Collez l'url d'une image directement depuis internet
+          </div>
 
           <div className="label__container">
             <button type="submit" className="btn">

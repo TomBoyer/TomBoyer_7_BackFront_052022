@@ -50,9 +50,9 @@ exports.login = (req, res) => {
         }
         res.status(200).json({
           // userId: user.id,
+          // isAdmin: user.isAdmin,
           username: user.username,
           imageUrl: user.imageUrl,
-          // isAdmin: user.isAdmin,
           token: jwt.sign(
             {
               userId: user.id,
@@ -140,7 +140,7 @@ exports.updateProfilePicture = (req, res, next) => {
   User.findOne({ id: req.params.id }).then((user) => {
     const filename = user.imageUrl.split("/images/")[1];
     fs.unlink(`images/${filename}`, () => {
-      //use l'id dans la req pour trouver l'img à modifier avec le meme id que l'original sans en créer une nouvelle
+      //use l'id dans la req pour trouver l'img à modifier avec le meme id que l'originale sans en créer une nouvelle
       Sauce.updateOne(
         { id: req.params.id },
         { ...userObject, id: req.params.id }

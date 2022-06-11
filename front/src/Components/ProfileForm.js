@@ -58,6 +58,7 @@ export default function ProfileForm() {
   };
 
   const navigate = useNavigate();
+
   return (
     <div className="form__container">
       <form onSubmit={handleSubmit}>
@@ -80,6 +81,10 @@ export default function ProfileForm() {
           value={formik.values.imageUrl}
           error={formik.errors.imageUrl}
         />
+
+        <div className="tooltip">i</div>
+        <div className="tooltiptext"> Collez l'url d'une image directement depuis internet
+          </div>
 
         <div className="label__container">
           <button type="submit" className="btn btn-profile">
