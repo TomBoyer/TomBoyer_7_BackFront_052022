@@ -5,12 +5,13 @@ import axios from "axios";
 import * as yup from "yup";
 import { apiComment } from "../Datas/DatasApi";
 import { useNavigate, useParams } from "react-router-dom";
-import { getToken, getUser } from "../Storage/AuthenticationStorage";
+import { getToken, /* getUser */ } from "../Storage/AuthenticationStorage";
 
 //components
 import InputTextArea from "../Components/Form/InputTextArea";
 import Title from "../Components/Title";
 import Header from "../Components/Header";
+import jwt from "jwt-decode";
 
 export default function CreateComment() {
   //récupérer l'id du post dans le params
@@ -25,6 +26,8 @@ export default function CreateComment() {
     content: yup.string().required("Contenu requis"),
   });
 
+  const user = jwt(getToken());
+
   //formik : valeurs initiales vides et validation suivant le schéma yup
   const formik = useFormik({
     initialValues: {
@@ -35,17 +38,21 @@ export default function CreateComment() {
     validationSchema: validate,
     onSubmit: ({ content }) => {
 
-      //fetch la route comment pourt post un commentaire : vérifier si token
+      //fetch la route comment pour post un commentaire : vérifier si token
       axios({
         method: "POST",
         url: apiComment,
         headers: {
           Authorization: `Bearer ${getToken()}`,
         },
-        data: { content, userId: parseInt(getUser().userId, 10), postId: postIdUrl },
+        data: { 
+          content, 
+          userId: parseInt(user.userId, 10), 
+          postId: postIdUrl 
+        },
       })
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           navigate("/home");
         })
         .catch((error) => {

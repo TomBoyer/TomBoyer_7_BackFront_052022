@@ -5,7 +5,8 @@ import axios from "axios";
 import * as yup from "yup";
 import { apiPost } from "../Datas/DatasApi";
 import { useNavigate } from "react-router-dom";
-import { getToken, getUser } from "../Storage/AuthenticationStorage";
+import { getToken, /* getUser */ } from "../Storage/AuthenticationStorage";
+import jwt from "jwt-decode";
 
 //components
 import InputTextArea from "../Components/Form/InputTextArea";
@@ -20,6 +21,8 @@ export default function CreatePost() {
   const validate = yup.object({
     content: yup.string().required("Contenu requis"),
   });
+
+  const user = jwt(getToken());
 
   //formik : valeurs initiales vides et validation suivant le schéma yup
   const formik = useFormik({
@@ -38,7 +41,7 @@ export default function CreatePost() {
         headers: {
           Authorization: `Bearer ${getToken()}`,
         },
-        data: { content, userId: parseInt(getUser().userId), image },
+        data: { content, userId: parseInt(user.userId), image },
       })
         .then((res) => {
           // console.log(res);

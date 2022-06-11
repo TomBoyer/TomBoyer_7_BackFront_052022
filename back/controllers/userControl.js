@@ -49,10 +49,10 @@ exports.login = (req, res) => {
             .json({ message: "Vérifiez votre mot de passe !" });
         }
         res.status(200).json({
-          userId: user.id,
+          // userId: user.id,
           username: user.username,
           imageUrl: user.imageUrl,
-          isAdmin: user.isAdmin,
+          // isAdmin: user.isAdmin,
           token: jwt.sign(
             {
               userId: user.id,
@@ -84,7 +84,7 @@ exports.getAllUsers = (req, res) => {
     .catch((error) => res.status(500).json({ error }));
 };
 
-//CRUD : modifier User : passeword/username
+//CRUD : modifier User : password/username
 exports.updateOneUser = (req, res) => {
   User.findOne({ where: { id: req.body.id } })
 

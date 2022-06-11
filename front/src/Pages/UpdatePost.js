@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useFormik } from "formik";
 import axios from "axios";
+import jwt from "jwt-decode";
 import * as yup from "yup";
 import { apiPost } from "../Datas/DatasApi";
 import { useNavigate, useParams } from "react-router-dom";
@@ -8,7 +9,7 @@ import InputTextArea from "../Components/Form/InputTextArea";
 // import FormError from "../Components/Form/FormError";
 import Header from "../Components/Header";
 import Title from "../Components/Title";
-import { getToken, getUser } from "../Storage/AuthenticationStorage";
+import { getToken, /* getUser */ } from "../Storage/AuthenticationStorage";
 import Input from "../Components/Form/Input";
 
 export default function UpdatePost(props) {
@@ -41,24 +42,23 @@ export default function UpdatePost(props) {
     content: yup.string().required("Contenu requis"),
   });
 
-  // console.log("la value", initialValues);
+  const user = jwt(getToken());
 
   const formik = useFormik({
     initialValues,
     enableReinitialize: true,
     validationSchema: validate,
     onSubmit: ({ content, image }) => {
-      console.log(content, image, getUser().userId);
       axios({
         method: "PUT",
         url: `${apiPost}/${postIdUrl}`,
         headers: {
           Authorization: `Bearer ${getToken()}`,
         },
-        data: { content, userId: parseInt(getUser().userId), image },
+        data: { content, userId: parseInt(user.userId), image },
       })
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           navigate("/home");
         })
         .catch((error) => {

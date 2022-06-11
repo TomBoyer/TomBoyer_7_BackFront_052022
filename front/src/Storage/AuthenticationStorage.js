@@ -1,3 +1,5 @@
+import jwt from "jwt-decode";
+
 //enregistrer le token
 export const setToken = (token) => {
   sessionStorage.setItem("token", token);
@@ -9,11 +11,11 @@ export const getToken = () => {
 };
 
 //récup id user + username dans le sessiosn storage
-export const setUser = ({ userId, username, imageUrl, isAdmin }) => {
+export const setUser = ({ /* userId, */ username, imageUrl/* , isAdmin */ }) => {
   // console.log(userId, username, imageUrl);
   sessionStorage.setItem(
     "user",
-    JSON.stringify({ userId, username, imageUrl, isAdmin })
+    JSON.stringify({ /* userId, */ username, imageUrl/* , isAdmin */ })
   );
 };
 
@@ -30,8 +32,9 @@ export const getUser = () => {
 };
 
 //vérifier si user peut suppr
-export const canDelete = (userId) => {
-  if (userId === getUser()?.userId || getUser()?.isAdmin) {
+export const canUpdateDelete = (userId, token) => {
+  const user = jwt(token)
+  if (userId === user?.userId || user?.isAdmin) {
     return true;
   }
 };

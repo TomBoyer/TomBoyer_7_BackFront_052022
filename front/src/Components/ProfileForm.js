@@ -4,6 +4,7 @@ import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import axios from "axios";
+import jwt from "jwt-decode";
 
 //compo
 import Input from "./Form/Input";
@@ -21,6 +22,8 @@ export default function ProfileForm() {
       .required("image requis"),
   });
 
+  const user = jwt(getToken());
+
   const formik = useFormik({
     initialValues: {
       username: getUser()?.username,
@@ -34,11 +37,10 @@ export default function ProfileForm() {
         headers: {
           Authorization: `Bearer ${getToken()}`,
         },
-        data: { id: parseInt(getUser()?.userId), username, imageUrl },
+        data: { id: parseInt(user?.userId), username, imageUrl },
       })
         .then((res) => {
-          console.log(res);
-          setUser({ userId: getUser().userId, username, imageUrl });
+          setUser({ username, imageUrl });
           navigate("/home");
         })
         .catch((error) => {

@@ -4,11 +4,12 @@ import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import axios from "axios";
+import jwt from "jwt-decode";
 
 //compo
 import InputPassword from "../Components/Form/InputPassword";
 import { apiUser } from "../Datas/DatasApi";
-import { getToken, getUser } from "../Storage/AuthenticationStorage";
+import { getToken, /* getUser */ } from "../Storage/AuthenticationStorage";
 
 export default function PwdForm() {
   const VALID_PASSWORD =
@@ -31,6 +32,8 @@ export default function PwdForm() {
       ),
   });
 
+  const user = jwt(getToken());
+
   const formik = useFormik({
     initialValues: {
       oldPassword: "",
@@ -38,18 +41,13 @@ export default function PwdForm() {
     },
     validationSchema: validate,
     onSubmit: ({ oldPassword, newPassword }) => {
-      console.log({
-        id: parseInt(getUser()?.userId),
-        oldPassword,
-        newPassword,
-      });
       axios({
         method: "PUT",
         url: apiUser,
         headers: {
           Authorization: `Bearer ${getToken()}`,
         },
-        data: { id: parseInt(getUser()?.userId), oldPassword, newPassword },
+        data: { id: parseInt(user?.userId), oldPassword, newPassword },
       })
         .then((res) => {
           //   console.log(res);

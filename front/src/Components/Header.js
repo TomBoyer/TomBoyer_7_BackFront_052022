@@ -10,7 +10,8 @@ export default function Header() {
       <NavLink to="/home">
         <img
           // className="logo"
-          src="./imgs/icon-left-font-monochrome-black.png"
+          // src="./imgs/icon-left-font-monochrome-black.png"
+          src={`${process.env.PUBLIC_URL}/imgs/icon-left-font-monochrome-black.png`}
           alt="logo groupomania black"
         />
       </NavLink>

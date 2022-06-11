@@ -9,7 +9,7 @@ import "../../Styles/common/_card2.scss";
 
 //datas + api schema
 import { apiComment } from "../../Datas/DatasApi";
-import { canDelete, getToken } from "../../Storage/AuthenticationStorage";
+import { canUpdateDelete, getToken } from "../../Storage/AuthenticationStorage";
 
 import { DeleteIcon } from "../icons-logos/icons";
 
@@ -25,6 +25,8 @@ export default function CommentCard(props) {
         Authorization: `Bearer ${getToken()}`,
       },
     });
+    let newComments = props.comments.filter((comment) => comment.id !== id);
+    props.setComments(newComments);
   };
   return (
     <Card
@@ -107,9 +109,12 @@ export default function CommentCard(props) {
         >
           {content}
         </p>
-        {canDelete(userId) && (
-          // userId === getUser()?.userId && (
-          <button onClick={handleDeleteComment} className="btn btn-suppr" aria-label="Supprimer le comment">
+        {canUpdateDelete(userId, getToken()) && (
+          <button
+            onClick={handleDeleteComment}
+            className="btn btn-suppr"
+            aria-label="Supprimer le comment"
+          >
             <div>
               <DeleteIcon />
             </div>

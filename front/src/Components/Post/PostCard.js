@@ -1,6 +1,6 @@
 //libs
 import axios from "axios";
-import React from "react";
+import React, { useState } from "react";
 import { NavLink } from "react-router-dom";
 
 //compo
@@ -9,7 +9,7 @@ import "../../Styles/common/_card2.scss";
 
 //datas + api schema
 import { apiPost } from "../../Datas/DatasApi";
-import { canDelete, getToken } from "../../Storage/AuthenticationStorage";
+import { canUpdateDelete, getToken } from "../../Storage/AuthenticationStorage";
 import CommentCard from "../Comment/CommentCard";
 import ProfilePicture from "../ProfilePicture";
 import PostPicture from "./PostPicture";
@@ -19,6 +19,8 @@ import PostLikeUp from "../Like/LikeUp";
 export default function PostCard(props) {
   const { id, userId, User, createdAt, content, Comment, image } = props;
   const { username, imageUrl } = User;
+
+  const [comments, setComments] = useState(Comment);
 
   const handleDeletePost = () => {
     console.warn("je delete :", id);
@@ -41,7 +43,7 @@ export default function PostCard(props) {
         borderRadius: "20px",
         width: "70vw",
         margin: "1em .5em 1em .5em",
-        border:"1px solid #3a405a",
+        border: "1px solid #3a405a",
         boxShadow: "2px 2px rgb(58, 64, 90)",
       }}
     >
@@ -123,10 +125,12 @@ export default function PostCard(props) {
 
         {image && <PostPicture image={image} />}
 
-        {canDelete(userId) && (
-          // userId === getUser()?.userId && (
-
-          <button onClick={handleDeletePost} className="btn btn-suppr" aria-label="Supprimer le post">
+        {canUpdateDelete(userId, getToken()) && (
+          <button
+            onClick={handleDeletePost}
+            className="btn btn-suppr"
+            aria-label="Supprimer le post"
+          >
             {/* Suppr */}
             <div name="lien vers supprimer le post">
               <DeleteIcon />
@@ -134,8 +138,12 @@ export default function PostCard(props) {
           </button>
         )}
 
-        {canDelete(userId) && (
-          <NavLink className="btn btn-go-update " to={`/updatePost/${id}`} name="link update post">
+        {canUpdateDelete(userId, getToken()) && (
+          <NavLink
+            className="btn btn-go-update "
+            to={`/updatePost/${id}`}
+            name="link update post"
+          >
             {/* Modif */}
             <button aria-label="lien vers modifier le post">
               <EditIcon />
@@ -148,9 +156,15 @@ export default function PostCard(props) {
         </div>
       </div>
 
-      {Comment.map((comment) => (
+      {comments.map((comment) => (
         <div key={`${id}${comment.id}`}>
-          <CommentCard {...comment} />
+          <CommentCard
+            {...comment}
+            setComments={(comments) => {
+              setComments(comments);
+            }}
+            comments={comments}
+          />
         </div>
       ))}
 

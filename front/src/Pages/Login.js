@@ -1,14 +1,14 @@
 //libs
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { useFormik } from "formik";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import axios from "axios";
+import jwt from "jwt-decode";
 
 //components
 import Header from "../Components/Header";
 import Title from "../Components/Title";
-
 
 import Input from "../Components/Form/Input";
 import InputPassword from "../Components/Form/InputPassword";
@@ -18,7 +18,6 @@ import FormError from "../Components/Form/FormError";
 import { apiLogin } from "../Datas/DatasApi";
 import LoaderWrapper from "../Components/Loader/LoaderWrapper";
 import { setToken, setUser } from "../Storage/AuthenticationStorage";
-
 
 export default function Login() {
   const VALID_EMAIL = /^[\w_.-]+@[\w-]+\.[a-z]{2,4}$/i;
@@ -60,11 +59,15 @@ export default function Login() {
       axios
         .post(apiLogin, { email, password })
         .then((res) => {
-          // console.log(res.data);
-          setToken(res.data.token);
-          setUser({ userId: res.data.userId, username: res.data.username, imageUrl: res.data.imageUrl, isAdmin:res.data.isAdmin });
+          const token = res.data.token;
+          // console.log("le token", token, "isAmdin :", jwt(token)?.isAdmin);
 
-          console.log("verif admin", res.data.isAdmin);
+          setToken(token);
+          setUser({
+            // userId: res.data.userId,
+            username: res.data.username,
+            imageUrl: res.data.imageUrl
+          });
 
           sethasErrors(false);
           setLoading(false);
@@ -78,8 +81,6 @@ export default function Login() {
         });
     },
   });
-
-  
 
   const handleChange = (e) => {
     formik.handleChange(e);
