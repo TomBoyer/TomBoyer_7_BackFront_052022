@@ -42,7 +42,11 @@ export default function Nav() {
             </NavLink>
           </li>
         </ul>
-        <button className="navbar__burger" onClick={handleShowLinks} aria-label="burger-menu">
+        <button
+          className="navbar__burger"
+          onClick={handleShowLinks}
+          aria-label="burger-menu"
+        >
           <span className="burger-bar" aria-hidden="true"></span>
         </button>
       </nav>
@@ -62,7 +66,11 @@ export default function Nav() {
             </NavLink>
           </li>
         </ul>
-        <button className="navbar__burger" onClick={handleShowLinks} aria-label="burger-menu">
+        <button
+          className="navbar__burger"
+          onClick={handleShowLinks}
+          aria-label="burger-menu"
+        >
           <span className="burger-bar" name="burger-menu"></span>
         </button>
       </nav>

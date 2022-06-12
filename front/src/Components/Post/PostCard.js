@@ -129,10 +129,10 @@ export default function PostCard(props) {
           <button
             onClick={handleDeletePost}
             className="btn btn-suppr"
-            aria-label="Supprimer le post"
+            aria-label="delete the post"
           >
             {/* Suppr */}
-            <div name="lien vers supprimer le post">
+            <div name="link to delete post">
               <DeleteIcon />
             </div>
           </button>
@@ -145,13 +145,13 @@ export default function PostCard(props) {
             name="link update post"
           >
             {/* Modif */}
-            <button aria-label="lien vers modifier le post">
+            <button aria-label="link to update post">
               <EditIcon />
             </button>
           </NavLink>
         )}
 
-        <div className="btn btn-go-like" name="like le post">
+        <div className="btn btn-go-like" name="like the post">
           <PostLikeUp />
         </div>
       </div>
